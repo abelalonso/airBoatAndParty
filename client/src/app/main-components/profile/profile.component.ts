@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../session/session.service';
 import { BoatService } from '../boat.service';
+import { Boat } from '../boat-interface';
 
 @Component({
   selector: 'app-profile',
@@ -20,5 +21,10 @@ export class ProfileComponent implements OnInit {
 
   cancel(){
     this.boatService.showBoatForm = false;
+  }
+
+  addBoat(newBoat: Boat){
+    console.log(newBoat);
+    newBoat.owner = this.sessionService.user._id;
   }
 }

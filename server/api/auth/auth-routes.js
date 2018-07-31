@@ -23,9 +23,10 @@ const login = (req, user) => {
 // SIGNUP
 authRouter.post("/signup", (req, res, next) => {
   const {username, password, name, surname, email, profileImage} = req.body;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
-    return;
+  
+  // Check for non empty user or password
+  if (!username || !password){
+    next(new Error('You must provide valid credentials'));
   }
 
   User.findOne({ username })

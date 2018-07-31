@@ -6,4 +6,5 @@ export interface User {
   surname: string;
   boats?: Array<string>;
   profileImage?: string;
+  _id?: string;
 }

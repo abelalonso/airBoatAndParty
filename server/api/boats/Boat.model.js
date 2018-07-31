@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const userSchema = new Schema({
-  Name: {type: String, required: true},
+const boatSchema = new Schema({
+  name: {type: String, required: true},
   capacity: Number,
   crew: Number,
   dimensions: String,
@@ -22,5 +22,5 @@ const userSchema = new Schema({
   }
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+const Boat = mongoose.model('Boat', boatSchema);
+module.exports = Boat;

@@ -1,15 +1,39 @@
-<h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
-
-<button (click)="showBoatForm()">Registrar un barco</button>
-
-<form action="" *ngIf="boatService.showBoatForm">
-  <div class="form-field">
-    <label for=""></label>
-    <input type="text">
+<div class="container" *ngIf="sessionService.user">
+  <h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
+  
+  <button (click)="showBoatForm()">Registrar un barco</button>
+  
+  <div class="boat-form"  *ngIf="boatService.showBoatForm">
+    <h2>Datos del barco</h2>
+    <form (ngSubmit)="addBoat(boatForm.value)" #boatForm="ngForm">
+      <div class="form-field">
+        <label for="name">Nombre</label>
+        <input type="text" placeholder="name" [ngModel]="name" name="name">
+      </div>
+      <div class="form-field">
+        <label for="capacity">Capacidad</label>
+        <input type="text" placeholder="capacity" [ngModel]="capacity" name="capacity">
+      </div>
+      <div class="form-field">
+        <label for="crew">Tripulación</label>
+        <input type="text" placeholder="crew" [ngModel]="crew" name="crew">
+      </div>
+      <div class="form-field">
+        <label for="city">Ciudad</label>
+        <input type="text" placeholder="city" [ngModel]="city" name="city">
+      </div>
+      <div class="form-field">
+        <label for="dimensions">Dimensiones</label>
+        <input type="text" placeholder="dimensions" [ngModel]="dimensions" name="dimensions">
+      </div>
+      <div class="form-field">
+        <label for="pricePerDay">pricePerDay</label>
+        <input type="text" placeholder="pricePerDay" [ngModel]="pricePerDay" name="pricePerDay">
+      </div>
+      <div class="buttons">
+        <button type="submit">Registrar</button>
+        <button (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
   </div>
-
-  <div class="buttons">
-    <button type="submit">Registrar</button>
-    <button (click)="cancel()">Cancelar</button>
-  </div>
-</form>
+</div>

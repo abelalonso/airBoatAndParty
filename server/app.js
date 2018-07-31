@@ -79,8 +79,8 @@ app.use('/', index);
 const authRoutes = require("./api/auth/auth-routes");
 app.use('/api/auth', authRoutes);
 
-/* const boatRoutes = require(".api/boats/boat-routes");
-app.use(/) */
+const boatRoutes = require("./api/boats/boat-routes");
+app.use('/api/boats', boatRoutes);
 
 
 module.exports = app;
