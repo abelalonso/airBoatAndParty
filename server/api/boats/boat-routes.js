@@ -22,7 +22,7 @@ boatRouter.post('/', (req, res, next) => {
     }).save()
     .then ( savedBoat => {
         console.log(savedBoat)
-        User.findByIdAndUpdate(owner, { $push: {boats: savedBoat._id}}).then(udatedUser => {
+        User.findByIdAndUpdate(owner, { role: "owner", $push: {boats: savedBoat._id}}).then(udatedUser => {
             console.log(udatedUser)
             res.json({status: `Boat ${name} registered succesfully`})})
         })

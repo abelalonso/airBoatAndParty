@@ -10,10 +10,11 @@ import { Boat } from '../boat-interface';
 })
 export class ProfileComponent implements OnInit {
 
+  boats: Array<Boat>
   constructor(private sessionService: SessionService, private boatService: BoatService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+  
 
   showBoatForm(){
     this.boatService.showBoatForm = true;

@@ -14,14 +14,24 @@ export class BoatService {
 
   showBoatForm = false;
   options: object = {withCredentials: true};
+  boats: Array<Boat>
 
   constructor(private http: Http) { }
 
+  getBoats(): Observable<Array<Boat>>{
+    return this.http.get(`${BASEURL}/api/boats`, this.options).pipe(
+      map( (res: any) => {
+        console.log("el jason", res.json());
+        this.boats = res.json();
+        return res.json();
+      })
+    )
+  }
+
+
   addBoat(newBoat: Boat): Observable<Boat>{
-    console.log("Añadiendo barco")
     return this.http.post(`${BASEURL}/api/boats`, newBoat, this.options).pipe(
       map ( (res: Response) => {
-        console.log("añadiendo")
         console.log(res.json())
         return res.json();
       }),

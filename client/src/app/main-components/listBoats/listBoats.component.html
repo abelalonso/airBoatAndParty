@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="boats" *ngFor="let boat of boatService.boats">
+    <div class="boat">
+      <h2>{{boat.name}}</h2>
+
+      <button [routerLink]="['/boats', boat._id]">Detalle</button>
+      
+    </div>
+  </div>
+  <button [routerLink]="['/']">Volver</button>
+</div>
