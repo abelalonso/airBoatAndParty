@@ -80,7 +80,6 @@ authRouter.get('/logout', (req,res) => {
   res.status(200).json({message:'logged out'})
 });
 
-
 authRouter.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 })

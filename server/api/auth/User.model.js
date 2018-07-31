@@ -13,7 +13,7 @@ const userSchema = new Schema({
   name: {type: String, required: true},
   surname: {type: String, required: true},
   boats: {type: [Schema.Types.ObjectId], ref: 'Boat'},
-  profileImage: String
+  profileImage: {type: String, default: "https://res-console.cloudinary.com/abel-alonso/thumbnails/v1/image/upload/v1533033981/YWlyQnlQL2Fub25pbW8=/grid"}
 }, {
   timestamps: {
     createdAt: 'created_at',

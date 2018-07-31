@@ -1,3 +1,5 @@
 <a *ngIf="!sessionService.user" [routerLink]="['signup']">Entrar...</a>
 <a href="#" *ngIf="sessionService.user" (click)="logout()">Salir...</a>
+
+<a [routerLink]="['profile']">Mi page</a>
 <router-outlet></router-outlet>

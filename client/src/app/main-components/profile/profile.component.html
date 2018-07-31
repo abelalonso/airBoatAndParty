@@ -1,0 +1,15 @@
+<h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
+
+<button (click)="showBoatForm()">Registrar un barco</button>
+
+<form action="" *ngIf="boatService.showBoatForm">
+  <div class="form-field">
+    <label for=""></label>
+    <input type="text">
+  </div>
+
+  <div class="buttons">
+    <button type="submit">Registrar</button>
+    <button (click)="cancel()">Cancelar</button>
+  </div>
+</form>

@@ -5,15 +5,18 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms'
 
 import { SessionService } from './session/session.service';
+import { BoatService } from './main-components/boat.service';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './session/signup/signup.component';
+import { ProfileComponent } from './main-components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,7 @@ import { SignupComponent } from './session/signup/signup.component';
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [SessionService],
+  providers: [SessionService, BoatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
