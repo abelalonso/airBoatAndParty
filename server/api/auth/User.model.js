@@ -11,8 +11,7 @@ const userSchema = new Schema({
   },
   email: {type: String, required: true},
   name: {type: String, required: true},
-  surname1: {type: String, required: true},
-  surname2: String,
+  surname: {type: String, required: true},
   boats: {type: [Schema.Types.ObjectId], ref: 'Boat'},
   profileImage: String
 }, {

@@ -22,7 +22,7 @@ const login = (req, user) => {
 
 // SIGNUP
 authRouter.post("/signup", (req, res, next) => {
-  const {username, password, name, surname1, surname2, email, profileImage} = req.body;
+  const {username, password, name, surname, email, profileImage} = req.body;
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -39,8 +39,7 @@ authRouter.post("/signup", (req, res, next) => {
       username,
       password: hashPass,
       name, 
-      surname1, 
-      surname2, 
+      surname, 
       email, 
       profileImage,
       boats: []
