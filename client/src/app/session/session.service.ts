@@ -66,5 +66,6 @@ export class SessionService {
     console.log("SessionServiceError");
     console.log(e.message);
     console.log(e);
+    return e;
   }
 }

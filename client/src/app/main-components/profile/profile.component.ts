@@ -24,7 +24,8 @@ export class ProfileComponent implements OnInit {
   }
 
   addBoat(newBoat: Boat){
-    console.log(newBoat);
     newBoat.owner = this.sessionService.user._id;
+    this.boatService.addBoat(newBoat).subscribe();
+    this.boatService.showBoatForm = false;
   }
 }
