@@ -1,141 +1,117 @@
-body{
-  background-color: #A8A8A8;
-  font-family: 'Roboto', sans-serif;
+* {
+  font-family: Arial;
+  color: #333;
 }
 
-.container{
-  /*border:1px solid white;*/
-  width: 600px;
-  height: 350px;
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  display: inline-flex; 
+@keyframes shake {
+10%, 90% {
+  transform: translate3d(-1px, 0, -200px);
 }
-.backbox{  
-  background-color: #404040;
+
+20%, 80% {
+  transform: translate3d(2px, 0, -200px);
+}
+
+30%, 50%, 70% {
+  transform: translate3d(-4px, 0, -200px);
+}
+
+40%, 60% {
+  transform: translate3d(4px, 0, -200px);
+}
+}
+
+#wrapper {
+  position: absolute;
   width: 100%;
-  height: 80%;
-  position: absolute;
-  transform: translate(0,-50%);
-  top:50%;
-  display: inline-flex;
-}
-
-.frontbox{
-  background-color: white;
-  border-radius: 20px;
   height: 100%;
-  width: 50%;
-  z-index: 10;
+  background: #45484d;
+background: -moz-linear-gradient(-45deg,  #45484d 0%, #000000 100%);
+background: -webkit-linear-gradient(-45deg,  #45484d 0%,#000000 100%);
+background: linear-gradient(135deg,  #45484d 0%,#000000 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 );
+  
+  perspective-origin: 50% 50;
+  perspective: 500;
+}
+
+#container {
   position: absolute;
-  right:0;
-  margin-right: 3%;
-  margin-left: 3%;
-  transition: right .8s ease-in-out;
+  width: 300px;
+  height: 450px;
+  top: 50%;
+  left: 50%;
+  margin-top: -225px;
+  margin-left: -150px;
+  transform: translate3d(0, 0, -200px) rotateY(0deg);
+  transform-style: preserve-3d;
+/* http://cubic-bezier.com/#0,1,0,1 */
+/*     transition: all 1s cubic-bezier(.87,-.41,.19,1.44); */
+  transition: all .5s cubic-bezier(1,.23,.76,1);
 }
 
-.moving{
-  right:45%;
+#f1 {
+  transform: rotateY(0deg) translateZ(150px);
 }
 
-.loginMsg, .signupMsg{
-  width: 50%;
-  height: 100%;
-  font-size: 15px;
-  box-sizing: border-box;
+#f2 {
+  transform: rotateY(90deg) translateZ(150px);
 }
 
-.loginMsg .title,
-.signupMsg .title{
-  font-weight: 300;
-  font-size: 23px;
+#f3 {
+  transform: rotateY(180deg) translateZ(150px);
 }
 
-.loginMsg p,
-.signupMsg p {
-  font-weight: 100;
+#f4 {
+  transform: rotateY(270deg) translateZ(150px);
 }
 
-.textcontent{
-  color:white;
-  margin-top:65px;
-  margin-left: 12%;
-}
-
-.loginMsg button,
-.signupMsg button {
-  background-color: #404040;
-  border: 2px solid white;
-  border-radius: 10px;
-  color:white;
-  font-size: 12px;
-  box-sizing: content-box;
-  font-weight: 300;
-  padding:10px;
-  margin-top: 20px;
-}
-
-/* front box content*/
-.login, .signup{
-  padding: 20px;
+.face {
+  position: absolute;
+  width: 300px;
+  height: 450px;
+  background: #b5bdc8;
+background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 );
+  padding: 0 17px;
   text-align: center;
+  backface-visibility: hidden;
 }
 
-.login h2,
-.signup h2 {
-  color: #35B729;
-  font-size:22px;
-}
-
-.inputbox{
-  margin-top:30px; 
-}
-.login input, 
-.signup input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  background-color: #f2f2f2;
-  border: none;
-  margin-bottom:20px;
-  font-size: 12px;
-}
-
-.login button,
-.signup button{
-  background-color: #35B729;
-  border: none;
-  color:white;
-  font-size: 12px;
-  font-weight: 300;
-  box-sizing: content-box;
-  padding:10px;
-  border-radius: 10px;
-  width: 60px;
-  position: absolute;
-  right:30px;
-  bottom: 30px;
+.btn {
+  display: inline-block;
+  background: silver;
+  padding: 2px 10px;
   cursor: pointer;
+  user-select: none; 
 }
 
-/* Fade In & Out*/
-.login p {
-  cursor: pointer;
-  color:#404040;
-  font-size:15px;
+.left {
+  float: left;
 }
 
-.loginMsg, .signupMsg{
-  /*opacity: 1;*/
-  transition: opacity .8s ease-in-out;
+.right {
+  float: right;
 }
 
-.visibility{
-  opacity: 0;
+.clear {
+  clear: both;
 }
 
-.hide{
-  display: none;
+
+.button-group > *{
+  margin: 5px;
+}
+
+form > *{
+  margin: 8px;
+}
+
+.face{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 10px;
 }

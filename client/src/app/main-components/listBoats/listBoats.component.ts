@@ -18,12 +18,12 @@ export class ListBoatsComponent implements OnInit {
     this.update();
   }
 
-  public update() {
+  update() {
     this.boatService.getBoats(this.userId).subscribe(boats=>this.boatList=boats);
   }
 
   delete(boatId: string) {
-    this.boatService.deleteBoat(boatId).subscribe();
+    this.boatService.deleteBoat(boatId).subscribe( ()=>this.update());
   }
 
 }

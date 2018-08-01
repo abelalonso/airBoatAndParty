@@ -1,4 +1,4 @@
-
+<!-- 
 <h1>SignUp</h1>
 
 <form (ngSubmit)="signup(signupForm.value)" #signupForm="ngForm">
@@ -42,4 +42,57 @@
     </div>
     <button type="submit">Enviar</button>
   </form>
+ -->
 
+<div id="wrapper">
+  <div id="container">
+    <div id="f1" class="face">
+      <h3>Login</h3>
+      <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
+        <input name="username" type="text" placeholder="username" [ngModel]="username">
+        <input name="password" type="text" placeholder="password" [ngModel]="password">
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="button-group">
+        <div class="btn" data-target="register">Register</div>
+        <div class="btn" data-target="agbs">AGBs</div>
+        <div class="btn" data-target="info">Info</div>
+      </div>
+    </div>
+    <div id="f2" class="face">
+      <h3>Register</h3>
+      <form (ngSubmit)="signup(signupForm.value)" #signupForm="ngForm">
+        <input name="username" type="text" placeholder="username" [ngModel]="username">
+        <input name="password" type="text" placeholder="password" [ngModel]="password">
+        <input name="email" type="text" placeholder="email" [ngModel]="email">
+        <input name="name" type="text" placeholder="name" [ngModel]="name">
+        <input name="surname" type="text" placeholder="surname" [ngModel]="surname">
+        <input name="profileImage" type="text" placeholder="profileImage" [ngModel]="profileImage">
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="button-group">
+        <div class="btn" data-target="login">Login</div>
+        <div class="btn" data-target="agbs">AGBs</div>
+        <div class="btn" data-target="info">Info</div>
+      </div>
+    </div>
+    <div id="f3" class="face">
+      <h3>Info</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium incidunt animi libero voluptatem, voluptatibus,
+      eaque omnis unde nulla repellat adipisci cum. Dolore accusantium explicabo adipisci vel dolorum, debitis corporis beatae!
+      <div class="button-group">
+        <div class="btn" data-target="login">Login</div>
+        <div class="btn" data-target="register">Register</div>
+        <div class="btn" data-target="agbs">AGBs</div>
+      </div>
+    </div>
+    <div id="f4" class="face">
+      <h3>ABGs</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium incidunt animi libero voluptatem, voluptatibus,
+      eaque omnis unde nulla repellat adipisci cum. Dolore accusantium explicabo adipisci vel dolorum, debitis corporis beatae!
+      <div class="button-group">
+        <div class="btn" data-target="login">Login</div>
+        <div class="btn" data-target="register">Register</div>
+        <div class="btn" data-target="info">Info</div>
+      </div>
+    </div>
+  </div>
+</div>
