@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BoatService } from '../boat.service';
 import { EventEmitter } from 'events';
 
@@ -9,6 +9,8 @@ import { EventEmitter } from 'events';
 })
 export class ListBoatsComponent implements OnInit {
 
+  @Input() userId: string;
+
   constructor(private boatService: BoatService) { }
 
   ngOnInit() {
@@ -16,7 +18,7 @@ export class ListBoatsComponent implements OnInit {
   }
 
   update() {
-    this.boatService.getBoats().subscribe();
+    this.boatService.getBoats(this.userId).subscribe();
   }
 
 }

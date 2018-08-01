@@ -5,6 +5,7 @@ const User = require('../auth/User.model');
 const Booking = require('../bookings/Booking.model');
 
 bookingRouter.get('/user/:id', (req, res, next) => {
+  //We should update the state of the bookings on every get
   Booking.find({'user': req.params.uderId})
   .then( objList => res.status(200).json(objList))
   .catch(e => next(e))

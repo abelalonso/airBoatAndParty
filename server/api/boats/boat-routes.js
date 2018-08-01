@@ -11,6 +11,13 @@ boatRouter.get('/', (req, res, next) => {
     .catch(e => next(e))
 });
 
+boatRouter.get('/:id', (req, res, next) => {
+    Boat.find({owner: req.params.id}).populate('owner')
+    .then( objList => res.status(200).json(objList))
+    .catch(e => next(e))
+});
+
+
 boatRouter.post('/', (req, res, next) => {
     const {name, capacity, crew, dimensions, owner, pricePerDay, position, city} = req.body;
 
@@ -29,4 +36,17 @@ boatRouter.post('/', (req, res, next) => {
     .catch(e => next(e));
 })
 
+boatRouter.delete('/:id', (req, res, next) => {
+    const {id} = req.params;
+    //Check if all the bookings are inactive before deleting
+    Model.findByIdAndRemove(id)
+        .then( obj => {
+            if(obj){
+                res.status(200).json({status:`Removed from db`});
+            }else{
+                throw new Error("Not existing ID");
+            }
+        })
+        .catch(e => next(e))
+})
 module.exports = boatRouter;

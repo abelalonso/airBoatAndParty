@@ -11,11 +11,15 @@ import { Boat } from '../boat-interface';
 export class ProfileComponent implements OnInit {
 
   boats: Array<Boat>
-  //@Output() onBoatsUpdate = new EventEmitter<void>();
 
-  constructor(private sessionService: SessionService, private boatService: BoatService) { }
+  user = this.sessionService.user._id;
 
-  ngOnInit() {}
+  constructor(private sessionService: SessionService, private boatService: BoatService) {
+  }
+
+  ngOnInit() {
+   
+  }
 
 
 }

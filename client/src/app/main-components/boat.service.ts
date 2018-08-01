@@ -18,8 +18,8 @@ export class BoatService {
 
   constructor(private http: Http) { }
 
-  getBoats(): Observable<Array<Boat>>{
-    return this.http.get(`${BASEURL}/api/boats`, this.options).pipe(
+  getBoats(user: string): Observable<Array<Boat>>{
+    return this.http.get(`${BASEURL}/api/boats/${user||""}`, this.options).pipe(
       map( (res: any) => {
         this.boats = res.json();
         return res.json();

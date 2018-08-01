@@ -9,7 +9,8 @@ const bookingSchema = new Schema({
   confirmed: Boolean,
   totalPrice: Number,
   use: String,
-  shoppingCart: String
+  shoppingCart: String,
+  isActive: {type: Boolean, default: true}
 }, {
   timestamps: {
     createdAt: 'created_at',
