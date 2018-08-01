@@ -6,7 +6,7 @@ const boatSchema = new Schema({
   capacity: Number,
   crew: Number,
   dimensions: String,
-  booked: [Date],
+  booked: [{start:Date, end: Date}],
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
   pricePerDay: Number,
   photos: [String],

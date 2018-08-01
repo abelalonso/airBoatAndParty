@@ -43,7 +43,8 @@ authRouter.post("/signup", (req, res, next) => {
       surname, 
       email, 
       profileImage,
-      boats: []
+      boats: [],
+      bookings: []
     }).save()
     .then( savedUser => login(req, savedUser)) // Login the user using passport
     .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON

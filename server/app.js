@@ -82,5 +82,8 @@ app.use('/api/auth', authRoutes);
 const boatRoutes = require("./api/boats/boat-routes");
 app.use('/api/boats', boatRoutes);
 
+const bookingRoutes = require ("./api/bookings/booking-routes");
+app.use('/api/booking', bookingRoutes);
+
 
 module.exports = app;

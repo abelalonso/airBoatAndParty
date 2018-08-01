@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const userSchema = new Schema({
-  date: Date,
+const bookingSchema = new Schema({
+  startDate: Date,
+  endDate: Date,
   user: {type: Schema.Types.ObjectId, ref: 'User'},
-  owner: {type: Schema.Types.ObjectId, ref: 'User'},
+  boat: {type: Schema.Types.ObjectId, ref: 'Boat'},
   confirmed: Boolean,
   totalPrice: Number,
   use: String,
-  shopingCart: String
+  shoppingCart: String
 }, {
   timestamps: {
     createdAt: 'created_at',
@@ -16,5 +17,5 @@ const userSchema = new Schema({
   }
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+const Booking = mongoose.model('Booking', bookingSchema);
+module.exports = Booking;

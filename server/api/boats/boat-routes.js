@@ -1,5 +1,5 @@
 const express = require('express');
-const boatRouter  = express.Router();
+const boatRouter = express.Router();
 const Boat = require('./Boat.model');
 const User = require('../auth/User.model');
 
