@@ -1,44 +1,63 @@
-
-<h1>SignUp</h1>
-
-<form (ngSubmit)="signup(signupForm.value)" #signupForm="ngForm">
-  <div class="form-field">
-    <label for="username">username</label>
-    <input name="username" type="text" placeholder="username" [ngModel]="username">
+<div id="wrapper">
+  <div id="container">
+      <div id="f1" class="face">
+          <h3>Login</h3>
+          <br>
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" />
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" />
+          </div>
+          <div class="form-group">
+              <button class="form-control btn" data-action="login"><b>Login</b></button>
+          </div>
+          <br>
+          <div class="btn" data-target="register">Register</div>
+          <div class="btn" data-target="agbs">AGBs</div>
+          <div class="btn" data-target="info">Info</div>
+      </div>
+      <div id="f2" class="face">
+          <h3>Register</h3>
+          <br>
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" />
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" />
+          </div>
+          <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="text" class="form-control" id="email" />
+          </div>
+          <br>
+          <div class="btn" data-target="login">Login</div>
+          <div class="btn" data-target="agbs">AGBs</div>
+          <div class="btn" data-target="info">Info</div>
+      </div>
+      <div id="f3" class="face">
+          <h3>Info</h3>
+          <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium incidunt animi libero voluptatem, voluptatibus, eaque omnis unde nulla repellat adipisci cum. Dolore accusantium explicabo adipisci vel dolorum, debitis corporis
+          beatae!
+          <br>
+          <br>
+          <div class="btn" data-target="login">Login</div>
+          <div class="btn" data-target="register">Register</div>
+          <div class="btn" data-target="agbs">AGBs</div>
+      </div>
+      <div id="f4" class="face">
+          <h3>ABGs</h3>
+          <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium incidunt animi libero voluptatem, voluptatibus, eaque omnis unde nulla repellat adipisci cum. Dolore accusantium explicabo adipisci vel dolorum, debitis corporis
+          beatae!
+          <br>
+          <br>
+          <div class="btn" data-target="login">Login</div>
+          <div class="btn" data-target="register">Register</div>
+          <div class="btn" data-target="info">Info</div>
+      </div>
   </div>
-  <div class="form-field">
-    <label for="password">password</label>
-    <input name="password" type="text" placeholder="password" [ngModel]="password">
-  </div>
-  <div class="form-field">
-    <label for="email">email</label>
-    <input name="email" type="text" placeholder="email" [ngModel]="email">
-  </div>
-  <div class="form-field">
-    <label for="name">name</label>
-    <input name="name" type="text" placeholder="name" [ngModel]="name">
-  </div>
-  <div class="form-field">
-    <label for="surname">surname</label>
-    <input name="surname" type="text" placeholder="surname" [ngModel]="surname">
-  </div>
-  <div class="form-field">
-    <label for="profileImage">profileImage</label>
-    <input name="profileImage" type="text" placeholder="profileImage" [ngModel]="profileImage">
-  </div>
-  <button type="submit">Enviar</button>
-</form>
-
-<h1>Login</h1>
-
-<form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
-    <div class="form-field">
-      <label for="username">username</label>
-      <input name="username" type="text" placeholder="username" [ngModel]="username">
-    </div>
-    <div class="form-field">
-      <label for="password">password</label>
-      <input name="password" type="text" placeholder="password" [ngModel]="password">
-    </div>
-    <button type="submit">Enviar</button>
-  </form>
+</div>
