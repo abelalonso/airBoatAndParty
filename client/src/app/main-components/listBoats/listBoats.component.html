@@ -1,5 +1,6 @@
 
 <div class="container">
+  <h2>Mis barcos</h2>
   <div class="boats" *ngFor="let boat of boatService.boats">
     <div class="boat">
       <h2>{{boat.name}} de {{boat.owner.name}} {{boat.owner.surname}}</h2>
@@ -8,5 +9,4 @@
       
     </div>
   </div>
-  <button [routerLink]="['/']">Volver</button>
 </div>
