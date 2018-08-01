@@ -21,7 +21,6 @@ export class BoatService {
   getBoats(): Observable<Array<Boat>>{
     return this.http.get(`${BASEURL}/api/boats`, this.options).pipe(
       map( (res: any) => {
-        console.log("el jason", res.json());
         this.boats = res.json();
         return res.json();
       })
@@ -32,7 +31,6 @@ export class BoatService {
   addBoat(newBoat: Boat): Observable<Boat>{
     return this.http.post(`${BASEURL}/api/boats`, newBoat, this.options).pipe(
       map ( (res: Response) => {
-        console.log(res.json())
         return res.json();
       }),
       catchError(e=>of(this.errorHandler(e)))

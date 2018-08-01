@@ -14,6 +14,7 @@ import { SignupComponent } from './session/signup/signup.component';
 import { ProfileComponent } from './main-components/profile/profile.component';
 import { ListBoatsComponent } from './main-components/listBoats/listBoats.component';
 import { SingleBoatComponent } from './main-components/singleBoat/singleBoat.component';
+import { NewBoatComponent } from './main-components/newBoat/newBoat.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SingleBoatComponent } from './main-components/singleBoat/singleBoat.com
     HomeComponent,
     SignupComponent,
     ProfileComponent,
+    NewBoatComponent,
     ListBoatsComponent,
     SingleBoatComponent
   ],

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { BoatService } from '../boat.service';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-listBoats',
@@ -11,6 +12,10 @@ export class ListBoatsComponent implements OnInit {
   constructor(private boatService: BoatService) { }
 
   ngOnInit() {
+    this.update();
+  }
+
+  update() {
     this.boatService.getBoats().subscribe();
   }
 

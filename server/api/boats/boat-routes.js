@@ -6,7 +6,7 @@ const User = require('../auth/User.model');
 /* GET home page */
 
 boatRouter.get('/', (req, res, next) => {
-    Boat.find()
+    Boat.find().populate('owner')
     .then( objList => res.status(200).json(objList))
     .catch(e => next(e))
 });
