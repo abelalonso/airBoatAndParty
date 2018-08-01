@@ -1,8 +1,8 @@
 <div class="container" *ngIf="sessionService.user">
   <h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
   
-  <app-newBoat></app-newBoat>
-  <app-listBoats [userId]="user"></app-listBoats>
+  <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
+  <app-listBoats [userId]="user" [boatList]="boats"></app-listBoats>
   <app-listBookings></app-listBookings>
   <button [routerLink]="['/']">Volver</button>
 </div>

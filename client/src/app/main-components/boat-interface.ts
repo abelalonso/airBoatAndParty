@@ -3,7 +3,7 @@ export interface Boat {
   capacity: number;
   crew: number;
   dimensions: string;
-  booked?: [Date];
+  booked?: [object];
   owner?: string;
   pricePerDay: number;
   photos?: [string],

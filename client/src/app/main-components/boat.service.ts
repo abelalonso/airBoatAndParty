@@ -37,6 +37,15 @@ export class BoatService {
     )
   }
 
+  deleteBoat(boatId: string): Observable<null>{
+    return this.http.delete(`${BASEURL}/api/boats/${boatId}`, this.options).pipe(
+      map( (res: Response) => {
+        return res.json();
+      }),
+      catchError(e=>of(this.errorHandler(e)))
+    )
+  }
+
   errorHandler(e){
     console.log("BoatServiceError");
     console.log(e.message);

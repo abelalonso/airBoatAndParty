@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BoatService } from '../boat.service';
 import { SessionService } from '../../session/session.service';
 import { Boat } from '../boat-interface';
@@ -10,6 +10,7 @@ import { Boat } from '../boat-interface';
 })
 export class NewBoatComponent implements OnInit {
 
+  @Output() onUpdateBoats = new EventEmitter();
   constructor(private boatService: BoatService, private sessionService: SessionService) { }
 
   ngOnInit() {
@@ -24,8 +25,9 @@ export class NewBoatComponent implements OnInit {
 
   addBoat(newBoat: Boat){
     newBoat.owner = this.sessionService.user._id;
-    this.boatService.addBoat(newBoat).subscribe();
-    this.boatService.showBoatForm = false;
-  
+    this.boatService.addBoat(newBoat).subscribe( () => {
+      this.boatService.showBoatForm = false;
+      this.onUpdateBoats.emit()
+    });
   }
 }

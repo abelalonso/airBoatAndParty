@@ -20,6 +20,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
    
   }
-
+  update(e){
+    console.log("Quiero actualizar la lista")
+    this.boatService.getBoats("").subscribe( boats => this.boats=boats);
+  }
 
 }

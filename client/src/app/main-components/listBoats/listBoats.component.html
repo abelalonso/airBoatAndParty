@@ -1,12 +1,13 @@
 
 <div class="container">
   <h2>Barcos</h2>
-  <div class="boats" *ngFor="let boat of boatService.boats">
+  <div class="boats" *ngFor="let boat of boatList">
     <div class="boat">
       <h2>{{boat.name}} de {{boat.owner.name}} {{boat.owner.surname}}</h2>
 
       <button [routerLink]="['/boats', boat._id]">Detalle</button>
-      
+      <button (click)="delete(boat._id)" *ngIf="boat.owner._id===userId">Eliminar</button>
+
     </div>
   </div>
 </div>

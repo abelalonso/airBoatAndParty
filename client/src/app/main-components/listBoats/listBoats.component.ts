@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BoatService } from '../boat.service';
-import { EventEmitter } from 'events';
+import { Boat } from '../boat-interface';
 
 @Component({
   selector: 'app-listBoats',
@@ -10,6 +10,7 @@ import { EventEmitter } from 'events';
 export class ListBoatsComponent implements OnInit {
 
   @Input() userId: string;
+  @Input() boatList: Array<Boat>;
 
   constructor(private boatService: BoatService) { }
 
@@ -17,8 +18,12 @@ export class ListBoatsComponent implements OnInit {
     this.update();
   }
 
-  update() {
-    this.boatService.getBoats(this.userId).subscribe();
+  public update() {
+    this.boatService.getBoats(this.userId).subscribe(boats=>this.boatList=boats);
+  }
+
+  delete(boatId: string) {
+    this.boatService.deleteBoat(boatId).subscribe();
   }
 
 }

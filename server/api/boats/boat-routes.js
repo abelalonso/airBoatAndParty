@@ -39,7 +39,12 @@ boatRouter.post('/', (req, res, next) => {
 boatRouter.delete('/:id', (req, res, next) => {
     const {id} = req.params;
     //Check if all the bookings are inactive before deleting
-    Model.findByIdAndRemove(id)
+    Boat.findById(id).populate('owner').then(boat=>{
+        let updatedBoats=boat.owner.boats;
+        updatedBoats.splice(updatedBoats.indexOf(id));
+        User.findByIdAndUpdate(boat.owner, {boats: updatedBoats}).then((user)=>console.log(`Boats updated un user ${user.username}`))
+    })
+    Boat.findByIdAndRemove(id)
         .then( obj => {
             if(obj){
                 res.status(200).json({status:`Removed from db`});
