@@ -22,25 +22,27 @@ bookingRouter.get('/boat/:id', (req, res, next) => {
 });
 
 bookingRouter.post('/boat/:id', (req, res, next) => {
-  const {startDate, endDate, totalPrice, use, shoppingCard, user} = req.body;
+
+  const {startDate, endDate, use, shoppingCard, user, totalPrice} = req.body;
+
   //Create the booking
   const newBooking = new Booking({
     startDate, endDate, totalPrice, use, shoppingCard, user,
-    //user: req.user._id,
-    boat: req.params.id
+    boat: req.params.id,
   });
+
   newBooking.save()
   //Update the user bookings array
   .then ( () => {
     console.log("user",newBooking.user, newBooking._id)
     User.findByIdAndUpdate(newBooking.user, {$push: {bookings: newBooking._id}},{new:true})
-      .then((user) => console.log(`User ${user.username} updated succesfully`))
+      .then((updatedUser) => console.log(`User ${updatedUser.username} updated succesfully`))
       .catch((e)=>console.log("error", e))
   })
     //update the boat booked array
   .then ( () => {
     Boat.findByIdAndUpdate(req.params.id, {$push: {bookings: newBooking._id}}, {new: true})
-    .then(() => {
+    .then((updatedBoat) => {
       res.json({status: `Booking ${newBooking._id} registered succesfully`})
     })
   })

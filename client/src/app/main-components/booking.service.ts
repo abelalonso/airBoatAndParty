@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
@@ -13,8 +13,11 @@ const { BASEURL } = environment;
 export class BookingService {
 
   showBookingForm:boolean = false;
+  showBookingButton = true;
   bookings: Array<Booking>;
   options:object = {withCredentials: true}; 
+  @Input() userId: string;
+  @Input() boatId: string;
 
   constructor(private http: Http) { }
 
@@ -38,7 +41,14 @@ export class BookingService {
     )
   }
 
-  addBooking(){
+  addBooking(newBooking: Booking): Observable<Booking>{
+    return this.http.post(`${BASEURL}/api/booking/boat/${newBooking.boat}`, newBooking, this.options).pipe(
+      map( (res: Response) => {
+        console.log("Enviado booking al servidor")
+        return res.json();
+      }),
+      catchError( e=>of(this.errorHandler(e)))
+    )
     
   }
 

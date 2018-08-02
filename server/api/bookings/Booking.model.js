@@ -6,7 +6,7 @@ const bookingSchema = new Schema({
   endDate: Date,
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   boat: {type: Schema.Types.ObjectId, ref: 'Boat'},
-  confirmed: Boolean,
+  confirmed: {type: Boolean, default: false} ,
   totalPrice: Number,
   use: String,
   shoppingCart: String,

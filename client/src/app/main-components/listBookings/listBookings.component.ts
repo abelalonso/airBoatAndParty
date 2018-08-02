@@ -10,14 +10,14 @@ import { SessionService } from '../../session/session.service';
 export class ListBookingsComponent implements OnInit {
 
   bookings;
-  @Input() userId;
-  @Input() boatId;
+  @Input() boat = {_id: ""};
 
-  constructor(private bookingService: BookingService) { }
+  constructor(private bookingService: BookingService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    console.log(`User ${this.userId} boat ${this.boatId}`)
-    this.bookingService.getBookings(this.userId, this.boatId).subscribe( bookings => {
+    console.log("usuario", this.sessionService.user._id);
+    console.log("barco", this.boat);
+    this.bookingService.getBookings(this.sessionService.user._id, this.boat._id).subscribe( bookings => {
       this.bookings = bookings;
     });
   }

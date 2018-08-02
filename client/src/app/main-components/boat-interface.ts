@@ -11,5 +11,6 @@ export interface Boat {
     longitude: number,
     latitude: number
   },
-  city: string
+  city: string,
+  _id: string
 }

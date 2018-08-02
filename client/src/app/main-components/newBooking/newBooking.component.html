@@ -1,9 +1,20 @@
-<button (click)="showBookingForm()">Reservar</button>
+<button id="booking" (click)="showBookingForm()" *ngIf="bookingService.showBookingButton">Reservar</button>
 
 <div class="booking-form" *ngIf="bookingService.showBookingForm">
-  calendario
+  <!--   <app-calendar></app-calendar> -->
+  <div *ngIf="calendarOptions">
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+      (dayClick)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+  </div>
+  <label for="use">Uso</label>
+  <input name="uso" placeholder="Fiesta, pesca, relax..." #use>
+  <div class="reservation-date" *ngIf="startDate">
+    <h3>Reserva del {{startDate | date:small}} al {{endDate |date:small}}</h3>
+  </div>
   <div class="buttons">
-    <button (click)="addBooking()" type="submit">Registrar</button>
+    <button (click)="addBooking(use)" type="submit">Registrar</button>
     <button (click)="cancel()">Cancelar</button>
   </div>
 </div>
+
+

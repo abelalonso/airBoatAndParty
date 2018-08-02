@@ -18,7 +18,11 @@ import { SingleBoatComponent } from './main-components/singleBoat/singleBoat.com
 import { NewBoatComponent } from './main-components/newBoat/newBoat.component';
 import { ListBookingsComponent } from './main-components/listBookings/listBookings.component';
 import { NewBookingComponent } from './main-components/newBooking/newBooking.component';
-
+/* import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatDatepickerToggle, MatDatepickerInput, MatDatepicker, MatFormField, MatNativeDateModule, MatDialog } from '@angular/material'
+import { CalendarComponent } from './utils/calendar/calendar.component';
+import { Overlay } from '@angular/cdk/overlay'; */
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 @NgModule({
   declarations: [
@@ -30,15 +34,26 @@ import { NewBookingComponent } from './main-components/newBooking/newBooking.com
     ListBoatsComponent,
     ListBookingsComponent,
     SingleBoatComponent,
-    NewBookingComponent
+    NewBookingComponent,
+/*     CalendarComponent,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatFormField, */
+ 
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+/*     BrowserAnimationsModule,
+    MatNativeDateModule, */
+    FullCalendarModule
+  
+  //  MatDatepicker
   ],
-  providers: [SessionService, BoatService, BookingService],
+  providers: [SessionService, BoatService, BookingService,/*  MatDialog, Overlay */],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

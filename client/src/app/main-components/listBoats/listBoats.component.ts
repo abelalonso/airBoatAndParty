@@ -16,10 +16,14 @@ export class ListBoatsComponent implements OnInit {
 
   ngOnInit() {
     this.update();
+
   }
 
   update() {
-    this.boatService.getBoats(this.userId).subscribe(boats=>this.boatList=boats);
+    this.boatService.getBoats(this.userId).subscribe(boats=>{
+      this.boatList=boats
+      console.log("lista de barcos en listBoats", this.boatList)
+    });
   }
 
   delete(boatId: string) {

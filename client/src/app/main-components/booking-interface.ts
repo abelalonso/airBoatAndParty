@@ -3,9 +3,9 @@ export interface Booking {
   endDate: Date;
   user: string;
   boat: string;
-  confirmed: Boolean,
+  confirmed?: Boolean,
   totalPrice: Number,
   use: String,
-  shoppingCart: String,
-  isActive: boolean;
+  shoppingCart?: String,
+  isActive?: boolean;
 }

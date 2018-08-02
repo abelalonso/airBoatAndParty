@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Boat } from '../boat-interface';
+import { BoatService } from '../boat.service';
 
 
 @Component({
@@ -10,10 +12,14 @@ import { Observable } from 'rxjs';
 })
 export class SingleBoatComponent implements OnInit {
 
-  boatId: Observable<string>;
+  boat: Boat;
+  boatId: string;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe( params => this.boatId = params['id'])
+  constructor(private route: ActivatedRoute, private boatService: BoatService) {
+    this.route.params.subscribe(params=>{
+      this.boatId=params['id']
+      this.boat = this.boatService.boats.filter(e=>e._id==this.boatId)[0];
+    })
   }
 
   ngOnInit() {

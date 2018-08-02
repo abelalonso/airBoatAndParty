@@ -16,7 +16,9 @@ export class BoatService {
   options: object = {withCredentials: true};
   boats: Array<Boat>
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.getBoats("").subscribe();
+   }
 
   getBoats(user: string): Observable<Array<Boat>>{
     return this.http.get(`${BASEURL}/api/boats/${user||""}`, this.options).pipe(
