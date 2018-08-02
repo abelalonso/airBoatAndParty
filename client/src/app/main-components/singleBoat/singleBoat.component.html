@@ -1,5 +1,6 @@
 <p>
   Toda la info del barco en cuestion...
 </p>
-<button>Reservar</button>
+<app-newBooking></app-newBooking>
+<app-listBookings [boatId]="boatId"></app-listBookings>
 <button [routerLink]="['/profile']">Volver</button>

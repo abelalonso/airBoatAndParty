@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-singleBoat',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleBoatComponent implements OnInit {
 
-  constructor() { }
+  boatId: Observable<string>;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe( params => this.boatId = params['id'])
+  }
 
   ngOnInit() {
   }

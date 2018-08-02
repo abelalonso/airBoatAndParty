@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { SessionService } from './session/session.service';
 import { BoatService } from './main-components/boat.service';
+import { BookingService } from './main-components/booking.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './main-components/home/home.component';
@@ -16,6 +17,7 @@ import { ListBoatsComponent } from './main-components/listBoats/listBoats.compon
 import { SingleBoatComponent } from './main-components/singleBoat/singleBoat.component';
 import { NewBoatComponent } from './main-components/newBoat/newBoat.component';
 import { ListBookingsComponent } from './main-components/listBookings/listBookings.component';
+import { NewBookingComponent } from './main-components/newBooking/newBooking.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { ListBookingsComponent } from './main-components/listBookings/listBookin
     NewBoatComponent,
     ListBoatsComponent,
     ListBookingsComponent,
-    SingleBoatComponent
+    SingleBoatComponent,
+    NewBookingComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { ListBookingsComponent } from './main-components/listBookings/listBookin
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [SessionService, BoatService],
+  providers: [SessionService, BoatService, BookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

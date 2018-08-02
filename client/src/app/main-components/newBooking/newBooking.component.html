@@ -1,0 +1,9 @@
+<button (click)="showBookingForm()">Reservar</button>
+
+<div class="booking-form" *ngIf="bookingService.showBookingForm">
+  calendario
+  <div class="buttons">
+    <button (click)="addBooking()" type="submit">Registrar</button>
+    <button (click)="cancel()">Cancelar</button>
+  </div>
+</div>

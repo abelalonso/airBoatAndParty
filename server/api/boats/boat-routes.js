@@ -25,7 +25,7 @@ boatRouter.post('/', (req, res, next) => {
     newBoat = new Boat({
         name, capacity, crew, dimensions, owner, pricePerDay, position, city,
         photos: [],
-        booked: []
+        bookings: []
     }).save()
     .then ( savedBoat => {
         console.log(savedBoat)
