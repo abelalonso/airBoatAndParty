@@ -1,38 +1,39 @@
 <button (click)="showBoatForm()">Registrar un barco</button>
-  
-<div class="boat-form"  *ngIf="boatService.showBoatForm">
+
+<div class="boat-form" *ngIf="boatService.showBoatForm">
   <h2>Datos del barco</h2>
-  <form (ngSubmit)="addBoat(boatForm.value)" #boatForm="ngForm">
+  <form>
     <div class="form-field">
       <label for="name">Nombre</label>
-      <input type="text" placeholder="name" [ngModel]="name" name="name">
+      <input type="text" placeholder="name" [(ngModel)]="newBoat.name" name="name">
     </div>
     <div class="form-field">
       <label for="capacity">Capacidad</label>
-      <input type="text" placeholder="capacity" [ngModel]="capacity" name="capacity">
+      <input type="text" placeholder="capacity" [(ngModel)]="newBoat.capacity" name="capacity">
     </div>
     <div class="form-field">
       <label for="crew">Tripulación</label>
-      <input type="text" placeholder="crew" [ngModel]="crew" name="crew">
+      <input type="text" placeholder="crew" [(ngModel)]="newBoat.crew" name="crew">
     </div>
     <div class="form-field">
       <label for="city">Ciudad</label>
-      <input type="text" placeholder="city" [ngModel]="city" name="city">
+      <input type="text" placeholder="city" [(ngModel)]="newBoat.city" name="city">
     </div>
     <div class="form-field">
       <label for="dimensions">Dimensiones</label>
-      <input type="text" placeholder="dimensions" [ngModel]="dimensions" name="dimensions">
+      <input type="text" placeholder="dimensions" [(ngModel)]="newBoat.dimensions" name="dimensions">
     </div>
     <div class="form-field">
       <label for="description">description</label>
-      <input type="text" placeholder="description" [ngModel]="description" name="description">
+      <textarea col="20" rows="5" type="text" placeholder="newBoat.description" [(ngModel)]="description" name="description"></textarea>
     </div>
     <div class="form-field">
       <label for="pricePerDay">pricePerDay</label>
-      <input type="text" placeholder="pricePerDay" [ngModel]="pricePerDay" name="pricePerDay">
+      <input type="text" placeholder="pricePerDay" [(ngModel)]="newBoat.pricePerDay" name="pricePerDay">
     </div>
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader">
     <div class="buttons">
-      <button type="submit">Registrar</button>
+      <button type="submit" (click)="addBoat(newBoat)">Registrar</button>
       <button (click)="cancel()">Cancelar</button>
     </div>
   </form>

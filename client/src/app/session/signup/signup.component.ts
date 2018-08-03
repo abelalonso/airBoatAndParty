@@ -26,15 +26,13 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.uploader.onSuccessItem = (item, response) => {
-    //   console.log("Todo guay")
-    //   this.feedback = JSON.parse(response).message;
-    // };
+    this.uploader.onSuccessItem = (item, response) => {
+      this.feedback = JSON.parse(response).message;
+    };
 
-    // this.uploader.onErrorItem = (item, response, status, headers) => {
-    //   console.log("Error al cargar archivo en front")
-    //   this.feedback = JSON.parse(response).message;
-    // };
+    this.uploader.onErrorItem = (item, response, status, headers) => {
+      this.feedback = JSON.parse(response).message;
+    };
     
     var container = $("#container");
 
@@ -81,20 +79,28 @@ export class SignupComponent implements OnInit {
   }
 
   signup(newUser: User) {
-    console.log(newUser)
+    console.log(this.uploader)
+    if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
+      console.log("envío sin archivo")
+      this.sessionService.signup(newUser).subscribe( ()=>{
+        this.router.navigate(['/']);
+      });
+    }
 
-    this.uploader.onBuildItemForm = (item, form) => {
-      form.append('username', newUser.username);
-      //form.append('password', newUser.password);
-      form.append('name', newUser.name);
-      form.append('surname', newUser.surname);
-      //form.append('email', newUser.email);
-      console.log(form)
-    };
-    this.uploader.uploadAll();
-    this.uploader.onCompleteItem = () => {
-      this.router.navigate(['/']);
-    };
+    else{
+      console.log("Envío con archivo")
+      this.uploader.onBuildItemForm = (item, form) => {
+        form.append('username', newUser.username);
+        form.append('password', newUser.password);
+        form.append('name', newUser.name);
+        form.append('surname', newUser.surname);
+        form.append('email', newUser.email);
+      };
+      this.uploader.uploadAll();
+      this.uploader.onCompleteItem = () => {
+        this.router.navigate(['/']);
+      };
+    }
 
   }
 

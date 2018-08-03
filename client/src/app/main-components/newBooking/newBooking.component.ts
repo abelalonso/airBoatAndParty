@@ -68,14 +68,14 @@ export class NewBookingComponent implements OnInit {
       endDate: this.endDate,
       user: this.sessionService.user._id,
       boat: this.boat._id,
-      totalPrice: 100,
+      totalPrice: 2000,
       shoppingCart: null,
       use,
       //totalPrice: 
     }
-    this.totalPrice = Math.ceil((this.newBooking.endDate.getTime() - 
-                      this.newBooking.startDate.getTime())/
-                      (1000*24*60*60)*this.boat.pricePerDay);
+    this.newBooking.totalPrice = (1 + Math.ceil((this.newBooking.endDate.getTime() - 
+    this.newBooking.startDate.getTime())/
+    (1000*24*60*60)))*this.boat.pricePerDay;
 this.bookingService.showBookingForm = false;
     this.bookingService.showBookingButton = true;
     this.bookingService.addBooking(this.newBooking).subscribe()

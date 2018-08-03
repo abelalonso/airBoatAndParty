@@ -1,5 +1,5 @@
 export interface Boat {
-  Name: string;
+  name: string;
   capacity: number;
   crew: number;
   dimensions: string;
@@ -13,5 +13,5 @@ export interface Boat {
     latitude: number
   },
   city: string,
-  _id: string
+  _id?: string
 }

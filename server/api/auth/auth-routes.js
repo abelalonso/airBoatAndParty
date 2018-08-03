@@ -25,7 +25,7 @@ const login = (req, user) => {
 // SIGNUP
 authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
 
-  console.log("desde el cliente", req)
+  console.log("desde el cliente", req.body)
   const {username, password, name, surname, email, profileImage} = req.body;
   
   // Check for non empty user or password
@@ -39,10 +39,6 @@ authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
-
- 
-    
-    console.log("imagen: ", req.file)
 
     newUser = new User({
       username,

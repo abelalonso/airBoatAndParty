@@ -19,6 +19,5 @@ var storage = cloudinaryStorage({
     cb(undefined, photo);
   }
 });
-console.log(storage.cloudinary.uploader)
 const uploadCloud = multer({ storage: storage });
 module.exports = uploadCloud;

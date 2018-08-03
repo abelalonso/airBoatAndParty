@@ -2,6 +2,7 @@ const express = require('express');
 const boatRouter = express.Router();
 const Boat = require('./Boat.model');
 const User = require('../auth/User.model');
+const uploadCloud = require ('../../config/cloudinary')
 
 /* GET home page */
 
@@ -18,19 +19,24 @@ boatRouter.get('/:id', (req, res, next) => {
 });
 
 
-boatRouter.post('/', (req, res, next) => {
+boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
     const {name, capacity, crew, dimensions, description, owner, pricePerDay, position, city} = req.body;
     console.log("llega del cliente", req.body)
     //Create the boat
     newBoat = new Boat({
         name, capacity, crew, dimensions, description, owner, pricePerDay, position, city,
-        photos: [],
+        photos: ['https://res.cloudinary.com/abel-alonso/image/upload/v1533033995/airByP/images.png'],
         bookings: []
-    }).save()
+    })
+
+    if(req.file){
+        console.log("archivo enviado")
+        newBoat.photo = [].push(req.file.secure_url);
+    }
+    
+    newBoat.save()
     .then ( savedBoat => {
-        console.log(savedBoat)
         User.findByIdAndUpdate(owner, { role: "owner", $push: {boats: savedBoat._id}}).then(udatedUser => {
-            console.log(udatedUser)
             res.json({status: `Boat ${name} registered succesfully`})})
         })
     .catch(e => next(e));
