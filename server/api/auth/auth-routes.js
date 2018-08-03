@@ -2,6 +2,9 @@ const express = require('express');
 const authRouter  = express.Router();
 const User = require('./User.model');
 const passport = require('passport');
+const multer = require ('multer');
+const uploadCloud = require ('../../config/cloudinary')
+
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -21,7 +24,7 @@ const login = (req, user) => {
 }
 
 // SIGNUP
-authRouter.post("/signup", (req, res, next) => {
+authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
   const {username, password, name, surname, email, profileImage} = req.body;
   
   // Check for non empty user or password
@@ -36,13 +39,18 @@ authRouter.post("/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
+      if (req.file){
+        profileImage = req.file.secure_url;
+      }
+    
+
     return newUser = new User({
       username,
       password: hashPass,
       name, 
       surname, 
       email, 
-      profileImage,
+      profileImage: profileImage | null,
       boats: [],
       bookings: []
     }).save()

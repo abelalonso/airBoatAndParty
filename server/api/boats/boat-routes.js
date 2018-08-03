@@ -19,11 +19,11 @@ boatRouter.get('/:id', (req, res, next) => {
 
 
 boatRouter.post('/', (req, res, next) => {
-    const {name, capacity, crew, dimensions, owner, pricePerDay, position, city} = req.body;
-
+    const {name, capacity, crew, dimensions, description, owner, pricePerDay, position, city} = req.body;
+    console.log("llega del cliente", req.body)
     //Create the boat
     newBoat = new Boat({
-        name, capacity, crew, dimensions, owner, pricePerDay, position, city,
+        name, capacity, crew, dimensions, description, owner, pricePerDay, position, city,
         photos: [],
         bookings: []
     }).save()

@@ -1,6 +1,15 @@
-<p>
-  Toda la info del barco en cuestion...
-</p>
-<app-newBooking [boat]="boat"></app-newBooking>
-<app-listBookings [boat]="boat"></app-listBookings>
-<button [routerLink]="['/profile']">Volver</button>
+<div class="container" *ngIf="!user">
+  <div class="boat-info">
+    <h1>{{boat.name}}</h1>
+    <div class="image-wraper">
+      aqui van las fotos
+    </div>
+    <p>{{boat.description}}</p>
+    <h3>Dimensiones: {{boat.dimensions}}</h3>
+    <h3>Capacidad: {{boat.capacity}}</h3>
+    <h3>Tripulación: {{boat.crew}}</h3>
+  </div>
+  <app-newBooking [boat]="boat"></app-newBooking>
+  <app-listBookings [boat]="boat"></app-listBookings>
+  <button [routerLink]="['/profile']">Volver</button>
+</div>

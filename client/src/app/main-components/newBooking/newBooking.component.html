@@ -7,7 +7,7 @@
       (dayClick)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
   </div>
   <label for="use">Uso</label>
-  <input name="uso" placeholder="Fiesta, pesca, relax..." #use>
+  <input name="uso" placeholder="Fiesta, pesca, relax..." [(ngModel)]="use">
   <div class="reservation-date" *ngIf="startDate">
     <h3>Reserva del {{startDate | date:small}} al {{endDate |date:small}}</h3>
   </div>

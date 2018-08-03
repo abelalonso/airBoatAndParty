@@ -21,6 +21,7 @@ export class NewBookingComponent implements OnInit {
   endDate: Date;
   @Input() boat;
   newBooking: Booking;
+  totalPrice: number;
 
   constructor(private bookingService: BookingService, private sessionService: SessionService) { }
 
@@ -72,7 +73,10 @@ export class NewBookingComponent implements OnInit {
       use,
       //totalPrice: 
     }
-    this.bookingService.showBookingForm = false;
+    this.totalPrice = Math.ceil((this.newBooking.endDate.getTime() - 
+                      this.newBooking.startDate.getTime())/
+                      (1000*24*60*60)*this.boat.pricePerDay);
+this.bookingService.showBookingForm = false;
     this.bookingService.showBookingButton = true;
     this.bookingService.addBooking(this.newBooking).subscribe()
   }

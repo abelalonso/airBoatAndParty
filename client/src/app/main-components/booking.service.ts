@@ -42,9 +42,10 @@ export class BookingService {
   }
 
   addBooking(newBooking: Booking): Observable<Booking>{
+    console.log(newBooking);
     return this.http.post(`${BASEURL}/api/booking/boat/${newBooking.boat}`, newBooking, this.options).pipe(
       map( (res: Response) => {
-        console.log("Enviado booking al servidor")
+        console.log("Enviado booking al servidor", newBooking)
         return res.json();
       }),
       catchError( e=>of(this.errorHandler(e)))

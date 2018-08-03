@@ -10,6 +10,7 @@ const boatSchema = new Schema({
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
   pricePerDay: Number,
   photos: [String],
+  descitpion: String,
   position: {
     longitude: Number,
     latitude: Number

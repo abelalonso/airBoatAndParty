@@ -6,8 +6,6 @@ const Booking = require('../bookings/Booking.model');
 
 bookingRouter.get('/user/:id', (req, res, next) => {
   //We should update the state of the bookings on every get
-  console.log(req.params)
-
   Booking.find({'user': req.params.id})
   .then( objList => res.status(200).json(objList))
   .catch(e => next(e))
@@ -15,7 +13,6 @@ bookingRouter.get('/user/:id', (req, res, next) => {
 
 bookingRouter.get('/boat/:id', (req, res, next) => {
   //We should update the state of the bookings on every get
-    console.log(req.params)
   Booking.find({'boat': req.params.id})
   .then( objList => res.status(200).json(objList))
   .catch(e => next(e))
@@ -30,6 +27,8 @@ bookingRouter.post('/boat/:id', (req, res, next) => {
     startDate, endDate, totalPrice, use, shoppingCard, user,
     boat: req.params.id,
   });
+
+  console.log("Nueva reserva", newBooking)
 
   newBooking.save()
   //Update the user bookings array

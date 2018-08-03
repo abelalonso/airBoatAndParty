@@ -7,6 +7,7 @@ export interface Boat {
   owner?: string;
   pricePerDay: number;
   photos?: [string],
+  description: string,
   position?: {
     longitude: number,
     latitude: number
