@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SessionService } from "../session.service";
 import { User } from "../User-interface";
 import { Router } from "@angular/router";
+import { FileUploader } from 'ng2-file-upload';
 import * as $ from "jquery";
 
 @Component({
@@ -10,9 +11,31 @@ import * as $ from "jquery";
   styleUrls: ["./signup.component.scss"]
 })
 export class SignupComponent implements OnInit {
+
+  uploader: FileUploader = new FileUploader ({
+    url: `http://localhost:3000/api/auth/signup`,
+    method: 'POST'
+  });
+  feedback;
+
+  newUser: User = {
+    username: "", password: "", name:"", surname:"", email:"" 
+  }
+
   constructor(private sessionService: SessionService, private router: Router) {}
 
   ngOnInit() {
+
+    // this.uploader.onSuccessItem = (item, response) => {
+    //   console.log("Todo guay")
+    //   this.feedback = JSON.parse(response).message;
+    // };
+
+    // this.uploader.onErrorItem = (item, response, status, headers) => {
+    //   console.log("Error al cargar archivo en front")
+    //   this.feedback = JSON.parse(response).message;
+    // };
+    
     var container = $("#container");
 
     $(".btn[data-target]").on("click", function() {
@@ -54,11 +77,25 @@ export class SignupComponent implements OnInit {
         }, 820);
       }
     });
+
   }
 
   signup(newUser: User) {
-    this.sessionService.signup(newUser).subscribe();
-    this.router.navigate(["/"]);
+    console.log(newUser)
+
+    this.uploader.onBuildItemForm = (item, form) => {
+      form.append('username', newUser.username);
+      //form.append('password', newUser.password);
+      form.append('name', newUser.name);
+      form.append('surname', newUser.surname);
+      //form.append('email', newUser.email);
+      console.log(form)
+    };
+    this.uploader.uploadAll();
+    this.uploader.onCompleteItem = () => {
+      this.router.navigate(['/']);
+    };
+
   }
 
   login(knownUser) {

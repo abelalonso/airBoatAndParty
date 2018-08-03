@@ -1,24 +1,24 @@
 require("dotenv").config();
 
-const cloudinary = require("cloudinary");
-const cloudinaryStorage = require("multer-storage-cloudinary");
-const multer = require("multer");
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer');
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
 });
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "airByP",
-  allowedFormats: ["jpg", "png"],
-  filename: function(req, file, cb) {
+  folder: 'airByP',
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
     photo = new Date().getTime();
     cb(undefined, photo);
   }
 });
-
-const uploadCloud = multer({ storage: storage })
+console.log(storage.cloudinary.uploader)
+const uploadCloud = multer({ storage: storage });
 module.exports = uploadCloud;

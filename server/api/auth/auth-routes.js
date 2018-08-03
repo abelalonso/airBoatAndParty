@@ -2,7 +2,6 @@ const express = require('express');
 const authRouter  = express.Router();
 const User = require('./User.model');
 const passport = require('passport');
-const multer = require ('multer');
 const uploadCloud = require ('../../config/cloudinary')
 
 
@@ -25,6 +24,8 @@ const login = (req, user) => {
 
 // SIGNUP
 authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
+
+  console.log("desde el cliente", req)
   const {username, password, name, surname, email, profileImage} = req.body;
   
   // Check for non empty user or password
@@ -39,21 +40,25 @@ authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-      if (req.file){
-        profileImage = req.file.secure_url;
-      }
+ 
     
+    console.log("imagen: ", req.file)
 
-    return newUser = new User({
+    newUser = new User({
       username,
       password: hashPass,
       name, 
       surname, 
       email, 
-      profileImage: profileImage | null,
       boats: [],
       bookings: []
-    }).save()
+    })
+
+    if (req.file){
+      newUser.profileImage = req.file.secure_url;
+    }
+
+    newUser.save()
     .then( savedUser => login(req, savedUser)) // Login the user using passport
     .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
     .catch(e => next(e));

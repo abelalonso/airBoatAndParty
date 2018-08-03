@@ -1,5 +1,8 @@
 <div class="container" *ngIf="sessionService.user">
   <h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
+  <div class="profile-image">
+    <img src="{{sessionService.user.profileImage}}" alt="no hay imagen" width=200>
+  </div>
   
   <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
   <app-listBoats [userId]="user" [boatList]="boats"></app-listBoats>

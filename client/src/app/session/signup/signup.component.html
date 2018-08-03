@@ -16,14 +16,14 @@
     </div>
     <div id="f2" class="face">
       <h3>Register</h3>
-      <form (ngSubmit)="signup(signupForm.value)" #signupForm="ngForm">
-        <input name="username" type="text" placeholder="username" [ngModel]="username">
-        <input name="password" type="text" placeholder="password" [ngModel]="password">
-        <input name="email" type="text" placeholder="email" [ngModel]="email">
-        <input name="name" type="text" placeholder="name" [ngModel]="name">
-        <input name="surname" type="text" placeholder="surname" [ngModel]="surname">
-        <input name="profileImage" type="text" placeholder="profileImage" [ngModel]="profileImage">
-        <button type="submit">Enviar</button>
+      <form>
+        <input name="username" type="text" placeholder="username" [(ngModel)]="newUser.username">
+        <input name="password" type="text" placeholder="password" [(ngModel)]="newUser.password">
+        <input name="email" type="text" placeholder="email" [(ngModel)]="newUser.email">
+        <input name="name" type="text" placeholder="name" [(ngModel)]="newUser.name">
+        <input name="surname" type="text" placeholder="surname" [(ngModel)]="newUser.surname">
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader">
+        <button (click)="signup(newUser)">Enviar</button>
       </form>
       <div class="button-group">
         <div class="btn" data-target="login">Login</div>
@@ -51,3 +51,4 @@
     </div>
   </div>
 </div>
+

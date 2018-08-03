@@ -18,11 +18,8 @@ import { SingleBoatComponent } from './main-components/singleBoat/singleBoat.com
 import { NewBoatComponent } from './main-components/newBoat/newBoat.component';
 import { ListBookingsComponent } from './main-components/listBookings/listBookings.component';
 import { NewBookingComponent } from './main-components/newBooking/newBooking.component';
-/* import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatDatepickerToggle, MatDatepickerInput, MatDatepicker, MatFormField, MatNativeDateModule, MatDialog } from '@angular/material'
-import { CalendarComponent } from './utils/calendar/calendar.component';
-import { Overlay } from '@angular/cdk/overlay'; */
 import { FullCalendarModule } from 'ng-fullcalendar';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -35,11 +32,7 @@ import { FullCalendarModule } from 'ng-fullcalendar';
     ListBookingsComponent,
     SingleBoatComponent,
     NewBookingComponent,
-/*     CalendarComponent,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatDatepicker,
-    MatFormField, */
+    FileSelectDirective
  
   ],
   imports: [
@@ -47,13 +40,10 @@ import { FullCalendarModule } from 'ng-fullcalendar';
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes),
-/*     BrowserAnimationsModule,
-    MatNativeDateModule, */
     FullCalendarModule
-  
-  //  MatDatepicker
+
   ],
-  providers: [SessionService, BoatService, BookingService,/*  MatDialog, Overlay */],
+  providers: [SessionService, BoatService, BookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
