@@ -19,6 +19,7 @@ export class NewBoatComponent implements OnInit {
   feedback;
   newBoat: Boat = {name:"", crew:null, capacity:null, description:"", dimensions:"", pricePerDay:null, city: ""}
   @Output() onUpdateBoats = new EventEmitter();
+  
   constructor(private boatService: BoatService, private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {

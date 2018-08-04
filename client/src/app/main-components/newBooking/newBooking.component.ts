@@ -5,6 +5,7 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { SessionService } from '../../session/session.service';
 import { Booking } from '../booking-interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class NewBookingComponent implements OnInit {
   newBooking: Booking;
   totalPrice: number;
 
-  constructor(private bookingService: BookingService, private sessionService: SessionService) { }
+  constructor(private bookingService: BookingService, private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
     this.calendarOptions = {
@@ -78,6 +79,8 @@ export class NewBookingComponent implements OnInit {
     (1000*24*60*60)))*this.boat.pricePerDay;
 this.bookingService.showBookingForm = false;
     this.bookingService.showBookingButton = true;
-    this.bookingService.addBooking(this.newBooking).subscribe()
+    this.bookingService.addBooking(this.newBooking).subscribe(()=>{
+      this.router.navigate(['/profile']);
+    })
   }
 }

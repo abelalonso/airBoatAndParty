@@ -1,8 +1,10 @@
-<div class="container" *ngIf="!user">
+<div class="container">
   <div class="boat-info">
     <h1>{{boat.name}}</h1>
     <div class="image-wraper">
-      aqui van las fotos
+      <div class="image" *ngFor="let photo of boat.photos">
+        <img src={{photo}}>
+      </div>
     </div>
     <p>{{boat.description}}</p>
     <h3>Dimensiones: {{boat.dimensions}}</h3>
@@ -10,7 +12,13 @@
     <h3>Tripulación: {{boat.crew}}</h3>
     <h3>Precio/dia: {{boat.pricePerDay}}</h3>
   </div>
-  <app-newBooking [boat]="boat"></app-newBooking>
-  <app-listBookings [boat]="boat"></app-listBookings>
-  <button [routerLink]="['/profile']">Volver</button>
+  <div class="user-identified" *ngIf="sessionService.user">
+    <app-newBooking [boat]="boat"></app-newBooking>
+    <app-listBookings [boat]="boat"></app-listBookings>
+    <button [routerLink]="['/profile']">Volver</button>
+  </div>
+  <div class="user-unknown" *ngIf="!sessionService.user">
+      <button [routerLink]="['/']">Volver</button>
+      <button [routerLink]="['/signup']">Reservar</button>
+  </div>
 </div>

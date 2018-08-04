@@ -12,13 +12,14 @@ export class ProfileComponent implements OnInit {
 
   boats: Array<Boat>
 
-  user = this.sessionService.user._id;
+  //user = this.sessionService.user._id;
 
   constructor(private sessionService: SessionService, private boatService: BoatService) {
+    
   }
 
   ngOnInit() {
-   
+
   }
   update(e){
     console.log("Quiero actualizar la lista")
