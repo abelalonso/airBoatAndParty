@@ -31,7 +31,7 @@
       <label for="pricePerDay">pricePerDay</label>
       <input type="text" placeholder="pricePerDay" [(ngModel)]="newBoat.pricePerDay" name="pricePerDay">
     </div>
-    <input type="file" name="file" ng2FileSelect [uploader]="uploader">
+    <input type="file" name="file[]" ng2FileSelect [uploader]="uploader">
     <div class="buttons">
       <button type="submit" (click)="addBoat(newBoat)">Registrar</button>
       <button (click)="cancel()">Cancelar</button>

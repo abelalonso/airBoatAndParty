@@ -63,6 +63,7 @@ export class NewBoatComponent implements OnInit {
         form.append('description', newBoat.description);
         form.append('pricePerDay', newBoat.pricePerDay);
         form.append('city', newBoat.city);
+        form.append('owner', this.sessionService.user._id)
        }; 
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {

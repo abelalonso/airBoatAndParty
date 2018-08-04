@@ -30,8 +30,10 @@ boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
     })
 
     if(req.file){
-        console.log("archivo enviado")
-        newBoat.photo = [].push(req.file.secure_url);
+        console.log("archivo enviado", req.file)
+        let photos=[];
+        photos.push(req.file.secure_url);
+        newBoat.photos = photos;
     }
     
     newBoat.save()
