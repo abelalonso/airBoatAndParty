@@ -57,8 +57,22 @@ export class NewBookingComponent implements OnInit {
     data.jsEvent.target.style={"background": "red"} */
     if(!this.startDate){
       this.startDate = data.date._d;
+      let day:any = this.startDate.getDate();
+      if (day<10) { day="0"+day}
+      let month:any = this.startDate.getMonth()+1;
+      if (month<10) { month="0"+month}
+      let date=`${this.startDate.getFullYear()}-${month}-${day}`
+      console.log(date);
+      $( `td[data-date='${date}']` ).css({"background-color": "red", "text-align": "center", padding: "20px 0"}).text("Inicio")
     } else {
       this.endDate = data.date._d
+      let day:any = this.endDate.getDate();
+      if (day<10) { day="0"+day}
+      let month:any = this.endDate.getMonth()+1;
+      if (month<10) { month="0"+month}
+      let date=`${this.endDate.getFullYear()}-${month}-${day}`
+      console.log(date);
+      $( `td[data-date='${date}']` ).css({"background-color": "red", "text-align": "center", padding: "20px 0"}).text("Fin")
     }
   }
 

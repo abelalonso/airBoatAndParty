@@ -8,4 +8,5 @@ export interface Booking {
   use: String,
   shoppingCart?: String,
   isActive?: boolean;
+  _id?: string;
 }

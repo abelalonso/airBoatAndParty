@@ -83,7 +83,7 @@ export class SignupComponent implements OnInit {
     if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
       console.log("envío sin archivo")
       this.sessionService.signup(newUser).subscribe( ()=>{
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
       });
     }
 
@@ -98,7 +98,7 @@ export class SignupComponent implements OnInit {
       };
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
       };
     }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BoatService } from '../boat.service';
 import { Boat } from '../boat-interface';
+import { SessionService } from '../../session/session.service';
 
 @Component({
   selector: 'app-listBoats',
@@ -9,10 +10,10 @@ import { Boat } from '../boat-interface';
 })
 export class ListBoatsComponent implements OnInit {
 
-  @Input() userId: string;
+ // @Input() userId: string;
   @Input() boatList: Array<Boat>;
 
-  constructor(private boatService: BoatService) { }
+  constructor(private boatService: BoatService, private sessionService: SessionService) { }
 
   ngOnInit() {
     this.update();
@@ -20,7 +21,7 @@ export class ListBoatsComponent implements OnInit {
   }
 
   update() {
-    this.boatService.getBoats(this.userId).subscribe(boats=>{
+    this.boatService.getBoats(this.sessionService.user._id).subscribe(boats=>{
       this.boatList=boats
       console.log("lista de barcos en listBoats", this.boatList)
     });

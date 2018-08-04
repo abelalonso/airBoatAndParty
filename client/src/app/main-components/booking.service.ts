@@ -26,7 +26,7 @@ export class BookingService {
       console.log(userId)
       return this.http.get(`${BASEURL}/api/booking/user/${userId}`, this.options).pipe(
         map( (res: any) => {
-          console.log("listado de bookings por usuario", res.json())
+          this.bookings = res.json();
           return res.json();
         }),
         catchError(e=>of(this.errorHandler(e)))
@@ -34,7 +34,7 @@ export class BookingService {
     }
     return this.http.get(`${BASEURL}/api/booking/boat/${boatId}`, this.options).pipe(
       map( (res: any) => {
-        console.log("Listado de bookings por barco", res.json())
+        this.bookings = res.json();
         return res.json();
       }),
       catchError(e=>of(this.errorHandler(e)))
@@ -50,7 +50,6 @@ export class BookingService {
       }),
       catchError( e=>of(this.errorHandler(e)))
     )
-    
   }
 
   errorHandler(e){

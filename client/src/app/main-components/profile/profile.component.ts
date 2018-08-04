@@ -12,10 +12,8 @@ export class ProfileComponent implements OnInit {
 
   boats: Array<Boat>
 
-  //user = this.sessionService.user._id;
-
   constructor(private sessionService: SessionService, private boatService: BoatService) {
-    
+
   }
 
   ngOnInit() {
