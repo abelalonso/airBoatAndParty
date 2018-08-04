@@ -36,6 +36,10 @@ export class NewBookingComponent implements OnInit {
         right: 'month,agendaWeek,agendaDay,listMonth'
       }//,      events: data
     };
+    console.log("primero")
+    $('.fc-day').ready(()=>{
+      console.log("cargado")
+    })
   }
 
   showBookingForm(){
@@ -43,6 +47,8 @@ export class NewBookingComponent implements OnInit {
     this.bookingService.showBookingButton = false;
     this.endDate = null;
     this.startDate = null;
+    console.log("segundo");
+ 
   }
 
   cancel() {
@@ -52,30 +58,70 @@ export class NewBookingComponent implements OnInit {
     this.endDate = null;
   }
 
-  updateEvent(data){
-/*     console.log(data.jsEvent.target.style);
-    data.jsEvent.target.style={"background": "red"} */
-    if(!this.startDate){
-      this.startDate = data.date._d;
-      let day:any = this.startDate.getDate();
-      if (day<10) { day="0"+day}
-      let month:any = this.startDate.getMonth()+1;
-      if (month<10) { month="0"+month}
-      let date=`${this.startDate.getFullYear()}-${month}-${day}`
-      console.log(date);
-      $( `td[data-date='${date}']` ).css({"background-color": "red", "text-align": "center", padding: "20px 0"}).text("Inicio")
-    } else {
-      this.endDate = data.date._d
-      let day:any = this.endDate.getDate();
-      if (day<10) { day="0"+day}
-      let month:any = this.endDate.getMonth()+1;
-      if (month<10) { month="0"+month}
-      let date=`${this.endDate.getFullYear()}-${month}-${day}`
-      console.log(date);
-      $( `td[data-date='${date}']` ).css({"background-color": "red", "text-align": "center", padding: "20px 0"}).text("Fin")
-    }
+  initialCalendar(){
+    console.log("calendario ok");
+    this.boat.bookings.forEach(e => {
+      let date=new Date(e.startDate);
+      let endDate=new Date(e.endDate);
+      while (date<=endDate){
+        this.markDay(date, null, "red");
+        date.setDate(date.getDate()+1);
+      }
+    });
   }
 
+  updateEvent(data){
+    let pickedDate=new Date(data.date._d);
+    
+    var isPicked = false;
+    this.boat.bookings.forEach(e => {
+      let date = new Date(e.startDate);
+      let endDate = new Date(e.endDate);
+      while ((date<=endDate) && (!isPicked)){
+        if (date.getTime()==pickedDate.getTime()){
+          isPicked = true;
+        }
+        date.setDate(date.getDate()+1);
+      }
+    });
+    if (!isPicked){
+      if(!this.startDate){
+        this.startDate = data.date._d;
+        this.markDay(this.startDate, "Inicio", "green");
+      } else {
+        isPicked = false;
+        this.boat.bookings.forEach(e => {
+          let date = new Date(e.startDate);
+          let endDate = new Date(e.endDate);
+          while ((date<=endDate) && (!isPicked)){
+            if ((this.startDate.getTime()<date.getTime()) && (date.getTime()<pickedDate.getTime())){
+              isPicked = true;
+              console.log("pillada");
+            }
+            date.setDate(date.getDate()+1);
+          }
+        });
+        if (!isPicked){
+          this.endDate = data.date._d
+          this.markDay(this.endDate, "Fin", "green");
+        }
+      }
+    }
+
+  }
+
+  markDay(markDate:Date, text: string, color: string){
+    let day:any = markDate.getDate();
+    if (day<10) { day="0"+day}
+    let month:any = markDate.getMonth()+1;
+    if (month<10) { month="0"+month}
+    let date=`${markDate.getFullYear()}-${month}-${day}`
+    if(text){
+      $( `td[data-date='${date}']` ).css({"background-color": color, "text-align": "center", padding: "20px 0"}).text(text)
+    } else {
+      $( `td[data-date='${date}']` ).css({"background-color": color})
+    }
+  }
 
   addBooking(use: string){
     this.newBooking = {
@@ -91,7 +137,7 @@ export class NewBookingComponent implements OnInit {
     this.newBooking.totalPrice = (1 + Math.ceil((this.newBooking.endDate.getTime() - 
     this.newBooking.startDate.getTime())/
     (1000*24*60*60)))*this.boat.pricePerDay;
-this.bookingService.showBookingForm = false;
+    this.bookingService.showBookingForm = false;
     this.bookingService.showBookingButton = true;
     this.bookingService.addBooking(this.newBooking).subscribe(()=>{
       this.router.navigate(['/profile']);

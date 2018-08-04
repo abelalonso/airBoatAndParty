@@ -7,7 +7,7 @@ const uploadCloud = require ('../../config/cloudinary')
 /* GET home page */
 
 boatRouter.get('/', (req, res, next) => {
-    Boat.find().populate('owner')
+    Boat.find().populate('owner').populate('bookings')
     .then( objList => res.status(200).json(objList))
     .catch(e => next(e))
 });
