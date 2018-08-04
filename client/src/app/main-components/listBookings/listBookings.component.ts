@@ -15,8 +15,6 @@ export class ListBookingsComponent implements OnInit {
   constructor(private bookingService: BookingService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    console.log("usuario", this.sessionService.user._id);
-    console.log("barco", this.boat);
     this.bookingService.getBookings(this.sessionService.user._id, this.boat._id).subscribe( bookings => {
       this.bookings = bookings;
     });

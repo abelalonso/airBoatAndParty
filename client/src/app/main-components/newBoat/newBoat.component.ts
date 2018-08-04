@@ -25,12 +25,10 @@ export class NewBoatComponent implements OnInit {
   ngOnInit() {
 
     this.uploader.onSuccessItem = (item, response) => {
-      console.log("Todo guay")
       this.feedback = JSON.parse(response).message;
     };
 
     this.uploader.onErrorItem = (item, response, status, headers) => {
-      console.log("Error al cargar archivo en front")
       this.feedback = JSON.parse(response).message;
     };
     
@@ -45,16 +43,13 @@ export class NewBoatComponent implements OnInit {
 
   addBoat(newBoat: Boat){
     newBoat.owner = this.sessionService.user._id;
-    console.log (this.uploader)
 
     if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
-      console.log("Envío sin archivo")
       this.boatService.addBoat(newBoat).subscribe( () => {
         this.boatService.showBoatForm = false;
         this.onUpdateBoats.emit()
       });
     } else {
-      console.log("Envío con archivo")
       this.uploader.onBuildItemForm = (item, form) => {
         form.append('name', newBoat.name);
         form.append('dimensions', newBoat.dimensions);

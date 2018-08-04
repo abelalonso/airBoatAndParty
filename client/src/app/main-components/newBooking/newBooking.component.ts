@@ -36,10 +36,6 @@ export class NewBookingComponent implements OnInit {
         right: 'month,agendaWeek,agendaDay,listMonth'
       }//,      events: data
     };
-    console.log("primero")
-    $('.fc-day').ready(()=>{
-      console.log("cargado")
-    })
   }
 
   showBookingForm(){
@@ -47,8 +43,6 @@ export class NewBookingComponent implements OnInit {
     this.bookingService.showBookingButton = false;
     this.endDate = null;
     this.startDate = null;
-    console.log("segundo");
- 
   }
 
   cancel() {
@@ -59,7 +53,6 @@ export class NewBookingComponent implements OnInit {
   }
 
   initialCalendar(){
-    console.log("calendario ok");
     this.boat.bookings.forEach(e => {
       let date=new Date(e.startDate);
       let endDate=new Date(e.endDate);
@@ -96,7 +89,6 @@ export class NewBookingComponent implements OnInit {
           while ((date<=endDate) && (!isPicked)){
             if ((this.startDate.getTime()<date.getTime()) && (date.getTime()<pickedDate.getTime())){
               isPicked = true;
-              console.log("pillada");
             }
             date.setDate(date.getDate()+1);
           }

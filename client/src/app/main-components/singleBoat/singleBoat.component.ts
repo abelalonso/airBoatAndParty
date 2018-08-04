@@ -23,8 +23,6 @@ export class SingleBoatComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params=>{
       this.boatId=params['id'];
-      console.log(this.boatId);
-      console.log(this.boatService.boats)
       this.boatService.getBoats(null).subscribe(()=> 
         this.boat = this.boatService.boats.filter(e=>e._id==this.boatId)[0])
     })

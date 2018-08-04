@@ -21,10 +21,11 @@ export class ListBoatsComponent implements OnInit {
   }
 
   update() {
-    this.boatService.getBoats(this.sessionService.user._id).subscribe(boats=>{
-      this.boatList=boats
-      console.log("lista de barcos en listBoats", this.boatList)
-    });
+    this.sessionService.isLogged().subscribe(()=>
+      this.boatService.getBoats(this.sessionService.user._id).subscribe(boats=>{
+        this.boatList=boats;
+      })
+    )
   }
 
   delete(boatId: string) {
