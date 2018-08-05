@@ -12,20 +12,21 @@ export class ListBoatsComponent implements OnInit {
 
  // @Input() userId: string;
   @Input() boatList: Array<Boat>;
+  userId='';
 
   constructor(private boatService: BoatService, private sessionService: SessionService) { }
 
   ngOnInit() {
     this.update();
-
   }
 
   update() {
-    this.sessionService.isLogged().subscribe(()=>
-      this.boatService.getBoats(this.sessionService.user._id).subscribe(boats=>{
+    this.sessionService.isLogged().subscribe((user)=>{
+      this.userId=user._id;
+      this.boatService.getBoats(this.userId).subscribe(boats=>{
         this.boatList=boats;
       })
-    )
+    })
   }
 
   delete(boatId: string) {

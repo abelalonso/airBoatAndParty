@@ -21,6 +21,7 @@ import { NewBookingComponent } from './main-components/newBooking/newBooking.com
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { SingleBookingComponent } from './main-components/singleBooking/singleBooking.component';
+import { ListCommentsComponent } from './main-components/listComments/listComments.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SingleBookingComponent } from './main-components/singleBooking/singleBo
     SingleBoatComponent,
     NewBookingComponent,
     SingleBookingComponent,
+    ListCommentsComponent,
     FileSelectDirective
  
   ],

@@ -81,6 +81,7 @@ export class NewBookingComponent implements OnInit {
       if(!this.startDate){
         this.startDate = data.date._d;
         this.markDay(this.startDate, "Inicio", "green");
+        this.totalPrice=this.boat.pricePerDay;
       } else {
         isPicked = false;
         this.boat.bookings.forEach(e => {
@@ -96,6 +97,10 @@ export class NewBookingComponent implements OnInit {
         if (!isPicked){
           this.endDate = data.date._d
           this.markDay(this.endDate, "Fin", "green");
+          this.bookingService.disableConfirmationButton = false;
+          this.totalPrice = (1 + Math.ceil((this.endDate.getTime() - 
+          this.startDate.getTime())/
+          (1000*24*60*60)))*this.boat.pricePerDay;
         }
       }
     }
@@ -121,17 +126,15 @@ export class NewBookingComponent implements OnInit {
       endDate: this.endDate,
       user: this.sessionService.user._id,
       boat: this.boat._id,
-      totalPrice: 2000,
+      totalPrice: this.totalPrice,
       shoppingCart: null,
       use,
       //totalPrice: 
     }
-    this.newBooking.totalPrice = (1 + Math.ceil((this.newBooking.endDate.getTime() - 
-    this.newBooking.startDate.getTime())/
-    (1000*24*60*60)))*this.boat.pricePerDay;
     this.bookingService.showBookingForm = false;
     this.bookingService.showBookingButton = true;
     this.bookingService.addBooking(this.newBooking).subscribe(()=>{
+      this.bookingService.disableConfirmationButton = true;
       this.router.navigate(['/profile']);
     })
   }

@@ -9,10 +9,10 @@
   <label for="use">Uso</label>
   <input name="uso" placeholder="Fiesta, pesca, relax..." [(ngModel)]="use">
   <div class="reservation-date" *ngIf="startDate">
-    <h3>Reserva del {{startDate | date:small}} al {{endDate |date:small}}</h3>
+    <h3>{{totalPrice}}€ Reserva del {{startDate | date:small}} al {{endDate |date:small}}</h3>
   </div>
   <div class="buttons">
-    <button (click)="addBooking(use)" type="submit">Registrar</button>
+    <button (click)="addBooking(use)" type="submit" [disabled]="bookingService.disableConfirmationButton">Registrar</button>
     <button (click)="cancel()">Cancelar</button>
   </div>
 </div>

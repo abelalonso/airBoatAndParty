@@ -85,5 +85,7 @@ app.use('/api/boats', boatRoutes);
 const bookingRoutes = require ("./api/bookings/booking-routes");
 app.use('/api/booking', bookingRoutes);
 
+const commentRoutes = require("./api/comments/comment-routes");
+app.use('/api/comments', commentRoutes);
 
 module.exports = app;

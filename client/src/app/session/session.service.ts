@@ -14,6 +14,7 @@ const { BASEURL } = environment;
 export class SessionService {
 
   user: User;
+  
   options: object = {withCredentials: true};
 
   constructor(private http: Http) {

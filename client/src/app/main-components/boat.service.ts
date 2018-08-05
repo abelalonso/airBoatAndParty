@@ -21,7 +21,7 @@ export class BoatService {
    }
 
   getBoats(user: string): Observable<Array<Boat>>{
-    return this.http.get(`${BASEURL}/api/boats/${user||""}`, this.options).pipe(
+    return this.http.get(`${BASEURL}/api/boats/${(user||'')}`, this.options).pipe(
       map( (res: any) => {
         this.boats = res.json();
         return res.json();

@@ -1,0 +1,10 @@
+<div class="container" *ngIf="comments">
+  <h2>Comentarios</h2>
+  <div class="comments">
+    <div class="comment" *ngFor="let comment of comments">
+      <h4>{{comment.author.name}} comentó:</h4>
+      <p>{{comment.content}}</p>
+      <h5>{{comment.date | date:short}}</h5>
+    </div>
+  </div>
+</div>
