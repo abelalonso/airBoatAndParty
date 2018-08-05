@@ -62,6 +62,20 @@ authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
   .catch(e => next(e));
 });
 
+authRouter.patch('/update/:id', uploadCloud.single('file'), (req, res, next) => {
+  
+  const updatedUser = req.body;
+  
+  if (req.file){
+    updatedUser.profileImage = req.file.secure_url;
+  }
+
+  console.log(updatedUser)
+
+  User.findByIdAndUpdate(req.params.id, updatedUser, {new: true})
+  .then( user => res.json({status: 'User updated', user})) // Answer JSON
+  .catch(e => next(e));
+})
 
 authRouter.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {

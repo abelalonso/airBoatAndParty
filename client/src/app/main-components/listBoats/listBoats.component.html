@@ -1,13 +1,17 @@
 
 <div class="container">
   <div class="boats" *ngIf="boatList">
-    <h2>Barcos</h2>
     <div class="boat" *ngFor="let boat of boatList">
-      <h2>{{boat.name}} de {{boat.owner.name}} {{boat.owner.surname}}</h2>
-      <img src={{boat.photos[0]}} width=100>
-      <h3>{{boat.pricePerDay}} €/dia</h3>
-      <button [routerLink]="['/boats', boat._id]">Detalle</button>
-      <button (click)="delete(boat._id)" *ngIf="boat.owner._id===userId">Eliminar</button>
+      <h4>{{boat.name}}</h4> 
+      <h5>de {{boat.owner.name}} {{boat.owner.surname}}</h5>
+      <div class="img-wrap">
+        <img src={{boat.photos[0]}}>
+      </div>
+      <h5>{{boat.pricePerDay}} €/dia</h5>
+      <div class="buttons">
+        <button class="btn btn-outline-info" [routerLink]="['/boats', boat._id]">Detalle</button>
+        <button class="btn btn-outline-danger" (click)="delete(boat._id)" *ngIf="boat.owner._id===userId">Eliminar</button>
+      </div>
     </div>
   </div>
 </div>

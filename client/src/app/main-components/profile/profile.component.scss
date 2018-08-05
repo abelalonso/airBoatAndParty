@@ -1,0 +1,27 @@
+
+
+.row{
+  padding: 20px;
+}
+.profile-image{
+  width: 200px;
+  height: 200px;
+
+  img{
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.my-boats, .mybookings{
+  display: flex;
+  flex-direction: column;
+  *{
+    margin-top: 10px;
+  }
+}
+
+i{
+  font-size: 20px;
+}

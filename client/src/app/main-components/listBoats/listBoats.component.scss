@@ -1,0 +1,23 @@
+
+.boats{
+  display: flex;
+  flex-wrap: wrap;
+  .boat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    button{
+      margin: 5px;
+    }
+    
+    .img-wrap{
+      width: 200px;
+      
+      img{
+        max-width: 100%;
+        
+      }
+    } 
+  }
+}

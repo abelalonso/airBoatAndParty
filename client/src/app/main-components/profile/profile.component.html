@@ -1,15 +1,33 @@
 <div class="container" *ngIf="sessionService.user">
-  <div class="profile-image">
-    <img src="{{sessionService.user.profileImage}}" alt="no hay imagen" width=200>
-  </div>
-  <div class="data">
-    <h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
-    <h3>Tipo de usuario: {{sessionService.user.role}}</h3>
+  <div class="row">
+    <div class="profile-image col-md-3">
+      <img src="{{sessionService.user.profileImage}}" alt="no hay imagen">
+    </div>
+    <div class="data col-md-9">
+      <h1 *ngIf="!nameForm">{{sessionService.user.name}} {{sessionService.user.surname}} <a (click)="nameForm=true"><i class="fas fa-pencil-alt"></i></a></h1>
+      <form class="nameForm" *ngIf="nameForm">
+        <input type="name" placeholder={{sessionService.user.name}} #newName>
+        <input type="surname" placeholder={{sessionService.user.surname}} #newSurname>
+        <button (click)="updateName(newName.value, newSurname.value)">Actualizar</button>
+      </form>
+      <h3>Tipo de usuario: {{sessionService.user.role}}</h3>
+      <h3 *ngIf="!emailForm">Email: {{sessionService.user.email}} <a (click)="emailForm=true"><i class="fas fa-pencil-alt"></i></a></h3>
+      <form class="emailForm" *ngIf="emailForm">
+        <input type="email" placeholder={{sessionService.user.email}} #newMail>
+        <button (click)="updateEmail(newMail.value)">Actualizar</button>
+      </form>
+    </div>
   </div>
   
-  <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
-  <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
-  <app-listBookings></app-listBookings>
-  <button [routerLink]="['/']">Volver</button>
+  <div class="my-boats row">
+    <h2>Mis Barcos</h2>
+    <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
+    <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
+  </div>
+  <div class="my-bookings row">
+    <h2>Mis Reservas</h2>
+    <app-listBookings></app-listBookings>
+  </div>
+  <button class="btn btn-outline-warning"[routerLink]="['/']">Volver</button>
 </div>
 
