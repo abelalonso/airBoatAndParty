@@ -2,19 +2,27 @@
   <div class="row">
     <div class="profile-image col-md-3">
       <img src="{{sessionService.user.profileImage}}" alt="no hay imagen">
+      <a (click)="imageForm=true"><i class="fas fa-pencil-alt"></i></a>
+      <form *ngIf="imageForm">
+        <input type="file" name="file[]" ng2FileSelect [uploader]="uploader">
+        <button class="btn btn-outline-warning" (click)="updateImage()">Actualizar</button>
+        <button class="btn btn-outline-danger" (click)="imageForm=false">Cancelar</button>
+      </form>
     </div>
     <div class="data col-md-9">
       <h1 *ngIf="!nameForm">{{sessionService.user.name}} {{sessionService.user.surname}} <a (click)="nameForm=true"><i class="fas fa-pencil-alt"></i></a></h1>
       <form class="nameForm" *ngIf="nameForm">
         <input type="name" placeholder={{sessionService.user.name}} #newName>
         <input type="surname" placeholder={{sessionService.user.surname}} #newSurname>
-        <button (click)="updateName(newName.value, newSurname.value)">Actualizar</button>
+        <button class="btn btn-outline-warning" (click)="updateName(newName.value, newSurname.value)">Actualizar</button>
+        <button class="btn btn-outline-danger" (click)="nameForm=false">Cancelar</button>
       </form>
       <h3>Tipo de usuario: {{sessionService.user.role}}</h3>
       <h3 *ngIf="!emailForm">Email: {{sessionService.user.email}} <a (click)="emailForm=true"><i class="fas fa-pencil-alt"></i></a></h3>
       <form class="emailForm" *ngIf="emailForm">
         <input type="email" placeholder={{sessionService.user.email}} #newMail>
-        <button (click)="updateEmail(newMail.value)">Actualizar</button>
+        <button class="btn btn-outline-warning" (click)="updateEmail(newMail.value)">Actualizar</button>
+        <button class="btn btn-outline-danger" (click)="emailForm=false">Cancelar</button>
       </form>
     </div>
   </div>
