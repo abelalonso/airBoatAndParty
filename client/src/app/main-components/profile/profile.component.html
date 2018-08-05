@@ -5,7 +5,7 @@
   </div>
   
   <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
-  <app-listBoats [boatList]="boats" *ngIf="sessionService.user.role=='owner'"></app-listBoats>
+  <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='owner'"></app-listBoats>
   <app-listBookings></app-listBookings>
   <button [routerLink]="['/']">Volver</button>
 </div>

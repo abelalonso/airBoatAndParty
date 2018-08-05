@@ -15,8 +15,9 @@
   <app-listComments></app-listComments>
   <div class="user-identified" *ngIf="sessionService.user">
     <app-newBooking [boat]="boat"></app-newBooking>
-    <app-listBookings [boat]="boat"></app-listBookings>
-    <button [routerLink]="['/profile']">Volver</button>
+   <!--  <app-listBookings [boat]="boat"></app-listBookings> -->
+    <button [routerLink]="['/']">Todos los barcos</button>
+    <button [routerLink]="['/profile']">Mi página</button>
   </div>
   <div class="user-unknown" *ngIf="!sessionService.user">
       <button [routerLink]="['/']">Volver</button>

@@ -2,7 +2,7 @@
 
 <div class="booking-form" *ngIf="bookingService.showBookingForm">
   <!--   <app-calendar></app-calendar> -->
-  <div *ngIf="calendarOptions">
+  <div class="calendar" *ngIf="calendarOptions">
     <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
       (dayClick)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)" (initialized)="initialCalendar()"></ng-fullcalendar>
   </div>

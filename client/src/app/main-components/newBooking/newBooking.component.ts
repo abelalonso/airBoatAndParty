@@ -33,7 +33,7 @@ export class NewBookingComponent implements OnInit {
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
+        right: ''
       }//,      events: data
     };
   }
@@ -50,6 +50,10 @@ export class NewBookingComponent implements OnInit {
     this.bookingService.showBookingButton = true;
     this.startDate = null;
     this.endDate = null;
+  }
+  clickButton(){
+    console.log("Boton picado");
+    this.initialCalendar();
   }
 
   initialCalendar(){
@@ -94,6 +98,11 @@ export class NewBookingComponent implements OnInit {
             date.setDate(date.getDate()+1);
           }
         });
+        //check that endDate is after startDate and you only pick 2 dates
+        if(data.date._d.getTime()<this.startDate.getTime() || this.endDate){
+          console.log("pillada")
+          isPicked=true;
+        }
         if (!isPicked){
           this.endDate = data.date._d
           this.markDay(this.endDate, "Fin", "green");
@@ -101,6 +110,11 @@ export class NewBookingComponent implements OnInit {
           this.totalPrice = (1 + Math.ceil((this.endDate.getTime() - 
           this.startDate.getTime())/
           (1000*24*60*60)))*this.boat.pricePerDay;
+          let date = this.startDate
+          while (date<this.endDate){
+            this.markDay(date, null, "green");
+            date.setDate(date.getDate()+1);
+          }
         }
       }
     }

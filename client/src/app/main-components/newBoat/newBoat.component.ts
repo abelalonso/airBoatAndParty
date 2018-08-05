@@ -4,6 +4,9 @@ import { SessionService } from '../../session/session.service';
 import { Boat } from '../boat-interface';
 import { FileUploader } from 'ng2-file-upload';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
+const { BASEURL } = environment;
 
 @Component({
   selector: 'app-newBoat',
@@ -13,7 +16,7 @@ import { Router } from '@angular/router';
 export class NewBoatComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader ({
-    url: `http://localhost:3000/api/boats`,
+    url: `${BASEURL}/api/boats`,
     method: 'POST'
   });
   feedback;

@@ -4,6 +4,9 @@ import { User } from "../User-interface";
 import { Router } from "@angular/router";
 import { FileUploader } from 'ng2-file-upload';
 import * as $ from "jquery";
+import { environment } from '../../../environments/environment';
+
+const { BASEURL } = environment;
 
 @Component({
   selector: "app-signup",
@@ -13,7 +16,7 @@ import * as $ from "jquery";
 export class SignupComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader ({
-    url: `http://localhost:3000/api/auth/signup`,
+    url: `${BASEURL}/api/auth/signup`,
     method: 'POST'
   });
   feedback;
