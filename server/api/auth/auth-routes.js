@@ -25,8 +25,7 @@ const login = (req, user) => {
 // SIGNUP
 authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
 
-  console.log("desde el cliente", req.body)
-  const {username, password, name, surname, email, profileImage} = req.body;
+  const {username, password, name, surname, email} = req.body;
   
   // Check for non empty user or password
   if (!username || !password){
@@ -46,6 +45,7 @@ authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
       name, 
       surname, 
       email, 
+      role: "Usuario",
       boats: [],
       bookings: []
     })

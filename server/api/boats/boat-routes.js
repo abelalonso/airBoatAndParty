@@ -20,13 +20,17 @@ boatRouter.get('/:id', (req, res, next) => {
 
 
 boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
-    const {name, capacity, crew, dimensions, description, owner, pricePerDay, position, city} = req.body;
+
+    console.log(req.body)
+    const {name, capacity, crew, patron, description, owner, pricePerDay, position, city} = req.body;
     //Create the boat
     newBoat = new Boat({
-        name, capacity, crew, dimensions, description, owner, pricePerDay, position, city,
+        name, capacity, crew, patron, description, owner, pricePerDay, position, city,
         photos: ['https://res.cloudinary.com/abel-alonso/image/upload/v1533033995/airByP/images.png'],
         bookings: []
     })
+
+    console.log(newBoat);
 
     if(req.file){
         let photos=[];
@@ -36,7 +40,7 @@ boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
     
     newBoat.save()
     .then ( savedBoat => {
-        User.findByIdAndUpdate(owner, { role: "owner", $push: {boats: savedBoat._id}}).then(udatedUser => {
+        User.findByIdAndUpdate(owner, { role: "Propietario", $push: {boats: savedBoat._id}}).then(udatedUser => {
             res.json({status: `Boat ${name} registered succesfully`})})
         })
     .catch(e => next(e));

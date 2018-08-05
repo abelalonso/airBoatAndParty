@@ -1,11 +1,14 @@
 <div class="container" *ngIf="sessionService.user">
-  <h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
   <div class="profile-image">
     <img src="{{sessionService.user.profileImage}}" alt="no hay imagen" width=200>
   </div>
+  <div class="data">
+    <h1>{{sessionService.user.name}} {{sessionService.user.surname}}</h1>
+    <h3>Tipo de usuario: {{sessionService.user.role}}</h3>
+  </div>
   
   <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
-  <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='owner'"></app-listBoats>
+  <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
   <app-listBookings></app-listBookings>
   <button [routerLink]="['/']">Volver</button>
 </div>

@@ -18,11 +18,14 @@
       <h3>Register</h3>
       <form>
         <input name="username" type="text" placeholder="username" [(ngModel)]="newUser.username">
-        <input name="password" type="text" placeholder="password" [(ngModel)]="newUser.password">
+        <input name="password" type="password" placeholder="password" [(ngModel)]="newUser.password">
         <input name="email" type="text" placeholder="email" [(ngModel)]="newUser.email">
         <input name="name" type="text" placeholder="name" [(ngModel)]="newUser.name">
         <input name="surname" type="text" placeholder="surname" [(ngModel)]="newUser.surname">
-        <input type="file" name="file" ng2FileSelect [uploader]="uploader">
+        <div class="file">
+          <button>Foto de perfil</button>
+          <input id="file" type="file" name="file" ng2FileSelect [uploader]="uploader">
+        </div>
         <button (click)="signup(newUser)">Enviar</button>
       </form>
       <div class="button-group">

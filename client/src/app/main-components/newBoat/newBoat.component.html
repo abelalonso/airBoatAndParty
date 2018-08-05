@@ -12,20 +12,20 @@
       <input type="text" placeholder="capacity" [(ngModel)]="newBoat.capacity" name="capacity">
     </div>
     <div class="form-field">
-      <label for="crew">Tripulación</label>
-      <input type="text" placeholder="crew" [(ngModel)]="newBoat.crew" name="crew">
-    </div>
-    <div class="form-field">
       <label for="city">Ciudad</label>
       <input type="text" placeholder="city" [(ngModel)]="newBoat.city" name="city">
     </div>
     <div class="form-field">
-      <label for="dimensions">Dimensiones</label>
-      <input type="text" placeholder="dimensions" [(ngModel)]="newBoat.dimensions" name="dimensions">
+      <input type="checkbox" [(ngModel)]="newBoat.patron" name="patron">
+      <label for="dimensions">Marca esta casilla si tu barco tiene que alquilarse con patrón. </label>
+    </div>
+    <div class="form-field" *ngIf="newBoat.patron">
+      <label for="crew">Tripulación</label>
+      <input type="text" placeholder="crew" [(ngModel)]="newBoat.crew" name="crew">
     </div>
     <div class="form-field">
       <label for="description">description</label>
-      <textarea col="20" rows="5" type="text" placeholder="newBoat.description" [(ngModel)]="description" name="description"></textarea>
+      <textarea col="20" rows="5" type="text" placeholder="description" [(ngModel)]="newBoat.description" name="description"></textarea>
     </div>
     <div class="form-field">
       <label for="pricePerDay">pricePerDay</label>

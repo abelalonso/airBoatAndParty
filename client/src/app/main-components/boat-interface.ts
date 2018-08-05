@@ -2,7 +2,7 @@ export interface Boat {
   name: string;
   capacity: number;
   crew: number;
-  dimensions: string;
+  patron: boolean;
   booked?: [object];
   owner?: string;
   pricePerDay: number;

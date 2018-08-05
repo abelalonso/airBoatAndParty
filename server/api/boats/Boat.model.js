@@ -4,8 +4,8 @@ const Schema   = mongoose.Schema;
 const boatSchema = new Schema({
   name: {type: String, required: true},
   capacity: Number,
+  patron: Boolean,
   crew: Number,
-  dimensions: String,
   bookings: [{type: [Schema.Types.ObjectId], ref: 'Booking'}],
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
   pricePerDay: Number,
