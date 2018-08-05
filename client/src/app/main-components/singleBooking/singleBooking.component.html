@@ -1,3 +1,6 @@
-<div class="container" *ngIf="booking">
+<div class="container" *ngIf="booking && userId">
   <h1>Reserva del {{booking.startDate | date:short}} al {{booking.endDate | date:short}}</h1>
+
+  <button (click)="showCommentForm()">Comentar</button>
+  <app-newComment *ngIf="commentService.showCommentForm"></app-newComment>
 </div>

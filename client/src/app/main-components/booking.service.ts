@@ -15,6 +15,7 @@ export class BookingService {
   showBookingForm:boolean = false;
   showBookingButton = true;
   disableConfirmationButton = true;
+  showCommentForm = false;
   bookings: Array<Booking>;
   options:object = {withCredentials: true}; 
   @Input() userId: string;

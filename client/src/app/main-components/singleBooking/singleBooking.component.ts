@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BookingService } from '../booking.service';
 import { ActivatedRoute } from '@angular/router';
 import { Booking } from '../booking-interface';
+import { SessionService } from '../../session/session.service';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-singleBooking',
@@ -13,15 +15,22 @@ export class SingleBookingComponent implements OnInit {
   bookingId: String;
   booking: Booking;
   @Input() boat;
-  @Input() user;
+  @Input() userId;
 
-  constructor(private bookingService: BookingService, private route: ActivatedRoute) { }
+  constructor(private bookingService: BookingService, private route: ActivatedRoute, private sessionService: SessionService, private commentService: CommentService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params=>{
-      this.bookingId=params['id'];
-      this.bookingService.getBookings(this.user, this.boat).subscribe(()=> 
-        this.booking = this.bookingService.bookings.filter(e=>e._id==this.bookingId)[0])
+    this.sessionService.isLogged().subscribe((user)=>{
+      this.userId = user._id;
+      this.route.params.subscribe(params=>{
+        this.bookingId=params['id'];
+        this.bookingService.getBookings(this.userId, this.boat).subscribe(()=> 
+          this.booking = this.bookingService.bookings.filter(e=>e._id==this.bookingId)[0])
+      })
     })
+  }
+
+  showCommentForm(){
+    this.commentService.showCommentForm = true;
   }
 }

@@ -14,6 +14,7 @@ const { BASEURL } = environment;
 export class CommentService {
 
   options:object = {withCredentials: true}; 
+  showCommentForm = false;
 
   constructor(private http: Http) { }
 
