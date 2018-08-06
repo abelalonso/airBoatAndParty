@@ -62,7 +62,8 @@ authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
   .catch(e => next(e));
 });
 
-authRouter.patch('/update/:id', uploadCloud.single('file'), (req, res, next) => {
+//Update user
+authRouter.patch('/update', uploadCloud.single('file'), (req, res, next) => {
   
   const updatedUser = req.body;
   
@@ -72,7 +73,7 @@ authRouter.patch('/update/:id', uploadCloud.single('file'), (req, res, next) => 
 
   console.log(updatedUser)
 
-  User.findByIdAndUpdate(req.params.id, updatedUser, {new: true})
+  User.findByIdAndUpdate(req.user._id, updatedUser, {new: true})
   .then( user => res.json({status: 'User updated', user})) // Answer JSON
   .catch(e => next(e));
 })

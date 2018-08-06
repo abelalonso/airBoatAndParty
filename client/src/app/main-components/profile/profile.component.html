@@ -4,7 +4,7 @@
       <img src="{{sessionService.user.profileImage}}" alt="no hay imagen">
       <a (click)="imageForm=true"><i class="fas fa-pencil-alt"></i></a>
       <form *ngIf="imageForm">
-        <input type="file" name="file[]" ng2FileSelect [uploader]="uploader">
+        <input id="photoFile" type="file" name="file[]" ng2FileSelect [uploader]="uploader">
         <button class="btn btn-outline-warning" (click)="updateImage()">Actualizar</button>
         <button class="btn btn-outline-danger" (click)="imageForm=false">Cancelar</button>
       </form>
@@ -27,14 +27,16 @@
     </div>
   </div>
   
-  <div class="my-boats row">
-    <h2>Mis Barcos</h2>
-    <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
-    <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
-  </div>
-  <div class="my-bookings row">
-    <h2>Mis Reservas</h2>
-    <app-listBookings></app-listBookings>
+  <div class="row">
+    <div class="my-boats col-md-7">
+      <h2>Mis Barcos</h2>
+      <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
+      <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
+    </div>
+    <div class="my-bookings col-md-4">
+      <h2>Mis Reservas</h2>
+      <app-listBookings></app-listBookings>
+    </div>
   </div>
   <button class="btn btn-outline-warning"[routerLink]="['/']">Volver</button>
 </div>

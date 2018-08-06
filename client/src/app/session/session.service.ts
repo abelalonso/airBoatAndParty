@@ -64,7 +64,7 @@ export class SessionService {
   }
 
   update(updatedData):Observable<User>{
-    return this.http.patch(`${BASEURL}/api/auth/update/${this.user._id}`, updatedData, this.options).pipe(
+    return this.http.patch(`${BASEURL}/api/auth/update/`, updatedData, this.options).pipe(
       map((res: Response) => {
         this.user=res.json().user;
         return res.json();

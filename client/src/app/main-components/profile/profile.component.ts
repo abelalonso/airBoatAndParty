@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   userId;
 
   uploader: FileUploader = new FileUploader ({
-    url: `${BASEURL}/api/auth/update/${this.sessionService.user._id}`,
+    url: `${BASEURL}/api/auth/update/`,
     method: 'PATCH'
   });
   feedback;

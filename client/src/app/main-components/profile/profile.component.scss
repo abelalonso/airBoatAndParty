@@ -1,14 +1,15 @@
 
 
 .row{
-  padding: 20px;
+  padding: 25px;
 }
 .profile-image{
   width: 200px;
   height: 200px;
 
   img{
-    max-width: 100%;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
   }
@@ -29,4 +30,9 @@
 
 i{
   font-size: 20px;
+}
+
+.my-boats, .my-bookings{
+  padding: 20px;
+  margin: 20px;
 }
