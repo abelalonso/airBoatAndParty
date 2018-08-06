@@ -53,7 +53,8 @@ boatRouter.delete('/:id', (req, res, next) => {
         let updatedBoats=boat.owner.boats;
         updatedBoats.splice(updatedBoats.indexOf(id));
         User.findByIdAndUpdate(boat.owner, {boats: updatedBoats}).then((user)=>console.log(`Boats updated un user ${user.username}`))
-    })
+    });
+
     Boat.findByIdAndRemove(id)
         .then( obj => {
             if(obj){

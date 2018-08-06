@@ -10,7 +10,8 @@ const stationSchema = new Schema ({
   indicativo: String,
   nombre: String,
   indsinop: String,
-  longitud: String
+  longitud: String,
+  code: String
 }) 
 
 const Station = mongoose.model("Station", stationSchema);

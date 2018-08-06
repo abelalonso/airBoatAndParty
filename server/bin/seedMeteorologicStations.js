@@ -2335,7 +2335,164 @@ stations = [ {
   "longitud" : "005606W"
 } ]
 
-Station.create(stations)
+newStations = stations.map(e=>{
+  switch (e.provincia){
+
+case 'A Coruña'.toUpperCase():
+    e.code = 'gal'
+    break;
+case 'ARABA/ALAVA':
+    e.code = 'pve'
+    break;
+case 'Albacete'.toUpperCase():
+    e.code = 'clm'
+    break;
+case 'Alicante'.toUpperCase():
+    e.code = 'val'
+    break;
+case 'ALMERIA'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Asturias'.toUpperCase():
+    e.code = 'ast'
+    break;
+case 'AVILA'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Badajoz'.toUpperCase():
+    e.code = 'ext'
+    break;
+case 'ILLES BALEARS':
+    e.code = 'bal'
+    break;
+case 'Barcelona'.toUpperCase():
+    e.code = 'cat'
+    break;
+case 'Burgos'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'CACERES'.toUpperCase():
+    e.code = 'ext'
+    break;
+case 'CADIZ'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Cantabria'.toUpperCase():
+    e.code = 'can'
+    break;
+case 'CASTELLON'.toUpperCase():
+    e.code = 'val'
+    break;
+case 'Ciudad Real'.toUpperCase():
+    e.code = 'clm'
+    break;
+case 'CORDOBA'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Cuenca'.toUpperCase():
+    e.code = 'clm'
+    break;
+case 'Girona'.toUpperCase():
+    e.code = 'cat'
+    break;
+case 'Granada'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Guadalajara'.toUpperCase():
+    e.code = 'clm'
+    break;
+case 'GIPUZKOA':
+    e.code = 'pve'
+    break;
+case 'Huelva'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Huesca'.toUpperCase():
+    e.code = 'arg'
+    break;
+case 'JAEN'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'La Rioja'.toUpperCase():
+    e.code = 'rio'
+    break;
+case 'Las Palmas'.toUpperCase():
+    e.code = 'coo'
+    break;
+case 'LEON'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Lleida'.toUpperCase():
+    e.code = 'cat'
+    break;
+case 'Lugo'.toUpperCase():
+    e.code = 'gal'
+    break;
+case 'Madrid'.toUpperCase():
+    e.code = 'mad'
+    break;
+case 'MALAGA'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Murcia'.toUpperCase():
+    e.code = 'mur'
+    break;
+case 'Navarra'.toUpperCase():
+    e.code = 'nav'
+    break;
+case 'OURENSE'.toUpperCase():
+    e.code = 'gal'
+    break;
+case 'Palencia'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Pontevedra'.toUpperCase():
+    e.code = 'gal'
+    break;
+case 'Salamanca'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Segovia'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Sevilla'.toUpperCase():
+    e.code = 'and'
+    break;
+case 'Soria'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Tarragona'.toUpperCase():
+    e.code = 'cat'
+    break;
+case 'STA. Cruz de Tenerife'.toUpperCase():
+    e.code = 'coo'
+    break;
+case 'Teruel'.toUpperCase():
+    e.code = 'arg'
+    break;
+case 'Toledo'.toUpperCase():
+    e.code = 'clm'
+    break;
+case 'Valencia'.toUpperCase():
+    e.code = 'val'
+    break;
+case 'Valladolid'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'BIZKAIA':
+    e.code = 'pva'
+    break;
+case 'Zamora'.toUpperCase():
+    e.code = 'cle'
+    break;
+case 'Zaragoza'.toUpperCase():
+    e.code = 'arg'
+    break;
+  }
+  return e;
+})
+
+Station.create(newStations)
 .then((data)=>{
   console.log("data created")
   mongoose.disconnect()
