@@ -51,6 +51,16 @@ export class BookingService {
     )
   }
 
+  getOneBooking(bookingId): Observable<Booking>{
+    return this.http.get(`${BASEURL}/api/booking/${bookingId}`).pipe(
+      map((res: Response)=>{
+        return res.json();
+      }),
+      catchError(e=>of(this.errorHandler(e)))
+    )
+
+  }
+
   errorHandler(e){
     console.log("BookingServiceError");
     console.log(e.message);

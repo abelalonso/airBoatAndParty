@@ -6,4 +6,5 @@ export interface Station{
   nombre: string;
   indsinop: string;
   longitud: string;
+  code: string;
 }

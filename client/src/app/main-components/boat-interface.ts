@@ -8,6 +8,6 @@ export interface Boat {
   pricePerDay: number;
   photos?: [string],
   description: string,
-  station?: string,
+  station?: object,
   _id?: string
 }

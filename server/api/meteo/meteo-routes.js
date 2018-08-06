@@ -9,6 +9,14 @@ meteoRouter.get('/', (req, res, next) => {
   .catch(e => next(e))
 })
 
+meteoRouter.get('/:id', (req, res, next) => {
+  Station.findById(req.params.id)
+  .then( objList => {
+    console.log(req.params.id, objList)
+    res.status(200).json(objList)})
+  .catch(e => next(e))
+})
+
 meteoRouter.get('/info/:ccaa', (req, res, next) => {
 
   var request = require("request");

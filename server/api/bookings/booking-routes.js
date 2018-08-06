@@ -18,6 +18,13 @@ bookingRouter.get('/boat/:id', (req, res, next) => {
   .catch(e => next(e))
 });
 
+bookingRouter.get('/:id', (req, res, next) => {
+  //We should update the state of the bookings on every get
+  Booking.findById(req.params.id).populate('boat')
+  .then( objList => res.status(200).json(objList))
+  .catch(e => next(e))
+});
+
 bookingRouter.post('/boat/:id', (req, res, next) => {
 
   const {startDate, endDate, use, shoppingCard, user, totalPrice} = req.body;

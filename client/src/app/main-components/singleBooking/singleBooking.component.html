@@ -3,4 +3,12 @@
 
   <button (click)="showCommentForm()">Comentar</button>
   <app-newComment *ngIf="commentService.showCommentForm"></app-newComment>
+
+  <button (click)="getWeather(); showLinks=true;">Previsión meteorológica</button>
+
+  <div class="weather-info" *ngIf="showLinks">
+    <a href={{tomorrowWeather}}>Próximos días</a>
+    <a href={{soonWeather}}>Corto Plazo</a>
+    <button (click)="showLinks=false">Cancelar</button>
+  </div>
 </div>

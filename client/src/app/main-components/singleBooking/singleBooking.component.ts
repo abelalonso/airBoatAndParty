@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Booking } from '../booking-interface';
 import { SessionService } from '../../session/session.service';
 import { CommentService } from '../comment.service';
+import { StationService } from '../station.service';
 
 @Component({
   selector: 'app-singleBooking',
@@ -16,8 +17,13 @@ export class SingleBookingComponent implements OnInit {
   booking: Booking;
   @Input() boat;
   @Input() userId;
+  thisBoat;
+  station;
+  showLinks=false;
+  tomorrowWeather;
+  soonWeather;
 
-  constructor(public bookingService: BookingService, private route: ActivatedRoute, public sessionService: SessionService, private commentService: CommentService) { }
+  constructor(public bookingService: BookingService, private route: ActivatedRoute, public sessionService: SessionService, private commentService: CommentService, private stationService: StationService) { }
 
   ngOnInit() {
     this.sessionService.isLogged().subscribe((user)=>{
@@ -32,5 +38,20 @@ export class SingleBookingComponent implements OnInit {
 
   showCommentForm(){
     this.commentService.showCommentForm = true;
+  }
+
+  getWeather(){
+    console.log(this.bookingId)
+    this.bookingService.getOneBooking(this.bookingId).subscribe((booking)=>{
+      this.thisBoat = booking.boat;
+      console.log(this.thisBoat.station)
+      this.stationService.getOneStation(this.thisBoat.station).subscribe(station=>{
+        this.station=station
+        this.stationService.getWeather(this.station.code).subscribe(links=>{
+          this.tomorrowWeather = links["tomorrowInfo"];
+          this.soonWeather = links["soonInfo"];       
+        });
+      })
+    })
   }
 }

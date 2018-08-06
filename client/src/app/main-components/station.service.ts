@@ -23,6 +23,25 @@ export class StationService {
       catchError(e=>of (this.errorHandler(e)))
     )
   }
+
+  getOneStation(stationId): Observable<Station>{
+    return this.http.get(`${BASEURL}/api/meteo/${stationId}`).pipe(
+      map((res: Response) => {
+        console.log(res.json())
+        return res.json();
+      }),
+      catchError(e=>of(this.errorHandler(e)))
+    )
+  }
+
+  getWeather(code): Observable<object>{
+    return this.http.get(`${BASEURL}/api/meteo/info/${code}`).pipe(
+      map((res: Response)=>{
+        return res.json();
+      }),
+      catchError(e=>of(this.errorHandler(e)))
+    )
+  }
   
   errorHandler(e){
     console.log("StationServiceError");

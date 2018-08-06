@@ -2,12 +2,13 @@ const express = require('express');
 const boatRouter = express.Router();
 const Boat = require('./Boat.model');
 const User = require('../auth/User.model');
-const uploadCloud = require ('../../config/cloudinary')
+const Station = require('../meteo/station.model');
+const uploadCloud = require ('../../config/cloudinary');
 
 /* GET home page */
 
 boatRouter.get('/', (req, res, next) => {
-    Boat.find().populate('owner').populate('bookings')
+    Boat.find().populate('owner').populate('bookings').populate('station')
     .then( objList => res.status(200).json(objList))
     .catch(e => next(e))
 });
@@ -21,29 +22,40 @@ boatRouter.get('/:id', (req, res, next) => {
 
 boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
 
-    console.log(req.body)
-    const {name, capacity, crew, patron, description, owner, pricePerDay, station} = req.body;
+    console.log(req.body.station)
+    console.log("--------------------------------------")
+
+    const {name, capacity, crew, patron, description, owner, pricePerDay} = req.body;
+
     //Create the boat
     newBoat = new Boat({
-        name, capacity, crew, patron, description, owner, pricePerDay, station,
+        name, capacity, crew, patron, description, owner, pricePerDay,
         photos: ['https://res.cloudinary.com/abel-alonso/image/upload/v1533033995/airByP/images.png'],
         bookings: []
     })
-
-    console.log(newBoat);
-
-    if(req.file){
-        let photos=[];
-        photos.push(req.file.secure_url);
-        newBoat.photos = photos;
-    }
-    
-    newBoat.save()
-    .then ( savedBoat => {
-        User.findByIdAndUpdate(owner, { role: "Propietario", $push: {boats: savedBoat._id}}).then(udatedUser => {
-            res.json({status: `Boat ${name} registered succesfully`})})
-        })
-    .catch(e => next(e));
+    Station.findById(req.body.station).then(station=>{
+        newBoat.station=station
+        
+        console.log(newBoat)
+        if(req.file){
+            let photos=[];
+            photos.push(req.file.secure_url);
+            newBoat.photos = photos;
+        }
+        
+        newBoat.save()
+        .then ( savedBoat => {
+            User.findByIdAndUpdate(owner, { role: "Propietario", $push: {boats: savedBoat._id}}).then(udatedUser => {
+                res.json({status: `Boat ${name} registered succesfully`})})
+            })
+        .catch(e => {
+            console.log(e)
+            res.json(e)
+        });
+    })
+    .catch(e=>{
+        console.log(e)
+    })
 })
 
 boatRouter.delete('/:id', (req, res, next) => {

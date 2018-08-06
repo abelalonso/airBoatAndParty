@@ -32,7 +32,7 @@ export class NewBoatComponent implements OnInit {
     description:"", 
     patron:false, 
     pricePerDay:null, 
-    station: ""
+    station: null
   }
 
   stations;
@@ -73,8 +73,8 @@ export class NewBoatComponent implements OnInit {
         this.onUpdateBoats.emit()
       });
 
-      console.log(newBoat)
     } else {
+      console.log(newBoat)
       this.uploader.onBuildItemForm = (item, form) => {
         form.append('name', newBoat.name);
         form.append('patron', newBoat.patron);
@@ -82,7 +82,7 @@ export class NewBoatComponent implements OnInit {
         form.append('crew', newBoat.crew);
         form.append('description', newBoat.description);
         form.append('pricePerDay', newBoat.pricePerDay);
-        form.append('station', newBoat.station);
+        form.append('station', newBoat.station["_id"]);
         form.append('owner', this.sessionService.user._id);
        }; 
       this.uploader.uploadAll();

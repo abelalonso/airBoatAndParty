@@ -30,6 +30,7 @@ export class BoatService {
   }
 
   addBoat(newBoat: Boat): Observable<Boat>{
+    console.log(newBoat)
     return this.http.post(`${BASEURL}/api/boats`, newBoat, this.options).pipe(
       map ( (res: Response) => {
         return res.json();
