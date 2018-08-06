@@ -13,9 +13,9 @@
     </div>
     <div class="form-field">
       <label for="city">Ciudad</label>
-      <input list="places" [(ngModel)]="newBoat.city" name="city" placeholder="Población">
+      <input list="places" name="city" placeholder="Población" [(ngModel)]="city">
       <datalist id="places">
-        <option *ngFor="let place of places" value={{place}}>
+        <option *ngFor="let station of stations" value={{station.nombre}}>
       </datalist>
 
     </div>

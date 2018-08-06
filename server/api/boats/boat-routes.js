@@ -22,10 +22,10 @@ boatRouter.get('/:id', (req, res, next) => {
 boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
 
     console.log(req.body)
-    const {name, capacity, crew, patron, description, owner, pricePerDay, position, city} = req.body;
+    const {name, capacity, crew, patron, description, owner, pricePerDay, station} = req.body;
     //Create the boat
     newBoat = new Boat({
-        name, capacity, crew, patron, description, owner, pricePerDay, position, city,
+        name, capacity, crew, patron, description, owner, pricePerDay, station,
         photos: ['https://res.cloudinary.com/abel-alonso/image/upload/v1533033995/airByP/images.png'],
         bookings: []
     })

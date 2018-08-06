@@ -32,10 +32,11 @@ export class NewBoatComponent implements OnInit {
     description:"", 
     patron:false, 
     pricePerDay:null, 
-    city: ""
+    station: ""
   }
 
-  places;
+  stations;
+  city;
 
   
   constructor(public boatService: BoatService, public sessionService: SessionService, private router: Router, public stationService: StationService) { }
@@ -54,8 +55,7 @@ export class NewBoatComponent implements OnInit {
   showBoatForm(){
     this.boatService.showBoatForm = true;
     this.stationService.getStations().subscribe( stations => {
-      this.places = stations.map(e=>e.nombre)
-      console.log (this.places);
+      this.stations = stations;
     });
   }
 
@@ -63,6 +63,9 @@ export class NewBoatComponent implements OnInit {
     newBoat.owner = this.sessionService.user._id;
 
     if(!newBoat.patron){newBoat.crew=0}
+
+    newBoat.station = this.stations.filter(e=>e.nombre===this.city).pop();
+    console.log(newBoat.station);
 
     if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
       this.boatService.addBoat(newBoat).subscribe( () => {
@@ -79,7 +82,7 @@ export class NewBoatComponent implements OnInit {
         form.append('crew', newBoat.crew);
         form.append('description', newBoat.description);
         form.append('pricePerDay', newBoat.pricePerDay);
-        form.append('city', newBoat.city);
+        form.append('station', newBoat.station);
         form.append('owner', this.sessionService.user._id);
        }; 
       this.uploader.uploadAll();

@@ -8,10 +8,6 @@ export interface Boat {
   pricePerDay: number;
   photos?: [string],
   description: string,
-  position?: {
-    longitude: number,
-    latitude: number
-  },
-  city: string,
+  station?: string,
   _id?: string
 }

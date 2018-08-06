@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const Station = require('../meteo/station.model')
 
 const boatSchema = new Schema({
   name: {type: String, required: true},
@@ -11,11 +12,7 @@ const boatSchema = new Schema({
   pricePerDay: Number,
   photos: [String],
   description: String,
-  position: {
-    longitude: Number,
-    latitude: Number
-  },
-  city: String
+  station: {type: Schema.Types.ObjectId, ref: 'Station'},
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -2,6 +2,7 @@ const mongoose = require ('mongoose');
 const Schema = mongoose.Schema;
 
 
+
 const stationSchema = new Schema ({
   latitud: String,
   provincia: String,
