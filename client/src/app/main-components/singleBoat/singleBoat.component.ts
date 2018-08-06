@@ -16,7 +16,7 @@ export class SingleBoatComponent implements OnInit {
   boat: Boat;
   boatId: string;
 
-  constructor(private route: ActivatedRoute, private boatService: BoatService, private sessionService: SessionService) {
+  constructor(private route: ActivatedRoute, public boatService: BoatService, public sessionService: SessionService) {
 
   }
 

@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   });
   feedback;
 
-  constructor(private sessionService: SessionService, private boatService: BoatService, private router: Router) {
+  constructor(public sessionService: SessionService, public boatService: BoatService, private router: Router) {
 
   }
 

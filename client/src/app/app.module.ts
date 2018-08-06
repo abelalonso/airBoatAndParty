@@ -19,7 +19,7 @@ import { NewBoatComponent } from './main-components/newBoat/newBoat.component';
 import { ListBookingsComponent } from './main-components/listBookings/listBookings.component';
 import { NewBookingComponent } from './main-components/newBooking/newBooking.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { SingleBookingComponent } from './main-components/singleBooking/singleBooking.component';
 import { ListCommentsComponent } from './main-components/listComments/listComments.component';
 import { NewCommentComponent } from './main-components/newComment/newComment.component';
@@ -37,14 +37,15 @@ import { NewCommentComponent } from './main-components/newComment/newComment.com
     NewBookingComponent,
     SingleBookingComponent,
     ListCommentsComponent,
-    NewCommentComponent,
-    FileSelectDirective
+    NewCommentComponent
+    
  
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    FileUploadModule,
     RouterModule.forRoot(routes),
     FullCalendarModule
 

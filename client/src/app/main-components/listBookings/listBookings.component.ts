@@ -12,7 +12,7 @@ export class ListBookingsComponent implements OnInit {
   bookings;
   @Input() boat = {_id: ""};
 
-  constructor(private bookingService: BookingService, private sessionService: SessionService) { }
+  constructor(public bookingService: BookingService, public sessionService: SessionService) { }
 
   ngOnInit() {
     this.bookingService.getBookings(this.sessionService.user._id, this.boat._id).subscribe( bookings => {

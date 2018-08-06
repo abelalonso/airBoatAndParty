@@ -5,6 +5,7 @@ import { Boat } from '../boat-interface';
 import { FileUploader } from 'ng2-file-upload';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { StationService } from '../station.service';
 
 const { BASEURL } = environment;
 
@@ -13,6 +14,7 @@ const { BASEURL } = environment;
   templateUrl: './newBoat.component.html',
   styleUrls: ['./newBoat.component.scss']
 })
+
 export class NewBoatComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader ({
@@ -20,10 +22,23 @@ export class NewBoatComponent implements OnInit {
     method: 'POST'
   });
   feedback;
-  newBoat: Boat = {name:"", crew:null, capacity:null, description:"", patron:false, pricePerDay:null, city: ""}
+
   @Output() onUpdateBoats = new EventEmitter();
+
+  newBoat: Boat = {
+    name:"", 
+    crew:null, 
+    capacity:null, 
+    description:"", 
+    patron:false, 
+    pricePerDay:null, 
+    city: ""
+  }
+
+  places;
+
   
-  constructor(private boatService: BoatService, private sessionService: SessionService, private router: Router) { }
+  constructor(public boatService: BoatService, public sessionService: SessionService, private router: Router, public stationService: StationService) { }
 
   ngOnInit() {
 
@@ -38,10 +53,10 @@ export class NewBoatComponent implements OnInit {
   }
   showBoatForm(){
     this.boatService.showBoatForm = true;
-  }
-
-  cancel(){
-    this.boatService.showBoatForm = false;
+    this.stationService.getStations().subscribe( stations => {
+      this.places = stations.map(e=>e.nombre)
+      console.log (this.places);
+    });
   }
 
   addBoat(newBoat: Boat){

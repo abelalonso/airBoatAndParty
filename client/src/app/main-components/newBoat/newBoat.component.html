@@ -13,7 +13,11 @@
     </div>
     <div class="form-field">
       <label for="city">Ciudad</label>
-      <input type="text" placeholder="city" [(ngModel)]="newBoat.city" name="city">
+      <input list="places" [(ngModel)]="newBoat.city" name="city" placeholder="Población">
+      <datalist id="places">
+        <option *ngFor="let place of places" value={{place}}>
+      </datalist>
+
     </div>
     <div class="form-field">
       <input type="checkbox" [(ngModel)]="newBoat.patron" name="patron">
@@ -34,7 +38,7 @@
     <input type="file" name="file[]" ng2FileSelect [uploader]="uploader">
     <div class="buttons">
       <button type="submit" (click)="addBoat(newBoat)">Registrar</button>
-      <button (click)="cancel()">Cancelar</button>
+      <button (click)="boatService.showBoatForm=false">Cancelar</button>
     </div>
   </form>
 </div>

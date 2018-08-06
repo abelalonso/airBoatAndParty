@@ -16,7 +16,7 @@ export class BoatService {
   options: object = {withCredentials: true};
   boats: Array<Boat>
 
-  constructor(private http: Http) {
+  constructor(public http: Http) {
     this.getBoats("").subscribe();
    }
 
@@ -28,7 +28,6 @@ export class BoatService {
       })
     )
   }
-
 
   addBoat(newBoat: Boat): Observable<Boat>{
     return this.http.post(`${BASEURL}/api/boats`, newBoat, this.options).pipe(
@@ -54,5 +53,6 @@ export class BoatService {
     console.log(e);
     return e;
   }
+
 
 }

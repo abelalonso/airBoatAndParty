@@ -17,7 +17,7 @@ export class SingleBookingComponent implements OnInit {
   @Input() boat;
   @Input() userId;
 
-  constructor(private bookingService: BookingService, private route: ActivatedRoute, private sessionService: SessionService, private commentService: CommentService) { }
+  constructor(public bookingService: BookingService, private route: ActivatedRoute, public sessionService: SessionService, private commentService: CommentService) { }
 
   ngOnInit() {
     this.sessionService.isLogged().subscribe((user)=>{

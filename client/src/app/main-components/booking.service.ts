@@ -21,7 +21,7 @@ export class BookingService {
   @Input() userId: string;
   @Input() boatId: string;
 
-  constructor(private http: Http) { }
+  constructor(public http: Http) { }
 
   getBookings(userId: string, boatId: string): Observable<Array<Booking>>{
     if (!boatId){

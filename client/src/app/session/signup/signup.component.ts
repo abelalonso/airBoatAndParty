@@ -24,8 +24,10 @@ export class SignupComponent implements OnInit {
   newUser: User = {
     username: "", password: "", name:"", surname:"", email:"" 
   }
+  username:"";
+  password:"";
 
-  constructor(private sessionService: SessionService, private router: Router) {}
+  constructor(public sessionService: SessionService, private router: Router) {}
 
   ngOnInit() {
 

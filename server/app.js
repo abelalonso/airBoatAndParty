@@ -88,4 +88,7 @@ app.use('/api/booking', bookingRoutes);
 const commentRoutes = require("./api/comments/comment-routes");
 app.use('/api/comments', commentRoutes);
 
+const meteoRouter = require("./api/meteo/meteo-routes");
+app.use('/api/meteo', meteoRouter);
+
 module.exports = app;

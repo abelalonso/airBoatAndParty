@@ -14,7 +14,7 @@ export class ListBoatsComponent implements OnInit {
   @Input() boatList: Array<Boat>;
   @Input() userId;
 
-  constructor(private boatService: BoatService, private sessionService: SessionService) { }
+  constructor(public boatService: BoatService, public sessionService: SessionService) { }
 
   ngOnInit() {
     this.update();

@@ -1,16 +1,22 @@
 <div class="container" *ngIf="boat">
-  <div class="boat-info">
-    <h1>{{boat.name}}</h1>
-    <div class="image-wraper">
-      <div class="image" *ngFor="let photo of boat.photos">
-        <img src={{photo}} width=200>
+  <div class="boat-info row">
+    <div class="col-md-4">
+      <div class="image-wraper">
+        <div class="image" *ngFor="let photo of boat.photos">
+          <img src={{photo}} width=200>
+        </div>
+      </div>
+      <div class="info">
+        <h3>Dimensiones: {{boat.dimensions}}</h3>
+        <h3>Capacidad: {{boat.capacity}}</h3>
+        <h3>Tripulación: {{boat.crew}}</h3>
+        <h3>Precio/dia: {{boat.pricePerDay}}</h3>
       </div>
     </div>
-    <p>{{boat.description}}</p>
-    <h3>Dimensiones: {{boat.dimensions}}</h3>
-    <h3>Capacidad: {{boat.capacity}}</h3>
-    <h3>Tripulación: {{boat.crew}}</h3>
-    <h3>Precio/dia: {{boat.pricePerDay}}</h3>
+    <div class="col-md-7">
+      <h1>{{boat.name}}</h1>
+      <p>{{boat.description}}</p>
+    </div>
   </div>
   <app-listComments></app-listComments>
   <div class="user-identified" *ngIf="sessionService.user">

@@ -24,7 +24,7 @@ export class NewBookingComponent implements OnInit {
   newBooking: Booking;
   totalPrice: number;
 
-  constructor(private bookingService: BookingService, private sessionService: SessionService, private router: Router) { }
+  constructor(public bookingService: BookingService, public sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
     this.calendarOptions = {
