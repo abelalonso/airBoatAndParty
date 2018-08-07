@@ -91,4 +91,7 @@ app.use('/api/comments', commentRoutes);
 const meteoRouter = require("./api/meteo/meteo-routes");
 app.use('/api/meteo', meteoRouter);
 
+app.use((req,res) => {
+  res.sendFile(__dirname + '/public/index.html');
+})
 module.exports = app;
