@@ -3,9 +3,9 @@
   <div id="container">
     <div id="f1" class="face">
       <h3>Login</h3>
-      <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
-        <input name="username" type="text" placeholder="username" [ngModel]="username">
-        <input name="password" type="text" placeholder="password" [ngModel]="password">
+      <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm" ngNativeValidate>
+        <input name="username" type="text" placeholder="username" [ngModel]="username" required>
+        <input name="password" type="password" placeholder="password" [ngModel]="password" required>
         <button type="submit">Enviar</button>
       </form>
       <div class="button-group">
@@ -16,17 +16,17 @@
     </div>
     <div id="f2" class="face">
       <h3>Register</h3>
-      <form>
-        <input name="username" type="text" placeholder="username" [(ngModel)]="newUser.username">
-        <input name="password" type="password" placeholder="password" [(ngModel)]="newUser.password">
-        <input name="email" type="text" placeholder="email" [(ngModel)]="newUser.email">
-        <input name="name" type="text" placeholder="name" [(ngModel)]="newUser.name">
-        <input name="surname" type="text" placeholder="surname" [(ngModel)]="newUser.surname">
+      <form ngNativeValidate (ngSubmit)="signup(newUser)">
+        <input name="username" type="text" placeholder="username" [(ngModel)]="newUser.username" required>
+        <input name="password" type="password" placeholder="password" [(ngModel)]="newUser.password" required>
+        <input name="email" type="email" placeholder="email" [(ngModel)]="newUser.email" required>
+        <input name="name" type="text" placeholder="name" [(ngModel)]="newUser.name" required>
+        <input name="surname" type="text" placeholder="surname" [(ngModel)]="newUser.surname" required>
         <div class="file">
           <button>Foto de perfil</button>
           <input id="file" type="file" name="file" ng2FileSelect [uploader]="uploader">
         </div>
-        <button (click)="signup(newUser)">Enviar</button>
+        <button type="submit">Enviar</button>
       </form>
       <div class="button-group">
         <div class="btn" data-target="login">Login</div>
