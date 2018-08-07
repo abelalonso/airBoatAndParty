@@ -67,9 +67,12 @@ export class NewBookingComponent implements OnInit {
   }
 
   updateEvent(data){
-    let pickedDate=new Date(data.date._d);
-    
     var isPicked = false;
+    let pickedDate=new Date(data.date._d);
+    if(pickedDate<new Date()){
+      isPicked=true;
+    }
+
     this.boat.bookings.forEach(e => {
       let date = new Date(e.startDate);
       let endDate = new Date(e.endDate);

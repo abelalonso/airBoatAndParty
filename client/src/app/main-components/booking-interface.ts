@@ -5,7 +5,7 @@ export interface Booking {
   boat: string;
   confirmed?: Boolean,
   totalPrice: Number,
-  use: String,
+  use?: String,
   shoppingCart?: String,
   isActive?: boolean;
   _id?: string;

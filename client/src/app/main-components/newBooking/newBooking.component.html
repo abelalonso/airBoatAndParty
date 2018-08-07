@@ -7,8 +7,8 @@
       <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
         (dayClick)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)" (initialized)="initialCalendar()"></ng-fullcalendar>
     </div>
-    <label for="use">Uso</label>
-    <input name="uso" placeholder="Fiesta, pesca, relax..." [(ngModel)]="use">
+<!--     <label for="use">Uso</label>
+    <input name="uso" placeholder="Fiesta, pesca, relax..." [(ngModel)]="use"> -->
     <div class="reservation-date" *ngIf="startDate">
       <h3>{{totalPrice}}€ Reserva del {{startDate | date:small}} al {{endDate |date:small}}</h3>
     </div>

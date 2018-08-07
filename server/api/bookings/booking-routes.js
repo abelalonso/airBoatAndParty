@@ -4,22 +4,31 @@ const Boat = require('../boats/Boat.model');
 const User = require('../auth/User.model');
 const Booking = require('../bookings/Booking.model');
 
+function updateBookinsState(){
+  Booking.findOneAndUpdate({endDate: {$lte: new Date()}}, {isActive: false})
+  .then(()=>{
+    console.log("actualizadas las reservas")
+  })
+  .catch(()=>exit=true)
+
+}
 bookingRouter.get('/user/:id', (req, res, next) => {
-  //We should update the state of the bookings on every get
+  //update the state of the bookings on every get
+ updateBookinsState()
   Booking.find({'user': req.params.id}).populate('boat')
   .then( objList => res.status(200).json(objList))
   .catch(e => next(e))
 });
 
 bookingRouter.get('/boat/:id', (req, res, next) => {
-  //We should update the state of the bookings on every get
+  updateBookinsState()
   Booking.find({'boat': req.params.id})
   .then( objList => res.status(200).json(objList))
   .catch(e => next(e))
 });
 
 bookingRouter.get('/:id', (req, res, next) => {
-  //We should update the state of the bookings on every get
+  updateBookinsState()
   Booking.findById(req.params.id).populate('boat')
   .then( objList => res.status(200).json(objList))
   .catch(e => next(e))
