@@ -6,7 +6,7 @@
       <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm" ngNativeValidate>
         <input name="username" type="text" placeholder="username" [ngModel]="username" required>
         <input name="password" type="password" placeholder="password" [ngModel]="password" required>
-        <button type="submit">Enviar</button>
+        <button class="btn" type="submit">Enviar</button>
       </form>
       <div class="button-group">
         <div class="btn" data-target="register">Register</div>
@@ -23,10 +23,10 @@
         <input name="name" type="text" placeholder="name" [(ngModel)]="newUser.name" required>
         <input name="surname" type="text" placeholder="surname" [(ngModel)]="newUser.surname" required>
         <div class="file">
-          <button>Foto de perfil</button>
-          <input id="file" type="file" name="file" ng2FileSelect [uploader]="uploader">
+          <button id="file-button" class="btn">Foto de perfil
+          <input id="file" type="file" name="file" ng2FileSelect [uploader]="uploader"></button>
         </div>
-        <button type="submit">Enviar</button>
+        <button class="btn" type="submit">Enviar</button>
       </form>
       <div class="button-group">
         <div class="btn" data-target="login">Login</div>

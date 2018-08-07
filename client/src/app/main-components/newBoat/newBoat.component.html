@@ -17,10 +17,9 @@
       <datalist id="places">
         <option *ngFor="let station of stations" value={{station.nombre}}>
       </datalist>
-
     </div>
     <div class="form-field">
-      <input required type="checkbox" [(ngModel)]="newBoat.patron" name="patron">
+      <input type="checkbox" [(ngModel)]="newBoat.patron" name="patron">
       <label for="patron">Marca esta casilla si tu barco tiene que alquilarse con patrón. </label>
     </div>
     <div class="form-field" *ngIf="newBoat.patron">
@@ -35,7 +34,7 @@
       <label for="pricePerDay">Precio/día</label>
       <input required type="number" placeholder="Precio" [(ngModel)]="newBoat.pricePerDay" name="pricePerDay">
     </div>
-    <input type="file" name="file[]" ng2FileSelect [uploader]="uploader">
+    <button id="file-button" class="btn btn-outline-success">Añadir fotos<input id="file" type="file" multiple name="file[]" ng2FileSelect [uploader]="uploader"></button>
     <div class="buttons">
       <button type="submit">Registrar</button>
       <button (click)="boatService.showBoatForm=false">Cancelar</button>

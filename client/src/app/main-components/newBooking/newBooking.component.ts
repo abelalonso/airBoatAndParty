@@ -120,7 +120,6 @@ export class NewBookingComponent implements OnInit {
         }
       }
     }
-
   }
 
   markDay(markDate:Date, text: string, color: string){

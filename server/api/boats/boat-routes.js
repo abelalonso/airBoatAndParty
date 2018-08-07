@@ -22,40 +22,57 @@ boatRouter.get('/:id', (req, res, next) => {
 
 boatRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
 
-    console.log(req.body.station)
-    console.log("--------------------------------------")
-
     const {name, capacity, crew, patron, description, owner, pricePerDay} = req.body;
 
-    //Create the boat
-    newBoat = new Boat({
-        name, capacity, crew, patron, description, owner, pricePerDay,
-        photos: ['https://res.cloudinary.com/abel-alonso/image/upload/v1533033995/airByP/images.png'],
-        bookings: []
-    })
-    Station.findById(req.body.station).then(station=>{
-        newBoat.station=station
-        
-        console.log(newBoat)
-        if(req.file){
-            let photos=[];
-            photos.push(req.file.secure_url);
-            newBoat.photos = photos;
-        }
-        
-        newBoat.save()
-        .then ( savedBoat => {
-            User.findByIdAndUpdate(owner, { role: "Propietario", $push: {boats: savedBoat._id}}).then(udatedUser => {
-                res.json({status: `Boat ${name} registered succesfully`})})
-            })
-        .catch(e => {
+    if(req.file){
+        Boat.findOne({name, owner}).then(boat=>{
+
+            if (boat){          
+                console.log("otras fotos")
+                Boat.findByIdAndUpdate(boat._id, {$push: {photos: req.file.secure_url}})
+                .then(res.json({status: `Added photo to ${boat.name}`}))
+                .catch(res.json(e))
+            } else {
+                //Create the boat
+                createSendBoat();
+            }
+        })
+    }else{
+        createSendBoat();
+    }
+
+    function createSendBoat (){ 
+        newBoat = new Boat({
+            name, capacity, crew, patron, description, owner, pricePerDay,
+            photos: ['https://res.cloudinary.com/abel-alonso/image/upload/v1533033995/airByP/images.png'],
+            bookings: []
+        })
+
+        Station.findById(req.body.station).then(station=>{
+            newBoat.station=station
+            
+            console.log(newBoat)
+            if(req.file){
+                console.log("primera foto")
+                let photos=[];
+                photos.push(req.file.secure_url);
+                newBoat.photos = photos;
+            }
+            
+            newBoat.save()
+            .then ( savedBoat => {
+                User.findByIdAndUpdate(owner, { role: "Propietario", $push: {boats: savedBoat._id}}).then(udatedUser => {
+                    res.json({status: `Boat ${name} registered succesfully`})})
+                })
+            .catch(e => {
+                console.log(e)
+                res.json(e)
+            });
+        })
+        .catch(e=>{
             console.log(e)
-            res.json(e)
-        });
-    })
-    .catch(e=>{
-        console.log(e)
-    })
+        })
+    }
 })
 
 boatRouter.delete('/:id', (req, res, next) => {
