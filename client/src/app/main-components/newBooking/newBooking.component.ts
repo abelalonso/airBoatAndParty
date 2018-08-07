@@ -52,7 +52,6 @@ export class NewBookingComponent implements OnInit {
     this.endDate = null;
   }
   clickButton(){
-    console.log("Boton picado");
     this.initialCalendar();
   }
 
@@ -81,8 +80,10 @@ export class NewBookingComponent implements OnInit {
         date.setDate(date.getDate()+1);
       }
     });
+
     if (!isPicked){
       if(!this.startDate){
+        console.log("establece start date")
         this.startDate = data.date._d;
         this.markDay(this.startDate, "Inicio", "green");
         this.totalPrice=this.boat.pricePerDay;
@@ -98,9 +99,9 @@ export class NewBookingComponent implements OnInit {
             date.setDate(date.getDate()+1);
           }
         });
+
         //check that endDate is after startDate and you only pick 2 dates
         if(data.date._d.getTime()<this.startDate.getTime() || this.endDate){
-          console.log("pillada")
           isPicked=true;
         }
         if (!isPicked){
@@ -110,7 +111,8 @@ export class NewBookingComponent implements OnInit {
           this.totalPrice = (1 + Math.ceil((this.endDate.getTime() - 
           this.startDate.getTime())/
           (1000*24*60*60)))*this.boat.pricePerDay;
-          let date = this.startDate
+          let date = new Date(this.startDate)
+
           while (date<this.endDate){
             this.markDay(date, null, "green");
             date.setDate(date.getDate()+1);
