@@ -6,7 +6,9 @@ const commentSchema = new Schema ({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
   boat: { type: Schema.Types.ObjectId, ref: 'Boat' },
   photos: [String],
-  date: Date
+  date: Date,
+  booking: { type: Schema.Types.ObjectId, rel: 'Comment' },
+  rate: Number
 })
 
 const Comment = mongoose.model("Comment", commentSchema);

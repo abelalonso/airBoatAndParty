@@ -11,13 +11,14 @@ commentRouter.get('/:id', (req, res, next) => {
   .catch(e => next(e))
 });
 
-commentRouter.post('/:id', uploadCloud.single('file'), (req, res, next) => {
-  const {author, content} = req.body;
+commentRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
+
+  const {content, rate, boat, booking} = req.body;
   
   newComment = new Comment({
-    author, content,
+    boat, booking, rate, content,
     date: new Date(),
-    boat: req.params.id
+    author: req.user.id
   })
   console.log(newComment)
   if (req.file){

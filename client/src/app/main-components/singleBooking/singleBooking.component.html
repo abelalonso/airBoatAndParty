@@ -1,8 +1,7 @@
 <div class="container" *ngIf="booking && userId">
   <h1>Reserva del {{booking.startDate | date:short}} al {{booking.endDate | date:short}}</h1>
 
-  <button  *ngIf="!booking.isActive" (click)="showCommentForm()">Comentar</button>
-  <app-newComment *ngIf="commentService.showCommentForm"></app-newComment>
+  <app-newComment *ngIf="!booking.isActive" [bookingId]="bookingId" [boatId]="thisBoat._id"></app-newComment>
 
   <button  *ngIf="booking.isActive && !showLinks" (click)="getWeather(); showLinks=true;">Previsión meteorológica</button>
 
@@ -15,4 +14,6 @@
 
     <button (click)="showLinks=false; showInfo=false">Cancelar</button>
   </div>
+
+  <button [routerLink]="['/profile']">Mi página</button>
 </div>

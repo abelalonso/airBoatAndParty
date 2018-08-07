@@ -27,6 +27,15 @@ export class CommentService {
     )
   }
 
+  addComment(newComment: Comment): Observable<any>{
+    return this.http.post(`${BASEURL}/api/comments/`, newComment, this.options).pipe(
+      map((res: Response) => {
+        return res.json();
+      }),
+      catchError(e=>of(this.errorHandler(e)))
+    )
+  }
+
   errorHandler(e){
     console.log("CommentServiceError");
     console.log(e.message);

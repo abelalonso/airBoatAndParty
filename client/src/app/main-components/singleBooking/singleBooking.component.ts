@@ -31,8 +31,10 @@ export class SingleBookingComponent implements OnInit {
       this.userId = user._id;
       this.route.params.subscribe(params=>{
         this.bookingId=params['id'];
-        this.bookingService.getBookings(this.userId, this.boat).subscribe(()=> 
-          this.booking = this.bookingService.bookings.filter(e=>e._id==this.bookingId)[0])
+        this.bookingService.getOneBooking(this.bookingId).subscribe((booking)=>{
+          this.thisBoat = booking.boat;
+          this.booking = booking;
+        })
       })
     })
   }
@@ -42,15 +44,12 @@ export class SingleBookingComponent implements OnInit {
   }
 
   getWeather(){
-    this.bookingService.getOneBooking(this.bookingId).subscribe((booking)=>{
-      this.thisBoat = booking.boat;
-      this.stationService.getOneStation(this.thisBoat.station).subscribe(station=>{
-        this.station=station
-        this.stationService.getWeather(this.station.code).subscribe(links=>{
-          this.tomorrowWeather = links["tomorrowInfo"];
-          this.soonWeather = links["soonInfo"];       
-        });
-      })
+    this.stationService.getOneStation(this.thisBoat.station).subscribe(station=>{
+      this.station=station
+      this.stationService.getWeather(this.station.code).subscribe(links=>{
+        this.tomorrowWeather = links["tomorrowInfo"];
+        this.soonWeather = links["soonInfo"];       
+      });
     })
   }
 }
