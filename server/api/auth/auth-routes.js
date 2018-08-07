@@ -2,7 +2,7 @@ const express = require('express');
 const authRouter  = express.Router();
 const User = require('./User.model');
 const passport = require('passport');
-const uploadCloud = require ('../../config/cloudinary')
+const uploadCloud = require ('../../config/cloudinary');
 
 
 // Bcrypt to encrypt passwords
