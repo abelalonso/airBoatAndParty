@@ -7,8 +7,12 @@
   <button (click)="getWeather(); showLinks=true;">Previsión meteorológica</button>
 
   <div class="weather-info" *ngIf="showLinks">
-    <a href={{tomorrowWeather}}>Próximos días</a>
-    <a href={{soonWeather}}>Corto Plazo</a>
-    <button (click)="showLinks=false">Cancelar</button>
+    <a href={{tomorrowWeather}} target="weather-info"><button (click)="showInfo=true">Próximos días</button></a>
+    <a href={{soonWeather}} target="weather-info"><button (click)="showInfo=true">Corto Plazo</button></a>
+
+    <iframe *ngIf="showInfo" name="weather-info" width=550></iframe>
+
+
+    <button (click)="showLinks=false; showInfo=false">Cancelar</button>
   </div>
 </div>

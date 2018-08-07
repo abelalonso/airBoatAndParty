@@ -20,6 +20,7 @@ export class SingleBookingComponent implements OnInit {
   thisBoat;
   station;
   showLinks=false;
+  showInfo=false;
   tomorrowWeather;
   soonWeather;
 
@@ -41,10 +42,8 @@ export class SingleBookingComponent implements OnInit {
   }
 
   getWeather(){
-    console.log(this.bookingId)
     this.bookingService.getOneBooking(this.bookingId).subscribe((booking)=>{
       this.thisBoat = booking.boat;
-      console.log(this.thisBoat.station)
       this.stationService.getOneStation(this.thisBoat.station).subscribe(station=>{
         this.station=station
         this.stationService.getWeather(this.station.code).subscribe(links=>{

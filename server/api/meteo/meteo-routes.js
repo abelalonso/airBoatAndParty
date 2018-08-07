@@ -35,8 +35,11 @@ meteoRouter.get('/info/:ccaa', (req, res, next) => {
     request(options, function (error, response, body) {
       if (error) throw new Error(error);
       tomorrowInfo = JSON.parse(body).datos;
+      options.url = tomorrowInfo;
+
       console.log({tomorrowInfo, soonInfo})
       res.json({tomorrowInfo, soonInfo});
+
     });
   });
 
