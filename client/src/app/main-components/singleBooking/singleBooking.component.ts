@@ -13,7 +13,7 @@ import { StationService } from '../station.service';
 })
 export class SingleBookingComponent implements OnInit {
 
-  bookingId: String;
+  bookingId: string;
   booking: Booking;
   @Input() boat;
   @Input() userId;
@@ -51,5 +51,9 @@ export class SingleBookingComponent implements OnInit {
         this.soonWeather = links["soonInfo"];       
       });
     })
+  }
+
+  update(){
+    this.commentService.getComments(this.bookingId).subscribe()
   }
 }

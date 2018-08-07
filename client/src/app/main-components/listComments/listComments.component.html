@@ -2,6 +2,12 @@
   <h2>Comentarios</h2>
   <div class="comments">
     <div class="comment" *ngFor="let comment of comments">
+      <div class="photos">
+        {{comment.photo}}
+        <div class="photo" *ngFor="let photo of comment.photos">
+          <img src={{photo}} width=100>
+        </div>
+      </div>
       <h4>{{comment.author.name}} comentó:</h4>
       <p>{{comment.content}}</p>
       <h5>{{comment.date | date:short}}</h5>

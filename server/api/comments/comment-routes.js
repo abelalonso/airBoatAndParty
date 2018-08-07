@@ -15,23 +15,38 @@ commentRouter.post('/', uploadCloud.single('file'), (req, res, next) => {
 
   const {content, rate, boat, booking} = req.body;
   
-  newComment = new Comment({
-    boat, booking, rate, content,
-    date: new Date(),
-    author: req.user.id
-  })
-  console.log(newComment)
-  if (req.file){
-    let photos = [];
-    photos.push(req.file.secure_url)
-    newComment.photos
-  }
-
-  newComment.save()
-  .then ( savedComment => {
-        res.json({status: `Comment ${newComment._id} registered succesfully`})
+  if(req.file){
+    Comment.findOne({boat, booking, content, rate})
+    .then(comment=>{
+      if (comment) {
+        Comment.findByIdAndUpdate(comment._id, {$push: {photos: req.file.secure_url}})
+        .then(res.json({status: `Added photo to ${boat.name}`}))
+        .catch(e=>res.json(e))
+      } else {
+        createComment();
+      }
     })
-.catch(e => next(e));
+  }else{
+    createComment();
+  }
+  function createComment() {
+    newComment = new Comment({
+      boat, booking, rate, content,
+      date: new Date(),
+      author: req.user.id,
+      photos: []
+    })
+
+    if (req.file){
+      newComment.photos = [req.file.secure_url];
+    }
+
+    newComment.save()
+    .then ( savedComment => {
+          res.json({status: `Comment ${newComment._id} registered succesfully`})
+      })
+    .catch(e => next(e));
+  }
 })
 
 module.exports = commentRouter;

@@ -69,12 +69,11 @@ export class NewBoatComponent implements OnInit {
 
     if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
       this.boatService.addBoat(newBoat).subscribe( () => {
-        this.boatService.showBoatForm = false;
+
         this.onUpdateBoats.emit()
       });
 
     } else {
-      console.log(newBoat)
       this.uploader.onBuildItemForm = (item, form) => {
         form.append('name', newBoat.name);
         form.append('patron', newBoat.patron);
@@ -87,9 +86,9 @@ export class NewBoatComponent implements OnInit {
        }; 
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {
-        this.boatService.showBoatForm = false;
-        this.onUpdateBoats.emit()
+        this.onUpdateBoats.emit();
       };
     }
+    this.boatService.showBoatForm = false;
   }
 }
