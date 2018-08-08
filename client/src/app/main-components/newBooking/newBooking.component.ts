@@ -18,11 +18,10 @@ export class NewBookingComponent implements OnInit {
   //matDatepicker;
   calendarOptions: Options;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  startDate: Date;
-  endDate: Date;
+
   @Input() boat;
   newBooking: Booking;
-  totalPrice: number;
+
 
   constructor(public bookingService: BookingService, public sessionService: SessionService, private router: Router) { }
 
@@ -41,15 +40,15 @@ export class NewBookingComponent implements OnInit {
   showBookingForm(){
     this.bookingService.showBookingForm = true;
     this.bookingService.showBookingButton = false;
-    this.endDate = null;
-    this.startDate = null;
+    this.bookingService.endDate = null;
+    this.bookingService.startDate = null;
   }
 
   cancel() {
     this.bookingService.showBookingForm = false;
     this.bookingService.showBookingButton = true;
-    this.startDate = null;
-    this.endDate = null;
+    this.bookingService.startDate = null;
+    this.bookingService.endDate = null;
   }
   clickButton(){
     this.initialCalendar();
@@ -85,18 +84,18 @@ export class NewBookingComponent implements OnInit {
     });
 
     if (!isPicked){
-      if(!this.startDate){
+      if(!this.bookingService.startDate){
         console.log("establece start date")
-        this.startDate = data.date._d;
-        this.markDay(this.startDate, "Inicio", "green");
-        this.totalPrice=this.boat.pricePerDay;
+        this.bookingService.startDate = data.date._d;
+        this.markDay(this.bookingService.startDate, "Inicio", "green");
+        this.bookingService.totalPrice=this.boat.pricePerDay;
       } else {
         isPicked = false;
         this.boat.bookings.forEach(e => {
           let date = new Date(e.startDate);
           let endDate = new Date(e.endDate);
           while ((date<=endDate) && (!isPicked)){
-            if ((this.startDate.getTime()<date.getTime()) && (date.getTime()<pickedDate.getTime())){
+            if ((this.bookingService.startDate.getTime()<date.getTime()) && (date.getTime()<pickedDate.getTime())){
               isPicked = true;
             }
             date.setDate(date.getDate()+1);
@@ -104,19 +103,19 @@ export class NewBookingComponent implements OnInit {
         });
 
         //check that endDate is after startDate and you only pick 2 dates
-        if(data.date._d.getTime()<this.startDate.getTime() || this.endDate){
+        if(data.date._d.getTime()<this.bookingService.startDate.getTime() || this.bookingService.endDate){
           isPicked=true;
         }
         if (!isPicked){
-          this.endDate = data.date._d
-          this.markDay(this.endDate, "Fin", "green");
+          this.bookingService.endDate = data.date._d
+          this.markDay(this.bookingService.endDate, "Fin", "green");
           this.bookingService.disableConfirmationButton = false;
-          this.totalPrice = (1 + Math.ceil((this.endDate.getTime() - 
-          this.startDate.getTime())/
+          this.bookingService.totalPrice = (1 + Math.ceil((this.bookingService.endDate.getTime() - 
+          this.bookingService.startDate.getTime())/
           (1000*24*60*60)))*this.boat.pricePerDay;
-          let date = new Date(this.startDate)
+          let date = new Date(this.bookingService.startDate)
 
-          while (date<this.endDate){
+          while (date<this.bookingService.endDate){
             this.markDay(date, null, "green");
             date.setDate(date.getDate()+1);
           }
@@ -140,11 +139,11 @@ export class NewBookingComponent implements OnInit {
 
   addBooking(use: string){
     this.newBooking = {
-      startDate: this.startDate, 
-      endDate: this.endDate,
+      startDate: this.bookingService.startDate, 
+      endDate: this.bookingService.endDate,
       user: this.sessionService.user._id,
       boat: this.boat._id,
-      totalPrice: this.totalPrice,
+      totalPrice: this.bookingService.totalPrice,
       shoppingCart: null,
       use,
       //totalPrice: 

@@ -18,6 +18,11 @@ export class BookingService {
   showCommentForm = false;
   bookings: Array<Booking>;
   options:object = {withCredentials: true}; 
+
+  startDate;
+  endDate;
+  totalPrice;
+  
   @Input() userId: string;
   @Input() boatId: string;
 

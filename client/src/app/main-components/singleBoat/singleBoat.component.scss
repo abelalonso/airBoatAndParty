@@ -22,13 +22,38 @@
   flex-direction: column;
 }
 
-#boat-info{
-  display: flex;
-  justify-content: space-between;
-  .info-item {
-    text-align: center;
-    p{
-      font-size: 0.8em
+.info{
+  background: white;
+  height: 450px;
+  #boat-info{
+    padding-top:15px;
+    display: flex;
+    justify-content: space-around;
+    .info-item {
+      text-align: center;
+      p{
+        font-size: 0.8em
+      }
     }
   }
+}
+.reservation-date{
+  margin-top: 20px;
+  h2{
+    text-align: center;
+  }
+}
+
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
+
+  button{
+    margin-right: 20px;
+  }
+}
+#description{
+  padding:30px 50px;
+  text-align: justify;
 }

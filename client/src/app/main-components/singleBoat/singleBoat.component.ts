@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Boat } from '../boat-interface';
 import { BoatService } from '../boat.service';
 import { SessionService } from '../../session/session.service';
+import { BookingService } from '../booking.service';
 
 
 @Component({
@@ -16,7 +17,11 @@ export class SingleBoatComponent implements OnInit {
   boat: Boat;
   boatId: string;
 
-  constructor(private route: ActivatedRoute, public boatService: BoatService, public sessionService: SessionService) {
+  startDate;
+  endDate;
+  totalPrice;
+
+  constructor(private route: ActivatedRoute, public boatService: BoatService, public sessionService: SessionService, public bookingService: BookingService) {
 
   }
 
