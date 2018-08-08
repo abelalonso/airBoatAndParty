@@ -3,6 +3,12 @@ i{
   font-size: 20px;
 }
 
+.lists{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+
+}
 .info-panel{ 
 
   background: #b5bdc8;
@@ -72,5 +78,15 @@ i{
   }
   button{
     margin-left: 10px;
+  }
+}
+
+.back{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  button{
+    margin-right: 100px;
+    margin-top: -50px;
   }
 }

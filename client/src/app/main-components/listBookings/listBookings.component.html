@@ -1,9 +1,19 @@
 
 
-<h2 *ngIf="!bookings">No hay reservas</h2>
-<div class="reservas" *ngIf="bookings">
-    <h2>Mis Reservas de barcos</h2>
-  <div class="reserva" *ngFor="let booking of bookings">
-    <h4>{{booking.boat.name}} {{booking.startDate | date: short}} - {{booking.endDate | date: short}} <button [routerLink]="['/bookings', booking._id]">Detalle</button></h4>
+<div class="main container" *ngIf="bookings">
+  <h2 *ngIf="bookings.length==0">No hay reservas</h2>
+  <h2 *ngIf="bookings.length>0">Mis Reservas de barcos</h2>
+  <div class="reservas" *ngIf="bookings.length>0">
+
+    <div class="reserva" *ngFor="let booking of bookings">
+      <div class="image-wrapper">
+        <img src={{booking.boat.photos[0]}}>
+      </div>
+      <div class="text">
+        <h4>{{booking.boat.name}}</h4>
+         <p>{{booking.startDate | date: short}} - {{booking.endDate | date: short}}</p> 
+      </div>
+      <button [routerLink]="['/bookings', booking._id]">Detalle</button>
+    </div>
   </div>
 </div>

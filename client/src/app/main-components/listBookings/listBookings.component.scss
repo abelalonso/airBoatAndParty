@@ -1,0 +1,34 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  background: #b5bdc8;
+  background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+  background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 );
+  padding: 20px;
+
+  .reservas{
+    .reserva{
+      background: white;
+      display: flex;
+      padding: 10px;
+      margin: 20px 0;
+
+      img{
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+      }
+      .text{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        * {
+          margin: 0 10px;
+        }
+      }
+    }
+  } 
+}

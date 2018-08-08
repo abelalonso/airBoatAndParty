@@ -27,21 +27,27 @@
       </div>
       <div class="icon">
         <img *ngIf="sessionService.user.role=='Propietario'" src="https://res.cloudinary.com/abel-alonso/image/upload/v1533737915/airByP/captain.png" width=100>
-        <img *ngIf="sessionService.user.role=='Usuario'" src="https://res.cloudinary.com/abel-alonso/image/upload/v1533737911/airByP/user.png">
+        <img *ngIf="sessionService.user.role=='Usuario'" src="https://res.cloudinary.com/abel-alonso/image/upload/v1533737911/airByP/user.png" width=100>
       </div>
     </div>
   </div>
   
   <div class="row">
-    <div class="my-boats col-md-5">
-      <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
-      <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
-    </div>
-    <div class="my-bookings col-md-5">
-      <h2>Mis Reservas</h2>
-      <app-listBookings></app-listBookings>
+    <div class="lists">
+    
+      <div class="my-boats col-md-5">
+        <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
+        <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
+      </div>
+      <div class="my-bookings col-md-7">
+        <h2>Mis Reservas</h2>
+        <app-listBookings></app-listBookings>
+      </div>
     </div>
   </div>
-  <button class="btn btn-outline-warning"[routerLink]="['/']">Volver</button>
+    <div class="back">
+      <button class="btn btn-outline-warning"[routerLink]="['/']">Volver</button>
+
+  </div>
 </div>
 

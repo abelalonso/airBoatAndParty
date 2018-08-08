@@ -132,7 +132,7 @@ export class NewBookingComponent implements OnInit {
     if (month<10) { month="0"+month}
     let date=`${markDate.getFullYear()}-${month}-${day}`
     if(text){
-      $( `td[data-date='${date}']` ).css({"background-color": color, "text-align": "center", padding: "20px 0"}).text(text)
+      $( `td[data-date='${date}']` ).css({"background-color": color, "text-align": "center"}).text(text)
     } else {
       $( `td[data-date='${date}']` ).css({"background-color": color})
     }
