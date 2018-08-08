@@ -100,7 +100,9 @@ export class SignupComponent implements OnInit {
         form.append('name', newUser.name);
         form.append('surname', newUser.surname);
         form.append('email', newUser.email);
+        console.log(form)
       };
+  
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {
         this.router.navigate(['/']);

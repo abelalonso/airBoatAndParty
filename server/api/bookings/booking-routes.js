@@ -4,8 +4,8 @@ const bookingRouter = express.Router();
 const Boat = require('../boats/Boat.model');
 const User = require('../auth/User.model');
 const Booking = require('../bookings/Booking.model');
-const transporter = require ('../../config/nodemailer');
-
+const sendConfirmationMail = require ('../../mail/sendConfirmation');
+const sendConfirmationResponseMail = require ('../../mail/sendConfirmationResponse');
 
 
 function updateBookinsState(){
@@ -61,12 +61,15 @@ bookingRouter.post('/boat/:id', (req, res, next) => {
     Boat.findByIdAndUpdate(req.params.id, {$push: {bookings: newBooking._id}}, {new: true}).populate('owner')
     .then((updatedBoat) => {
       res.json({status: `Booking ${newBooking._id} registered succesfully`})
-      transporter.sendMail({
-        to: updatedBoat.owner.email,
-        subject: 'Nueva Reserva en uno de tus barcos',
-        html: `<p>Hola ${updatedBoat.owner.name} ${updatedBoat.owner.surname}
-        Confirma la reserva  <a href="${process.env.BASEURL}/api/booking/confirm/${newBooking._id}">aqui</a>.</p>`
-      })
+      sendConfirmationMail(updatedBoat.owner.email, {
+        userName: updatedBoat.owner.name, 
+        userSurname: updatedBoat.owner.surname,
+        boatName: updatedBoat.name,
+        startDate: `${newBooking.startDate.getDate()}/${newBooking.startDate.getMonth()+1}/${newBooking.startDate.getFullYear()}`,
+        endDate: `${newBooking.endDate.getDate()}/${newBooking.endDate.getMonth()+1}/${newBooking.endDate.getFullYear()}`,
+        BASEURL: process.env.BASEURL,
+        bookingId: newBooking._id
+      });
     })
     .catch((e)=>console.log("error", e))
   })
@@ -74,15 +77,24 @@ bookingRouter.post('/boat/:id', (req, res, next) => {
 });
 
 bookingRouter.get('/confirm/:id', (req, res, next) => {
-  Booking.findByIdAndUpdate(req.params.id, {confirmed: true}).populate('user')
+  Booking.findByIdAndUpdate(req.params.id, {confirmed: true}).populate('user').populate('boat')
   .then((updatedBooking)=>{
-    transporter.sendMail({
-      to: updatedBooking.user.email,
-      subject: 'Confirmación de Reserva',
-      html: `<p>Hola ${updatedBooking.user.name} ${updatedBooking.user.surname}
-      Tu reserva para el barco ha sido confirmada.</p>`
-    })
+    console.log("hola")
+    sendConfirmationResponseMail(updatedBooking.user.email, {
+      userName: updatedBooking.user.name, 
+      userSurname: updatedBooking.user.surname,
+      boatName: updatedBooking.boat.name,
+      startDate: `${updatedBooking.startDate.getDate()}/
+                  ${updatedBooking.startDate.getMonth()+1}/
+                  ${updatedBooking.startDate.getFullYear()}`,
+      endDate: `${updatedBooking.endDate.getDate()}/
+                ${updatedBooking.endDate.getMonth()+1}/
+                ${updatedBooking.endDate.getFullYear()}`,
+      // BASEURL: process.env.BASEURL,
+      bookingId: updatedBooking._id
+    });
   })
+  .catch((e)=>console.log("error", e))
   res.render('confirmBooking')
 })
 module.exports = bookingRouter;
