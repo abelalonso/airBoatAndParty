@@ -1,39 +1,43 @@
 <div class="container" *ngIf="sessionService.user">
-  <div class="row">
+  <div class="row info-panel">
     <div class="profile-image col-md-3">
       <img src="{{sessionService.user.profileImage}}" alt="no hay imagen">
-      <a (click)="imageForm=true"><i class="fas fa-pencil-alt"></i></a>
-      <form *ngIf="imageForm">
-        <input id="photoFile" type="file" name="file[]" ng2FileSelect [uploader]="uploader">
+      <a (click)="imageForm=true"><i class="fas fa-pencil-alt"></i><input  [(ngModel)]="profileImage" id="photoFile" type="file" id="file" name="file" ng2FileSelect [uploader]="uploader"></a>
+      <form id="buttons" *ngIf="imageForm">
         <button class="btn btn-outline-warning" (click)="updateImage()">Actualizar</button>
         <button class="btn btn-outline-danger" (click)="imageForm=false">Cancelar</button>
       </form>
     </div>
     <div class="data col-md-9">
-      <h1 *ngIf="!nameForm">{{sessionService.user.name}} {{sessionService.user.surname}} <a (click)="nameForm=true"><i class="fas fa-pencil-alt"></i></a></h1>
-      <form class="nameForm" *ngIf="nameForm">
-        <input type="name" placeholder={{sessionService.user.name}} #newName>
-        <input type="surname" placeholder={{sessionService.user.surname}} #newSurname>
-        <button class="btn btn-outline-warning" (click)="updateName(newName.value, newSurname.value)">Actualizar</button>
-        <button class="btn btn-outline-danger" (click)="nameForm=false">Cancelar</button>
-      </form>
-      <h3>Tipo de usuario: {{sessionService.user.role}}</h3>
-      <h3 *ngIf="!emailForm">Email: {{sessionService.user.email}} <a (click)="emailForm=true"><i class="fas fa-pencil-alt"></i></a></h3>
-      <form class="emailForm" *ngIf="emailForm">
-        <input type="email" placeholder={{sessionService.user.email}} #newMail>
-        <button class="btn btn-outline-warning" (click)="updateEmail(newMail.value)">Actualizar</button>
-        <button class="btn btn-outline-danger" (click)="emailForm=false">Cancelar</button>
-      </form>
+      <div class="text">
+        <h1 *ngIf="!nameForm">{{sessionService.user.name}} {{sessionService.user.surname}} <a (click)="nameForm=true"><i class="fas fa-pencil-alt"></i></a></h1>
+        <form class="nameForm" *ngIf="nameForm">
+          <input id="new-name" type="name" placeholder={{sessionService.user.name}} #newName>
+          <input id="new-surname" type="surname" placeholder={{sessionService.user.surname}} #newSurname>
+          <button class="btn btn-outline-warning" (click)="updateName(newName.value, newSurname.value)">Actualizar</button>
+          <button class="btn btn-outline-danger" (click)="nameForm=false">Cancelar</button>
+        </form>
+  
+        <h3 *ngIf="!emailForm">Email: {{sessionService.user.email}} <a (click)="emailForm=true"><i class="fas fa-pencil-alt"></i></a></h3>
+        <form class="emailForm" *ngIf="emailForm">
+          <input type="email" placeholder={{sessionService.user.email}} #newMail>
+          <button class="btn btn-outline-warning" (click)="updateEmail(newMail.value)">Actualizar</button>
+          <button class="btn btn-outline-danger" (click)="emailForm=false">Cancelar</button>
+        </form>
+      </div>
+      <div class="icon">
+        <img *ngIf="sessionService.user.role=='Propietario'" src="https://res.cloudinary.com/abel-alonso/image/upload/v1533737915/airByP/captain.png" width=100>
+        <img *ngIf="sessionService.user.role=='Usuario'" src="https://res.cloudinary.com/abel-alonso/image/upload/v1533737911/airByP/user.png">
+      </div>
     </div>
   </div>
   
   <div class="row">
-    <div class="my-boats col-md-7">
-      <h2>Mis Barcos</h2>
+    <div class="my-boats col-md-5">
       <app-listBoats [userId]="sessionService.user._id" [boatList]="boats" *ngIf="sessionService.user.role=='Propietario'"></app-listBoats>
       <app-newBoat (onUpdateBoats)="update($event)"></app-newBoat>
     </div>
-    <div class="my-bookings col-md-4">
+    <div class="my-bookings col-md-5">
       <h2>Mis Reservas</h2>
       <app-listBookings></app-listBookings>
     </div>

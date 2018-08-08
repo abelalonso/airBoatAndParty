@@ -3,7 +3,7 @@ const Station = require ('../api/meteo/station.model.js');
 const mongoose = require ('mongoose');
 const dburl = process.env.DBURL;
 
-mongoose.connect(dburl, {useMongoClient: true})
+mongoose.connect("mongodb://localhost/airByP", {useMongoClient: true})
 
 stations = [ {
   "latitud" : "431825N",

@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   nameForm = false;
   imageForm = false;
   userId;
+  
 
   uploader: FileUploader = new FileUploader ({
     url: `${BASEURL}/api/auth/update/`,
@@ -61,10 +62,10 @@ export class ProfileComponent implements OnInit {
 
   updateImage(){
     this.uploader.uploadAll();
- //     this.uploader.onCompleteItem = () => {
+    this.uploader.onCompleteItem = () => {
         this.imageForm = false;
+    console.log("entra")
 
-   //   };
+      };
   }
-
 }

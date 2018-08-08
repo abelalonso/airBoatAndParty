@@ -1,24 +1,40 @@
-
-.boats{
+.main{
   display: flex;
-  flex-wrap: wrap;
-  
-  .boat{
+  flex-direction: column;
+  align-items: center; 
+  background: #b5bdc8;
+  background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+  background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 );
+  padding: 20px;
+
+  .boats{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
     
-    button{
-      margin: 5px;
-    }
-    
-    .img-wrap{
-      width: 200px;
-      
-      img{
-        max-width: 100%;
-        
+    .boat{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      margin: 20px 10px;
+      padding: 20px;
+      width: 300px;
+
+      button{
+        margin: 5px;
       }
-    } 
+      
+      .img-wrap{
+        padding: 10px;
+        img{
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+        }
+      } 
+    }
   }
 }
