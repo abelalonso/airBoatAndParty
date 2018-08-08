@@ -13,7 +13,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
+
     .boat{
       display: flex;
       flex-direction: column;
@@ -29,11 +29,25 @@
       .img-wrap{
         padding: 10px;
         img{
-          width: 200px;
+          width: 250px;
           height: 200px;
           object-fit: cover;
         }
       } 
+    }
+  }
+}
+
+.carousel-item{
+  width:100%;
+  background-color: white;
+  padding: 0 30px;
+
+  .boat{
+
+    .buttons{
+      display: flex;
+
     }
   }
 }

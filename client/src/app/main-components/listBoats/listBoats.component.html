@@ -1,13 +1,35 @@
-
 <div class="main container">
-  <h2>Barcos</h2>
-  <div class="boats" *ngIf="boatList">
+  <h2><span *ngIf="this.userId">Mis </span>Barcos</h2>
+  <div class="on-main" *ngIf="!this.userId">
+    <div class="boats" *ngIf="boatList">
       <div class="boat" *ngFor="let boat of boatList">
-        <h4>{{boat.name}}</h4> 
+        <h4>{{boat.name}}</h4>
         <h5>de {{boat.owner.name}} {{boat.owner.surname}}</h5>
-        <div class="img-wrap">
-          <img class="rounded mx-auto d-block" src={{boat.photos[0]}}>
-        </div>
+        
+
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <div class="img-wrap">
+                    <img class="rounded mx-auto" src={{boat.photos[0]}} alt="First slide">
+                    </div>
+                  </div>
+                  <div class="carousel-item" *ngFor="let photo of boat.photos.slice(1)">
+                      <div class="img-wrap">
+                    <img class="rounded mx-auto" src={{photo}} alt="Second slide">
+                    </div>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+
         <h5>{{boat.pricePerDay}} €/dia</h5>
         <div class="buttons">
           <button class="btn btn-outline-info" [routerLink]="['/boats', boat._id]">Detalle</button>
@@ -15,5 +37,57 @@
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="on-profile" *ngIf="this.userId">
+    <div class="boats" *ngIf="boatList">
+      <div id="carouselListBoats" class="carousel slide carousel-fade col-md-9" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="boat">
+              <h4>{{boatList[0].name}}</h4>
+              <h5>de {{boatList[0].owner.name}} {{boatList[0].owner.surname}}</h5>
+              <div class="img-wrap">
+                <img class="rounded mx-auto" src={{boatList[0].photos[0]}}>
+              </div>
+              <h5>{{boatList[0].pricePerDay}} €/dia</h5>
+              <div class="buttons">
+                <button class="btn btn-outline-info" [routerLink]="['/boats', boatList[0]._id]">Detalle</button>
+                <button class="btn btn-outline-danger" (click)="delete(boatList[0]._id)" *ngIf="boatList[0].owner._id===userId">Eliminar</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" *ngFor="let boat of boatList.slice(1)">
+
+            <div class="boat">
+              <h4>{{boat.name}}</h4>
+              <h5>de {{boat.owner.name}} {{boat.owner.surname}}</h5>
+              <div class="img-wrap">
+                <img class="rounded mx-auto" src={{boat.photos[0]}}>
+              </div>
+              <h5>{{boat.pricePerDay}} €/dia</h5>
+              <div class="buttons">
+                <button class="btn btn-outline-info" [routerLink]="['/boats', boat._id]">Detalle</button>
+                <button class="btn btn-outline-danger" (click)="delete(boat._id)" *ngIf="boat.owner._id===userId">Eliminar</button>
+              </div>
+            </div>
+
+          </div>
+
+          <a class="carousel-control-prev" href="#carouselListBoats" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselListBoats" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
 </div>

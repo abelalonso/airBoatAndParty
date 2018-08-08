@@ -1,0 +1,21 @@
+
+
+.comment{
+  display: flex;
+  align-items: center;
+  background: white;
+  .photos{
+    width: 40%;
+    min-height: 110px;
+    img{
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 5px;
+
+    }
+  }
+  .text{
+    width: 60%;
+  }
+}

@@ -13,7 +13,7 @@
         <h4>{{booking.boat.name}}</h4>
          <p>{{booking.startDate | date: short}} - {{booking.endDate | date: short}}</p> 
       </div>
-      <button [routerLink]="['/bookings', booking._id]">Detalle</button>
+      <button class="btn btn-outline-info" [routerLink]="['/bookings', booking._id]">Detalle</button>
     </div>
   </div>
 </div>

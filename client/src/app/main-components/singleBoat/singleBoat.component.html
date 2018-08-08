@@ -39,7 +39,7 @@
       </div>
     </div>
     
-    <div id="" class="carousel slide carousel-fade col-md-9" data-ride="carousel">
+    <div id="carouselSingleBoat" class="carousel slide carousel-fade col-md-9" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img class="d-block w-100" src={{boat.photos[0]}} alt="First slide">
@@ -48,11 +48,11 @@
           <img class="d-block w-100" src={{photo}} alt="Second slide">
         </div>
 
-        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselSingleBoat" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselSingleBoat" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -76,9 +76,9 @@
   </div>
       <div class="buttons user-identified" *ngIf="sessionService.user">
         <button class="btn btn-outline-info" [routerLink]="['/']">Todos los barcos</button>
-        <button class="btn btn-outline-secondary"[routerLink]="['/profile']">Mi página</button>
+        <button class="btn btn-outline-info"[routerLink]="['/profile']">Mi página</button>
       </div>
       <div class="buttons user-unknown" *ngIf="!sessionService.user">
         <button class="btn btn-outline-info" [routerLink]="['/']">Volver</button>
-        <button class="btn btn-outline-secondary" [routerLink]="['/signup']">Reservar</button>
+        <button class="btn btn-outline-info" [routerLink]="['/signup']">Reservar</button>
       </div>
