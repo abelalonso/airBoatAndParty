@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+  background: -moz-linear-gradient(-45deg,  #45484d 0%, #000000 100%);
+background: -webkit-linear-gradient(-45deg,  #45484d 0%,#000000 100%);
+background: linear-gradient(135deg,  #45484d 0%,#000000 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 );
+height: 100vh;
+}
