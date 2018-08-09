@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.boatService.getBoats("").subscribe( boats => this.boats=boats);
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
       this.sessionService.isLogged().subscribe();
@@ -44,8 +44,8 @@ export class ProfileComponent implements OnInit {
     };
     
   }
-  update(){
-    this.boatService.getBoats("").subscribe( boats => this.boats=boats);
+  update(userId){
+    this.boatService.getBoats(userId).subscribe( boats => this.boats=boats);
   }
 
   updateEmail(email: string){

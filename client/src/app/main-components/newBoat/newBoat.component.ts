@@ -46,7 +46,6 @@ export class NewBoatComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
-      this.onUpdateBoats.emit();
     };
 
     this.uploader.onErrorItem = (item, response, status, headers) => {
@@ -86,7 +85,7 @@ export class NewBoatComponent implements OnInit {
     if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
       this.boatService.addBoat(newBoat).subscribe( () => {
 
-        this.onUpdateBoats.emit()
+        this.onUpdateBoats.emit(this.sessionService.user._id)
       });
 
     } else {
@@ -101,8 +100,8 @@ export class NewBoatComponent implements OnInit {
         form.append('owner', this.sessionService.user._id);
        }; 
       this.uploader.uploadAll();
-      this.uploader.onCompleteItem = () => {
-
+      this.uploader.onCompleteAll = () => {
+        this.onUpdateBoats.emit(this.sessionService.user._id);
       };
     }
     this.cancelar();
