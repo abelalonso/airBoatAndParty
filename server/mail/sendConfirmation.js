@@ -11,8 +11,7 @@ const sendConfirmationMail = (to, variables, from = "airByP@gmail.com") => {
   return mjmlUtils
     .inject(pathToHtmlEmailTemplate, variables)
     .then(finalTemplate => {
-      console.log("FINAL TEMPLATE");
-      console.log(finalTemplate);
+
 
       return transporter
         .sendMail({

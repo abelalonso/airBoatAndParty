@@ -6,7 +6,7 @@
       <a *ngIf="!sessionService.user" [routerLink]="['signup']">Entrar...</a>
     </li>
     <li>
-      <a *ngIf="sessionService.user" [routerLink]="['profile']">Mi page</a>
+      <a *ngIf="sessionService.user" [routerLink]="['profile']">Mi Perfil</a>
     </li>
     <li>
       <a [routerLink]="['/']">Barcos</a>

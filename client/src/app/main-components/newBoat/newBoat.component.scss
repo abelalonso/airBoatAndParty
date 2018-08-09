@@ -32,11 +32,13 @@
       width:50%;
       label{
         margin-left: 5px;
+        padding-left: 10px;
       }
     }
 
     .form-field{
       width: 50%;
+      padding-right: 5px;
     }
   }
   #file-button{
@@ -67,8 +69,8 @@
 @keyframes show{
   0%{
       opacity: 0;
-      bottom: 0;
-      left:300px;
+      bottom: 100hv;
+      left:100hv;
 
   }
 }

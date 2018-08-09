@@ -35,11 +35,18 @@ export class SignupComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
+      this.sessionService.isLogged().subscribe(()=>
+      this.router.navigate(['/']))
     };
 
     this.uploader.onErrorItem = (item, response, status, headers) => {
       this.feedback = JSON.parse(response).message;
+      console.log(this.feedback)
+      this.error=this.feedback;
     };
+
+    $(".username").change(()=>this.error=undefined);
+    $(".password").change(()=>this.error=undefined)
     
     var container = $("#container");
 
@@ -89,9 +96,14 @@ export class SignupComponent implements OnInit {
     console.log(this.uploader)
     if((this.uploader._nextIndex==0) && (this.uploader.queue.length==0)){
       console.log("envío sin archivo")
-      this.sessionService.signup(newUser).subscribe( ()=>{
-        this.router.navigate(['/']);
-      });
+      this.sessionService.signup(newUser).subscribe( 
+        user => {
+          this.router.navigate(['/']);
+        },
+        err => {
+          this.error = err.message;
+        }
+      );
     }
 
     else{
@@ -107,7 +119,7 @@ export class SignupComponent implements OnInit {
   
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {
-        this.router.navigate(['/']);
+
       };
     }
 

@@ -46,6 +46,7 @@ export class NewBoatComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
+      this.onUpdateBoats.emit();
     };
 
     this.uploader.onErrorItem = (item, response, status, headers) => {
@@ -101,7 +102,7 @@ export class NewBoatComponent implements OnInit {
        }; 
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {
-        this.onUpdateBoats.emit();
+
       };
     }
     this.cancelar();

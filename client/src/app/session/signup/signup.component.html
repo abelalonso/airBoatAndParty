@@ -4,9 +4,9 @@
     <div id="f1" class="face">
       <h3>Login</h3>
       <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm" ngNativeValidate>
-        <input name="username" type="text" placeholder="username" [ngModel]="username" required>
-        <input name="password" type="password" placeholder="password" [ngModel]="password" required>
-        <div><button class="btn" type="submit">Enviar</button></div>
+        <input class="username" name="username" type="text" placeholder="username" [ngModel]="username" required>
+        <input class="password" name="password" type="password" placeholder="password" [ngModel]="password" required>
+        <div><button class="btn" type="submit">Entrar</button></div>
         <input type="checkbox" required>Debes marcar esta casilla para aceptar el uso cookies.
         <div class="error">{{error}}</div>
       </form>
@@ -19,16 +19,17 @@
     <div id="f2" class="face">
       <h3>Register</h3>
       <form ngNativeValidate (ngSubmit)="signup(newUser)">
-        <input name="username" type="text" placeholder="username" [(ngModel)]="newUser.username" required>
-        <input name="password" type="password" placeholder="password" [(ngModel)]="newUser.password" required>
+        <input class="username" name="username" type="text" placeholder="username" [(ngModel)]="newUser.username" required>
+        <input class="password" name="password" type="password" placeholder="password" [(ngModel)]="newUser.password" required>
         <input name="email" type="email" placeholder="email" [(ngModel)]="newUser.email" required>
         <input name="name" type="text" placeholder="name" [(ngModel)]="newUser.name" required>
         <input name="surname" type="text" placeholder="surname" [(ngModel)]="newUser.surname" required>
-        <div class="file">
+        <div *ngIf="!error" class="file">
           <button id="file-button" class="btn">Foto de perfil
           <input id="file" type="file" name="file" ng2FileSelect [uploader]="uploader"></button>
         </div>
-        <button class="btn" type="submit">Enviar</button>
+        <div class="error">{{error}}</div>
+        <button class="btn" type="submit">Registrar</button>
       </form>
       <div class="button-group">
         <div class="btn" data-target="login">Entra</div>
@@ -37,7 +38,7 @@
       </div>
     </div>
     <div id="f3" class="face">
-      <h3>Info</h3> airByB es un proyecto realizado con fines educativos cuya finalidad es comunicar propietarios de barcos con personas que quieran disfrutar de ellos.
+      <h3>Info</h3> airByB es un proyecto realizado con fines educativos. Su propuesta inicial es crear un entorno propicio para la comunicación entre propietarios de barcos y personas que quieran disfrutar de ellos.
       <div class="button-group">
         <div class="btn" data-target="login">Entra</div>
         <div class="btn" data-target="register">Regístrate</div>

@@ -1,4 +1,4 @@
-<button class="btn btn-outline-success" (click)="showBoatForm()">Registrar un barco</button>
+<button *ngIf="!boatService.showBoatForm"class="btn btn-outline-success" (click)="showBoatForm()">Registrar un barco</button>
 
 <div class="boat-form" *ngIf="boatService.showBoatForm">
   <h2>Datos del barco</h2>
@@ -24,7 +24,7 @@
         <label for="patron">Marca esta casilla si tu barco tiene que alquilarse con patrón. </label>
       </div>
       <div class="form-field" *ngIf="newBoat.patron">
-        <label for="crew">Tripulación</label>
+        <label for="crew"><b>Tripulación</b></label>
         <input required type="number" placeholder="Incluido el capitán." [(ngModel)]="newBoat.crew" name="crew">
       </div>
     </div>

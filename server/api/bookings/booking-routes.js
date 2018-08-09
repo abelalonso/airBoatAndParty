@@ -79,7 +79,6 @@ bookingRouter.post('/boat/:id', (req, res, next) => {
 bookingRouter.get('/confirm/:id', (req, res, next) => {
   Booking.findByIdAndUpdate(req.params.id, {confirmed: true}).populate('user').populate('boat')
   .then((updatedBooking)=>{
-    console.log("hola")
     sendConfirmationResponseMail(updatedBooking.user.email, {
       userName: updatedBooking.user.name, 
       userSurname: updatedBooking.user.surname,

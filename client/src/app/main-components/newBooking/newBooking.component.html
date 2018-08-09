@@ -9,7 +9,7 @@
         (dayClick)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)" (initialized)="initialCalendar()"></ng-fullcalendar>
     </div>
     <div class="buttons">
-      <button class="btn btn-outline-success" (click)="addBooking(use)" type="submit" [disabled]="bookingService.disableConfirmationButton">Confirmar</button>
+      <button class="btn btn-outline-success" (click)="addBooking()" type="submit" [disabled]="bookingService.disableConfirmationButton">Confirmar</button>
       <button class="btn btn-outline-danger"(click)="cancel()">Cancelar</button>
     </div>
   </div>
