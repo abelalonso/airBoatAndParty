@@ -2,7 +2,7 @@
 
 <div class="boat-form" *ngIf="boatService.showBoatForm">
   <h2>Datos del barco</h2>
-  <form ngNativeValidate (ngSubmit)="addBoat(newBoat)" >
+  <form ngNativeValidate (ngSubmit)="addBoat(newBoat)">
     <div class="form-field">
       <label for="name">Nombre</label>
       <input required type="text" placeholder="Nombre de tu barco" [(ngModel)]="newBoat.name" name="name">
@@ -18,26 +18,31 @@
         <option *ngFor="let station of stations" value={{station.nombre}}>
       </datalist>
     </div>
-    <div class="form-field">
-      <input type="checkbox" [(ngModel)]="newBoat.patron" name="patron">
-      <label for="patron">Marca esta casilla si tu barco tiene que alquilarse con patrón. </label>
-    </div>
-    <div class="form-field" *ngIf="newBoat.patron">
-      <label for="crew">Tripulación</label>
-      <input required type="number" placeholder="crew" [(ngModel)]="newBoat.crew" name="crew">
+    <div class="patron">
+      <div class="text">
+        <input type="checkbox" [(ngModel)]="newBoat.patron" name="patron">
+        <label for="patron">Marca esta casilla si tu barco tiene que alquilarse con patrón. </label>
+      </div>
+      <div class="form-field" *ngIf="newBoat.patron">
+        <label for="crew">Tripulación</label>
+        <input required type="number" placeholder="Incluido el capitán." [(ngModel)]="newBoat.crew" name="crew">
+      </div>
     </div>
     <div class="form-field">
       <label for="description">Descripción</label>
-      <textarea required col="20" rows="5" type="text" placeholder="Describe aqui tu barco, cuanta más información más atractivo será." [(ngModel)]="newBoat.description" name="description"></textarea>
+      <textarea required col="20" rows="5" type="text" placeholder="Describe aqui tu barco, cuanta más información más atractivo será."
+        [(ngModel)]="newBoat.description" name="description"></textarea>
     </div>
     <div class="form-field">
       <label for="pricePerDay">Precio/día</label>
       <input required type="number" placeholder="Precio" [(ngModel)]="newBoat.pricePerDay" name="pricePerDay">
     </div>
-    <button id="file-button" class="btn btn-outline-success">Añadir fotos<input id="file" type="file" multiple name="file[]" ng2FileSelect [uploader]="uploader"></button>
+    <button id="file-button" class="btn btn-success">Añadir fotos
+      <input id="file" type="file" multiple name="file[]" ng2FileSelect [uploader]="uploader">
+    </button>
     <div class="buttons">
-      <button type="submit">Registrar</button>
-      <button (click)="boatService.showBoatForm=false">Cancelar</button>
+      <button class="btn btn-outline-success" type="submit">Registrar</button>
+      <button class="btn btn-outline-danger" (click)="cancelar()">Cancelar</button>
     </div>
   </form>
 </div>

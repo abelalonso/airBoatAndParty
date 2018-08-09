@@ -1,15 +1,74 @@
-#file-button{
-  height:30px;
-  width: 205px;
-  position: relative;
-  #file{
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    opacity: 0;
-    cursor: pointer;
-    left: 0px;
-    top: 0px;
-    z-index: 10;
+
+
+.boat-form{
+  width: 500px;
+  position: fixed;
+  bottom: calc(20vh);
+  left: calc(50vh);
+  opacity: 1;
+  z-index: 1;
+  animation-name: show;
+  animation-duration: 2s;
+  background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+  background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 );
+  padding: 20px;
+
+  .form-field{
+    display: flex;
+    flex-direction: column;
+    label{
+      margin-top: 7px;
+    }    
+  }
+
+  .patron{
+    display: flex;
+    margin-top:10px;
+    .text{
+      display: flex;
+      align-items: center;
+      width:50%;
+      label{
+        margin-left: 5px;
+      }
+    }
+
+    .form-field{
+      width: 50%;
+    }
+  }
+  #file-button{
+    height:35px;
+    width: 210px;
+    position: relative;
+    left: 250px;
+    margin-top: 20px;
+    #file{
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      opacity: 0;
+      cursor: pointer;
+      left: 0px;
+      top: 0px;
+      z-index: 10;
+    }
+  }
+
+  .buttons{
+    button{
+      margin-left: 10px;
+    }
+  }
+}
+
+@keyframes show{
+  0%{
+      opacity: 0;
+      bottom: 0;
+      left:300px;
+
   }
 }

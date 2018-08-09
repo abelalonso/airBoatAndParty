@@ -1,0 +1,67 @@
+@import '../profile/profile.component.scss';
+
+.booking-info, .boat-info{
+  background: #b5bdc8;
+  background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+  background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 );
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.boat-info{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 30%;
+  #carouselSingleBoat{
+    margin:20px auto;
+    img{
+      width: 200px;
+      height: 150px;
+      object-fit: contain;
+    }
+  }
+}
+
+#boat-info{
+  background: white;
+  padding-top:15px;
+  display: flex;
+  justify-content: space-around;
+  .info-item {
+    text-align: center;
+    p{
+      font-size: 0.8em
+    }
+  }
+}
+
+.booking-info{
+  width:60%;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container .booking{
+  background: white;
+  min-height: 300px;
+  h1{
+    display: inline-block;
+    margin-right: 5px;
+    .ok{
+      color:rgb(112, 250, 0);
+    }
+    .no{
+      color:red;
+    }
+    .blue{
+      color: blue;
+    }
+  }
+}

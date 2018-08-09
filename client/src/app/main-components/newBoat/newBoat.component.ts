@@ -6,6 +6,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { StationService } from '../station.service';
+import * as $ from "jquery";
 
 const { BASEURL } = environment;
 
@@ -54,9 +55,22 @@ export class NewBoatComponent implements OnInit {
   }
   showBoatForm(){
     this.boatService.showBoatForm = true;
+    $(".main").css({opacity: 0.25});
+    $(".info-panel").css({opacity: 0.25});
+  
+    $(".boat-form").ready(()=>{
+      $(".boat-form").css({opacity: 1})
+    });
+
     this.stationService.getStations().subscribe( stations => {
       this.stations = stations;
     });
+  }
+
+  cancelar(){
+    $(".main").css({opacity: 1});
+    $(".info-panel").css({opacity: 1});
+    this.boatService.showBoatForm=false
   }
 
   addBoat(newBoat: Boat){
@@ -89,6 +103,6 @@ export class NewBoatComponent implements OnInit {
         this.onUpdateBoats.emit();
       };
     }
-    this.boatService.showBoatForm = false;
+    this.cancelar();
   }
 }
