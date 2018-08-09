@@ -29,7 +29,7 @@
           <div class="carousel-item" *ngFor="let photo of booking.boat.photos.slice(1)">
             <img class="d-block w-100" src={{photo}} alt="Second slide">
           </div>
-  
+
           <a class="carousel-control-prev" href="#carouselSingleBoat" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -72,49 +72,68 @@
         </div>
       </div>
     </div>
-  
+
     <div class="booking-info col-md-7">
       <h2>Reserva del {{booking.startDate | date:"dd/MM/yyyy"}} al {{booking.endDate | date:"dd/MM/yyyy"}}</h2>
 
-      <div class="container booking">
-        <div class="confirmed" *ngIf="booking.confirmed">
-            <h1 ><i class="ok fas fa-check"></i></h1><strong>Reserva Confirmada.</strong>
+      <div class="info-wrapper">
+        <div class="container booking col-md-5">
+          <div class="confirmed" *ngIf="booking.confirmed">
+            <h1>
+              <i class="ok fas fa-check"></i>
+            </h1>
+            <strong>Reserva Confirmada.</strong>
+          </div>
+          <div class="not-confirmed" *ngIf="!booking.confirmed">
+            <h1>
+              <i class="no fas fa-ban"></i>
+            </h1>
+            <strong>Reserva No Confirmada.</strong>
+          </div>
+          <div class="active" *ngIf="booking.active">
+            <h1>
+              <i class="fas blue fa-question"></i>
+              <strong>Reserva Activa.</strong>
+            </h1>
+          </div>
+          <div class="not-active" *ngIf="!booking.active">
+            <h1>
+              <i class="blue fas fa-exclamation"></i>
+            </h1>
+            <strong>&nbsp;&nbsp; Reserva Finalizada.</strong>
+          </div>
+  
         </div>
-        <div class="not-confirmed" *ngIf="!booking.confirmed">
-            <h1 ><i class="no fas fa-ban"></i></h1><strong>Reserva No Confirmada.</strong>
-        </div>
-        <div class="active" *ngIf="booking.active">
-          <h1><i class="fas blue fa-question"></i><strong>Reserva Activa.</strong></h1>
-        </div>
-        <div class="not-active" *ngIf="!booking.active">
-          <h1><i class="blue fas fa-exclamation"></i></h1><strong>Reserva Finalizada.</strong>
-        </div>
-    
-        <div class="extra-info">
+        <div class="extra-info col-md-7">
           <div class="comment-meteo">
-            <button *ngIf="booking.isActive && !showLinks" (click)="getWeather(); showLinks=true;">Previsión meteorológica</button>
-      
-            <div class="weather-info" *ngIf="showLinks">
-              <a href={{tomorrowWeather}} target="weather-info">
-                <button (click)="showInfo=true">Próximos días</button>
-              </a>
-              <a href={{soonWeather}} target="weather-info">
-                <button (click)="showInfo=true">Corto Plazo</button>
-              </a>
-      
-              <iframe *ngIf="showInfo" name="weather-info" width=550 height=300></iframe>
-      
-      
-              <button (click)="showLinks=false; showInfo=false">Cancelar</button>
+            <div class="weather-textbox" *ngIf="booking.isActive">
+                <p>Desde aquí puedes consultar el parte meteorológico ofrecido por la AEMET para los próximos días. Esta información se actualiza cada 24 horas.</p>
+              <button class="btn btn-outline-info" (click)="getWeather()">Previsión meteorológica</button>
             </div>
+  
+
             <app-newComment *ngIf="!booking.isActive" [bookingId]="bookingId" [boatId]="thisBoat._id" (onUpdateComments)="update($event)"></app-newComment>
-        </div>
+          </div>
         </div>
       </div>
-  
+
     </div>
   </div>
-
-  <button [routerLink]="['/profile']">Mi página</button>
+  
+  <div id="back">
+  	<button class="btn btn-outline-info" [routerLink]="['/profile']">Mi página</button>
+  </div>
 
 </div>
+<div class="weather-info" *ngIf="showLinks">
+    <div class="buttons">
+      <a href={{tomorrowWeather}} target="weather-info">
+        <button class="btn btn-warning" (click)="showInfo=true">Próximos días</button>
+      </a>
+      <a href={{soonWeather}} target="weather-info">
+        <button class="btn btn-warning" (click)="showInfo=true">Corto Plazo</button>
+      </a>
+      <button class="btn btn-danger" (click)="cancel(); showInfo=false">Cancelar</button>
+    </div>
+    <iframe name="weather-info" width=550 height=300></iframe>
+  </div>

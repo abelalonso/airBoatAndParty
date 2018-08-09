@@ -74,8 +74,7 @@ export class SessionService {
 
   errorHandler(e){
     console.log("SessionServiceError");
-    console.log(e.message);
     console.log(e);
-    return e;
+    throw new Error(e.json().message);
   }
 }

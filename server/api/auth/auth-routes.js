@@ -29,12 +29,12 @@ authRouter.post("/signup", uploadCloud.single('file'), (req, res, next) => {
   
   // Check for non empty user or password
   if (!username || !password){
-    next(new Error('You must provide valid credentials'));
+    next(new Error('Debes proporcionar un usuario y una contraseña'));
   }
 
   User.findOne({ username })
     .then( foundUser => {
-    if (foundUser !== null) throw new Error('Username already exists');
+    if (foundUser !== null) throw new Error('El usuario ya existe');
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);

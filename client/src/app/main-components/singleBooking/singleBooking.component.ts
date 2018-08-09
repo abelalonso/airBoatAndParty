@@ -44,16 +44,28 @@ export class SingleBookingComponent implements OnInit {
   }
 
   getWeather(){
+;
+
+    $(".container").css({opacity: 0.25});
+
+    this.showLinks=true
+
+
     this.stationService.getOneStation(this.thisBoat.station).subscribe(station=>{
       this.station=station
       this.stationService.getWeather(this.station.code).subscribe(links=>{
         this.tomorrowWeather = links["tomorrowInfo"];
-        this.soonWeather = links["soonInfo"];       
+        this.soonWeather = links["soonInfo"];
       });
     })
   }
 
   update(){
     this.commentService.getComments(this.bookingId).subscribe()
+  }
+
+  cancel(){
+    $(".weather-info").fadeOut(1000,()=>this.showLinks=false);
+    $(".container").css({opacity: 1});
   }
 }

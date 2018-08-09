@@ -6,11 +6,13 @@
       <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm" ngNativeValidate>
         <input name="username" type="text" placeholder="username" [ngModel]="username" required>
         <input name="password" type="password" placeholder="password" [ngModel]="password" required>
-        <button class="btn" type="submit">Enviar</button>
+        <div><button class="btn" type="submit">Enviar</button></div>
+        <input type="checkbox" required>Debes marcar esta casilla para aceptar el uso cookies.
+        <div class="error">{{error}}</div>
       </form>
       <div class="button-group">
-        <div class="btn" data-target="register">Register</div>
-        <div class="btn" data-target="agbs">AGBs</div>
+        <div class="btn" data-target="register">Regístrate</div>
+        <div class="btn" data-target="agbs">Cookies</div>
         <div class="btn" data-target="info">Info</div>
       </div>
     </div>
@@ -29,26 +31,25 @@
         <button class="btn" type="submit">Enviar</button>
       </form>
       <div class="button-group">
-        <div class="btn" data-target="login">Login</div>
-        <div class="btn" data-target="agbs">AGBs</div>
+        <div class="btn" data-target="login">Entra</div>
+        <div class="btn" data-target="agbs">Cookies</div>
         <div class="btn" data-target="info">Info</div>
       </div>
     </div>
     <div id="f3" class="face">
-      <h3>Info</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium incidunt animi libero voluptatem, voluptatibus,
-      eaque omnis unde nulla repellat adipisci cum. Dolore accusantium explicabo adipisci vel dolorum, debitis corporis beatae!
+      <h3>Info</h3> airByB es un proyecto realizado con fines educativos cuya finalidad es comunicar propietarios de barcos con personas que quieran disfrutar de ellos.
       <div class="button-group">
-        <div class="btn" data-target="login">Login</div>
-        <div class="btn" data-target="register">Register</div>
-        <div class="btn" data-target="agbs">AGBs</div>
+        <div class="btn" data-target="login">Entra</div>
+        <div class="btn" data-target="register">Regístrate</div>
+        <div class="btn" data-target="agbs">Cookies</div>
       </div>
     </div>
     <div id="f4" class="face">
-      <h3>ABGs</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium incidunt animi libero voluptatem, voluptatibus,
-      eaque omnis unde nulla repellat adipisci cum. Dolore accusantium explicabo adipisci vel dolorum, debitis corporis beatae!
+      <h3>POLÍTICA DE COOKIES</h3> 
+      airByB utiliza cookies cuando el usuario navega por el sitio web. Las cookies son ficheros enviados al navegador por medio de un servicio web con la finalidad de registrar las actividades del usuario durante su tiempo de navegación.
       <div class="button-group">
-        <div class="btn" data-target="login">Login</div>
-        <div class="btn" data-target="register">Register</div>
+        <div class="btn" data-target="login">Entra</div>
+        <div class="btn" data-target="register">Regístrate</div>
         <div class="btn" data-target="info">Info</div>
       </div>
     </div>

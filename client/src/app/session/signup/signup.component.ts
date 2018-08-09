@@ -15,6 +15,8 @@ const { BASEURL } = environment;
 })
 export class SignupComponent implements OnInit {
 
+  error;
+
   uploader: FileUploader = new FileUploader ({
     url: `${BASEURL}/api/auth/signup`,
     method: 'POST'
@@ -114,7 +116,13 @@ export class SignupComponent implements OnInit {
   login(knownUser) {
     this.sessionService
       .login(knownUser.username, knownUser.password)
-      .subscribe();
-    this.router.navigate(["/"]);
+      .subscribe(
+        user => {
+          this.router.navigate(['/']);
+        },
+        err => {
+          this.error = err.message;
+        }
+      )
   }
 }

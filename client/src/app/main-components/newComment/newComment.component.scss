@@ -43,7 +43,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 
 #file-button{
-  height:30px;
+  height:35px;
   width: 205px;
   position: relative;
   #file{
@@ -55,5 +55,22 @@ h1 { font-size: 1.5em; margin: 10px; }
     left: 0px;
     top: 0px;
     z-index: 10;
+  }
+}
+
+.comment-textbox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  padding: 20px;
+  border: dotted 5px green;
+
+  form > *{
+    margin: 5px;
+  }
+  .buttons{
+    display: flex;
+    justify-content: space-around;
   }
 }

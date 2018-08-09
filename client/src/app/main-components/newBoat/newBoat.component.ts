@@ -70,7 +70,8 @@ export class NewBoatComponent implements OnInit {
   cancelar(){
     $(".main").css({opacity: 1});
     $(".info-panel").css({opacity: 1});
-    this.boatService.showBoatForm=false
+    $(".boat-form").fadeOut(1000, ()=>this.boatService.showBoatForm=false)
+    
   }
 
   addBoat(newBoat: Boat){

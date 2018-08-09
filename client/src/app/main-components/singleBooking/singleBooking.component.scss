@@ -46,22 +46,80 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+
 }
 
-.container .booking{
+.info-wrapper{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
   background: white;
   min-height: 300px;
-  h1{
-    display: inline-block;
-    margin-right: 5px;
-    .ok{
-      color:rgb(112, 250, 0);
+  .container.booking{
+    margin-top: 50px;
+    h1{
+      display: inline-block;
+      margin-right: 5px;
+      .ok{
+        color:rgb(112, 250, 0);
+      }
+      .no{
+        color:red;
+      }
+      .blue{
+        color: blue;
+      }
     }
-    .no{
-      color:red;
-    }
-    .blue{
-      color: blue;
-    }
+  }
+}
+
+#back{
+  margin: 50px auto;;
+  
+}
+
+.weather-textbox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  padding: 20px;
+  border: dotted 5px rgb(63, 116, 196);
+
+}
+
+.weather-info{
+  width: 600px;
+  position: fixed;
+  bottom: calc(20vh);
+  left: calc(50vh);
+  opacity: 1;
+  z-index: 1;
+  animation-name: show;
+  animation-duration: 2s;
+  background: -moz-linear-gradient(-45deg,  #b5bdc8 0%, #828c95 36%, #28343b 100%);
+  background: -webkit-linear-gradient(-45deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  background: linear-gradient(135deg,  #b5bdc8 0%,#828c95 36%,#28343b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 );
+  padding: 20px;
+  iframe{
+    background: white;
+  }
+  .buttons{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+  }
+}
+@keyframes show{
+  0%{
+      opacity: 0;
+      bottom: 100hv;
+      left:100hv;
+
+  }
+  100%{
+    opacity: 1;
   }
 }

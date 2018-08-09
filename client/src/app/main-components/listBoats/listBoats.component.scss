@@ -20,7 +20,7 @@
       align-items: center;
       background-color: white;
       margin: 20px 10px;
-      padding: 20px;
+      padding: 20px 0px;
 
       button{
         margin: 5px;
@@ -43,7 +43,8 @@
   background-color: white;
   padding: 0 30px;
 
-  .boat{
+  .profile{
+    margin:0 20px;
 
     .buttons{
       display: flex;
