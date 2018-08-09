@@ -1,0 +1,19 @@
+.nav-bar{
+  position: fixed;
+  top:40px;
+  right: 50px;
+  z-index: 1;
+
+  li{
+    list-style: none;
+    font-size: 1.5em;
+    a{
+      color: rgb(241, 221, 155);
+      text-decoration: none;
+    }
+  }
+}
+
+.margin-top{
+  height: 20px;
+}

@@ -1,5 +1,19 @@
-<a *ngIf="!sessionService.user" [routerLink]="['signup']">Entrar...</a>
-<a href="#" *ngIf="sessionService.user" (click)="logout()">Salir...</a>
+<div class="margin-top"></div>
+<div class="nav-bar">
 
-<a *ngIf="sessionService.user" [routerLink]="['profile']">Mi page</a>
+  <ul>
+    <li>
+      <a *ngIf="!sessionService.user" [routerLink]="['signup']">Entrar...</a>
+    </li>
+    <li>
+      <a *ngIf="sessionService.user" [routerLink]="['profile']">Mi page</a>
+    </li>
+    <li>
+      <a [routerLink]="['/']">Barcos</a>
+    </li>
+    <li>
+      <a href="#" *ngIf="sessionService.user" (click)="logout()">Salir</a>
+    </li>
+  </ul>
+</div>
 <router-outlet></router-outlet>

@@ -1503,3 +1503,12 @@ be a descendant of the grid when it is being dragged.
 .fc-unthemed .fc-list-empty { /* theme will provide own background */
 	background-color: #eee;
 }
+
+#logo{
+	position: fixed;
+	top:20px;
+	left: 10px;
+	z-index: 1;
+}
+
+

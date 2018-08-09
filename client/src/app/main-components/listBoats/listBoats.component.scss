@@ -38,17 +38,20 @@
   }
 }
 
-.carousel-item{
-  width:100%;
-  background-color: white;
-  padding: 0 30px;
-
-  .profile{
-    margin:0 20px;
-
-    .buttons{
-      display: flex;
-
+.on-profile{
+  .boat{
+    padding: 20px;
+    .carousel-item{
+      width:100%;
+      background-color: white;
+      
+      .profile{
+        
+        .buttons{
+          display: flex;
+          
+        }
+      }
     }
   }
 }

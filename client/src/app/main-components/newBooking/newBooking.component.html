@@ -1,5 +1,7 @@
 <div class="container column">
   <button class="btn btn-info" id="booking" (click)="showBookingForm()" *ngIf="bookingService.showBookingButton">Reservar</button>
+
+  <img id="calendar-logo" *ngIf="bookingService.showBookingButton" src="https://res.cloudinary.com/abel-alonso/image/upload/v1533837427/airByP.png">
   
   <div class="booking-form" *ngIf="bookingService.showBookingForm">
     <div class="calendar" *ngIf="calendarOptions">

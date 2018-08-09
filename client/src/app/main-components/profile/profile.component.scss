@@ -53,6 +53,7 @@ i{
 
 .my-boats, .mybookings{
   margin-top: 40px;
+  margin-right: 100px;
   display: flex;
   flex-direction: column;
   *{
@@ -81,13 +82,3 @@ i{
   }
 }
 
-.back{
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  button{
-    margin-right: 100px;
-    margin-top: -50px;
-    z-index: 0;
-  }
-}

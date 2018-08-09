@@ -12,15 +12,15 @@
       <div class="text">
         <h1 *ngIf="!nameForm">{{sessionService.user.name}} {{sessionService.user.surname}} <a (click)="nameForm=true"><i class="fas fa-pencil-alt"></i></a></h1>
         <form class="nameForm" *ngIf="nameForm">
-          <input id="new-name" type="name" placeholder={{sessionService.user.name}} #newName>
-          <input id="new-surname" type="surname" placeholder={{sessionService.user.surname}} #newSurname>
+          <input required id="new-name" type="name" placeholder={{sessionService.user.name}} #newName>
+          <input required id="new-surname" type="surname" placeholder={{sessionService.user.surname}} #newSurname>
           <button class="btn btn-outline-warning" (click)="updateName(newName.value, newSurname.value)">Actualizar</button>
           <button class="btn btn-outline-danger" (click)="nameForm=false">Cancelar</button>
         </form>
   
         <h3 *ngIf="!emailForm">Email: {{sessionService.user.email}} <a (click)="emailForm=true"><i class="fas fa-pencil-alt"></i></a></h3>
         <form class="emailForm" *ngIf="emailForm">
-          <input type="email" placeholder={{sessionService.user.email}} #newMail>
+          <input required type="email" placeholder={{sessionService.user.email}} #newMail>
           <button class="btn btn-outline-warning" (click)="updateEmail(newMail.value)">Actualizar</button>
           <button class="btn btn-outline-danger" (click)="emailForm=false">Cancelar</button>
         </form>
@@ -43,9 +43,6 @@
         <app-listBookings></app-listBookings>
       </div>
     </div>
-  </div>
-    <div class="back">
-      <button class="btn btn-outline-warning" [routerLink]="['/']">Volver</button>
   </div>
 </div>
 
