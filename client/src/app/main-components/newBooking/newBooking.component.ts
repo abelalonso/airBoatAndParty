@@ -38,6 +38,9 @@ export class NewBookingComponent implements OnInit {
   }
 
   showBookingForm(){
+    if (!this.sessionService.user){
+      this.router.navigate(['/signup']);
+    }
     this.bookingService.showBookingForm = true;
     this.bookingService.showBookingButton = false;
     this.bookingService.endDate = null;
